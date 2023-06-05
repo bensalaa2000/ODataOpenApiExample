@@ -1,6 +1,7 @@
 ﻿using AutoMapper.Extensions.ExpressionMapping;
 using FluentValidation;
 using MediatR;
+//using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ODataOpenApiExample.Persistence.Contexts;
 using System.Reflection;
@@ -28,6 +29,8 @@ public static class ConfigureServices
 
         // Ajoute l'interface du contexte aux services.
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+        //services.AddScoped(typeof(IApplicationDbContext), typeof(ApplicationDbContext));
+
 
         services.AddScoped<ApplicationDbContextInitialiser>();
 
@@ -35,9 +38,12 @@ public static class ConfigureServices
         {
             cfg.AddExpressionMapping();
         }, Assembly.GetExecutingAssembly());
+
+        //services.AddMediator(typeof(ConfigureServices).Assembly);
+
+        /*services.TryAddScoped<ODataOpenApiExample.MediatR.IMediator, ODataOpenApiExample.MediatR.Mediator>();*/
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
-
         return services;
     }
 }

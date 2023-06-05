@@ -1,25 +1,18 @@
-﻿
-using MediatR;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ODataOpenApiExample.Persistence.Entities;
 using System.Reflection;
 
 namespace ODataOpenApiExample.Persistence.Contexts;
 public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    private readonly IMediator _mediator;
+    //private readonly IMediator _mediator;
     protected readonly IConfiguration Configuration;
 
-    /*public Context(DbContextOptions<Context> options) : base(options)
-    {
-
-    }*/
-
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        IConfiguration configuration,
-         IMediator mediator) : base(options)
+        IConfiguration configuration/*,
+         IMediator mediator*/) : base(options)
     {
-        _mediator = mediator;
+        //_mediator = mediator;
         Configuration = configuration;
     }
 
@@ -32,7 +25,6 @@ public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())/*.Seed()*/;
-
         base.OnModelCreating(builder);
     }
 

@@ -69,10 +69,11 @@ public class ApplicationDbContextInitialiser
             State = "WA",
             ZipCode = "98052"
         });
-
+        Order order1 = new Order(1) { Customer = "John Doe" };
+        order1.AddLineItem(new LineItem(1) { Description = "Description", Number = 5, Fulfilled = false, Quantity = 23, UnitPrice = decimal.One });
         _context.Orders.AddRange(new Order[]
         {
-            new Order(1){ Customer = "John Doe" },
+            order1,
             new Order(2){ Customer = "John Doe" },
             new Order(3){ Customer = "Jane Doe", EffectiveDate = DateTime.UtcNow.AddDays( 7d ) },
         });

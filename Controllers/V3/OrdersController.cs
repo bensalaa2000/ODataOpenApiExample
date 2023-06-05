@@ -5,6 +5,7 @@ using Asp.Versioning;
 using Asp.Versioning.OData;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+//using global::MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Formatter;
@@ -17,13 +18,14 @@ using System.Linq;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
-
 /// <summary>
 /// Represents a RESTful service of orders.
 /// </summary>
 [ApiVersion(3.0)]
 public class OrdersController : ODataController
 {
+
+
     private readonly IApplicationDbContext _dbContext;
 
     private readonly IMapper _mapper;
@@ -32,9 +34,8 @@ public class OrdersController : ODataController
     {
         this._dbContext = context;
         this._mapper = mapper;
+
     }
-
-
 
     /// <summary>
     /// Retrieves all orders.
@@ -60,25 +61,6 @@ public class OrdersController : ODataController
         return orders.AsQueryable();*/
     }
 
-    /// <summary>
-    /// Retrieves ABE's orders.
-    /// </summary>
-    /// <param name="options">The current OData query options.</param>
-    /// <param name="ct"></param>
-    /// <returns>The requested documents.</returns>
-    /// <response code="200">Documents was successfully retrieved.</response>
-    [HttpGet("WithODataQueryOptionsOrder")]
-    //[MapToApiVersion("1.0")]
-    [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Order>>), Status200OK)]
-    //[EnableQuery(AllowedQueryOptions = Select)]
-    public async Task<IActionResult> GetWithODataQueryOptionsOrder(ODataQueryOptions<Order> options, CancellationToken ct)
-    {
-        //IQueryable<Order> result = _mapper.ProjectTo<Order>(_dbContext.Orders);
-
-        //options.ApplyTo(result);
-        return Ok(options.ApplyTo(_mapper.ProjectTo<Order>(_dbContext.Orders))/*result*//*await _context.Orders.GetQueryAsync(_mapper,options)*/);
-    }
 
     /// <summary>
     /// Gets a single order.

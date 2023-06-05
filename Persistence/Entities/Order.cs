@@ -32,9 +32,17 @@ public class Order : Entity<int>
     /// <value>The description of the order.</value>
     public string Description { get; set; }
 
+    private readonly List<LineItem> _lineItems = new List<LineItem>();
+    public ICollection<LineItem> LineItems => _lineItems.AsReadOnly();
+    public void AddLineItem(LineItem entry)
+    {
+        _lineItems.Add(entry);
+        // Events.Add(new EntryAddedEvent(this.Id, entry));
+    }
+
     /// <summary>
     /// Gets a list of line items in the order.
     /// </summary>
     /// <value>The <see cref="IList{T}">list</see> of order <see cref="LineItem">line items</see>.</value>
-    public virtual ICollection<LineItem> LineItems { get; } = new List<LineItem>();
+    //public virtual ICollection<LineItem> LineItems { get; set; } = new List<LineItem>();
 }

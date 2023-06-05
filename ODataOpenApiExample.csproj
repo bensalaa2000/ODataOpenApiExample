@@ -21,8 +21,6 @@
  </ItemGroup>
 
  <ItemGroup>
-   <Folder Include="MediatR\Commands\" />
-   <Folder Include="MediatR\Queries\" />
    <Folder Include="Persistence\Enums\" />
    <Folder Include="Persistence\Migrations\" />
    <Folder Include="Persistence\Configurations\" />
