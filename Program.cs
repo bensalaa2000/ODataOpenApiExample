@@ -2,11 +2,14 @@
 using Asp.Versioning;
 using Asp.Versioning.Conventions;
 using Microsoft.AspNetCore.OData;
+using Microsoft.AspNetCore.OData.Batch;
 using Microsoft.Extensions.Options;
+using Microsoft.OData.UriParser;
 using ODataOpenApiExample;
 using ODataOpenApiExample.Filters;
 using ODataOpenApiExample.Persistence.Contexts;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 using System.Text.Json.Serialization;
 using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
 using PeopleControllerV2 = ODataOpenApiExample.Controllers.V2.PeopleController;
@@ -16,7 +19,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-
+// IMvcBuilder
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -30,13 +33,15 @@ builder.Services.AddControllers()
     .AddOData(
         options =>
         {
-            options.Count().Select().OrderBy();
-            options.RouteOptions.EnableKeyInParenthesis = false;
+            options.EnableQueryFeatures(50000);
+            //options.Count().Select().OrderBy();
+            options.RouteOptions.EnableKeyInParenthesis = true;
             options.RouteOptions.EnableNonParenthesisForEmptyParameterFunction = true;
             //options.RouteOptions.EnablePropertyNameCaseInsensitive = true;
-            options.RouteOptions.EnableQualifiedOperationCall = false;
+            options.RouteOptions.EnableQualifiedOperationCall = true;
             options.RouteOptions.EnableUnqualifiedOperationCall = true;
         });
+// IApiVersioningBuilder :  OData Versioning
 builder.Services.AddApiVersioning(
                     options =>
                     {
@@ -52,7 +57,12 @@ builder.Services.AddApiVersioning(
                     })
                 .AddOData(options =>
                 {
-                    options.AddRouteComponents("api");
+                    DefaultODataBatchHandler defaultBatchHandler = new();
+                    defaultBatchHandler.MessageQuotas.MaxNestingDepth = 2;
+                    defaultBatchHandler.MessageQuotas.MaxOperationsPerChangeset = 10;
+                    defaultBatchHandler.MessageQuotas.MaxReceivedMessageSize = 100;
+
+                    options.AddRouteComponents("api", defaultBatchHandler);
                 })
                 .AddODataApiExplorer(
                     options =>
@@ -98,6 +108,11 @@ WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+(typeof(ODataUriResolver)
+              .GetField("Default", BindingFlags.Static | BindingFlags.NonPublic)!
+              .GetValue(null) as ODataUriResolver)!
+              .EnableCaseInsensitive = true;
+
 if (app.Environment.IsDevelopment())
 {
     //app.UseMigrationsEndPoint();
@@ -126,6 +141,9 @@ app.UseSwaggerUI(
             options.SwaggerEndpoint(url, name);
         }
     });
+
+app.UseODataQueryRequest();
+app.UseODataBatching();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

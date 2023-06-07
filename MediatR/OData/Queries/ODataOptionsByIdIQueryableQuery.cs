@@ -2,10 +2,11 @@
 
 using global::MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using ODataOpenApiExample.Results;
 
 /// <summary>
 /// 
 /// </summary>
+/// <typeparam name="T"></typeparam>
 /// <param name="Options"></param>
-public sealed record ODataOptionsQuery<T>(ODataQueryOptions<T> Options, int PageSize = 10) : IRequest<PaginatedList<T>>;
+/// <param name="Key"></param>
+public sealed record ODataOptionsByIdIQueryableQuery<T>(ODataQueryOptions<T> Options, int Key) : IRequest<IQueryable<T>>;

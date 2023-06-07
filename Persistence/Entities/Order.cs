@@ -32,11 +32,30 @@ public class Order : Entity<int>
     /// <value>The description of the order.</value>
     public string Description { get; set; }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private readonly List<LineItem> _lineItems = new List<LineItem>();
-    public ICollection<LineItem> LineItems => _lineItems.AsReadOnly();
+    /// <summary>
+    /// 
+    /// </summary>
+    public virtual ICollection<LineItem> LineItems => _lineItems.AsReadOnly();
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entry"></param>
     public void AddLineItem(LineItem entry)
     {
         _lineItems.Add(entry);
+        // Events.Add(new EntryAddedEvent(this.Id, entry));
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entries"></param>
+    public void AddRange(IEnumerable<LineItem> entries)
+    {
+        _lineItems.AddRange(entries);
         // Events.Add(new EntryAddedEvent(this.Id, entry));
     }
 

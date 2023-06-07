@@ -1,15 +1,13 @@
 ﻿namespace ApiVersioning.Examples.Models;
 
-using Microsoft.OData.ModelBuilder;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 /// <summary>
 /// Represents an order.
 /// </summary>
-[Select]
-[Select("effectiveDate", SelectType = SelectExpandType.Disabled)]
+/*[Select]
+[Select("effectiveDate", SelectType = SelectExpandType.Disabled)]*/
 public class Order
 {
     /// <summary>
@@ -34,7 +32,7 @@ public class Order
     /// Gets or sets the name of the ordering customer.
     /// </summary>
     /// <value>The name of the customer that placed the order.</value>
-    [Required]
+    //[Required]
     public string Customer { get; set; }
 
     /// <summary>
@@ -47,6 +45,6 @@ public class Order
     /// Gets a list of line items in the order.
     /// </summary>
     /// <value>The <see cref="IList{T}">list</see> of order <see cref="LineItem">line items</see>.</value>
-    [Contained]
+    //[Contained]
     public virtual IList<LineItem> LineItems { get; } = new List<LineItem>();
 }

@@ -38,4 +38,9 @@ public class LineItem : Entity<int>
     /// </summary>
     /// <value>True if the line item is fulfilled; otherwise, false.</value>
     public bool Fulfilled { get; set; }
+
+    public int OrderId { get; set; }
+
+    public Order Order { get; set; } //= Order.Create(1);
+
 }

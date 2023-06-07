@@ -11,35 +11,43 @@ using Microsoft.OData.ModelBuilder;
 public class OrderModelConfiguration : IModelConfiguration
 {
     /// <inheritdoc />
-    public void Apply( ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix )
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
-        var order = builder.EntitySet<Order>( "Orders" ).EntityType.HasKey( o => o.Id );
-        var lineItem = builder.EntityType<LineItem>().HasKey( li => li.Number );
 
-        if ( apiVersion < ApiVersions.V2 )
+        /*var modelBuilder = new VersionedODataModelBuilder(this)
         {
-            order.Ignore( o => o.EffectiveDate );
-            lineItem.Ignore( li => li.Fulfilled );
+            ModelBuilderFactory = () => new ODataConventionModelBuilder().EnableLowerCamelCase()
+        };*/
+
+
+        EntityTypeConfiguration<Order> order = builder.EntitySet<Order>("Orders").EntityType.HasKey(o => o.Id);
+        EntityTypeConfiguration<LineItem> lineItem = builder.EntityType<LineItem>().HasKey(li => li.Number);
+
+        if (apiVersion < ApiVersions.V2)
+        {
+            order.Ignore(o => o.EffectiveDate);
+            lineItem.Ignore(li => li.Fulfilled);
         }
 
-        if ( apiVersion < ApiVersions.V3 )
+        if (apiVersion < ApiVersions.V3)
         {
-            order.Ignore( o => o.Description );
+            order.Ignore(o => o.Description);
         }
 
-        if ( apiVersion == ApiVersions.V1 )
+
+        if (apiVersion == ApiVersions.V1)
         {
-            order.Function( "MostExpensive" ).ReturnsFromEntitySet<Order>( "Orders" );
+            order.Function("MostExpensive").ReturnsFromEntitySet<Order>("Orders");
         }
 
-        if ( apiVersion >= ApiVersions.V1 )
+        if (apiVersion >= ApiVersions.V1)
         {
-            order.Collection.Function( "MostExpensive" ).ReturnsFromEntitySet<Order>( "Orders" );
+            order.Collection.Function("MostExpensive").ReturnsFromEntitySet<Order>("Orders");
         }
 
-        if ( apiVersion >= ApiVersions.V2 )
+        if (apiVersion >= ApiVersions.V2)
         {
-            order.Action( "Rate" ).Parameter<int>( "rating" );
+            order.Action("Rate").Parameter<int>("rating");
         }
     }
 }

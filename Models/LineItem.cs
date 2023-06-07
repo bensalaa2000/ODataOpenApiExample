@@ -1,11 +1,8 @@
 ﻿namespace ApiVersioning.Examples.Models;
-
-using Microsoft.OData.ModelBuilder;
-
 /// <summary>
 /// Represents the line item on an order.
 /// </summary>
-[Select]
+//[Select]
 public class LineItem
 {
     /// <summary>
@@ -37,4 +34,5 @@ public class LineItem
     /// </summary>
     /// <value>True if the line item is fulfilled; otherwise, false.</value>
     public bool Fulfilled { get; set; }
+
 }

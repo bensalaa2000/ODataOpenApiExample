@@ -2,13 +2,18 @@
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace ODataOpenApiExample.Persistence.Contexts;
-
+/// <summary>
+/// 
+/// </summary>
 public sealed class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
 {
 
     //protected readonly IMediator _mediator;
     protected readonly IConfiguration Configuration;
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="configuration"></param>
     public ApplicationDbContextFactory(/*IMediator mediator, */IConfiguration configuration)
     {
         // _mediator = mediator;

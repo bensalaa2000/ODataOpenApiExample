@@ -32,6 +32,9 @@ public class Person : Entity<int>
     /// <value>The person's telephone number.</value>
     public string Phone { get; set; }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int HomeAddressId { get; set; }
     /// <summary>
     /// Gets or sets the person's home address.
@@ -39,7 +42,9 @@ public class Person : Entity<int>
     /// <value>The person's home address.</value>
     public virtual Address HomeAddress { get; set; }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public int WorkAddressId { get; set; }
 
     /// <summary>

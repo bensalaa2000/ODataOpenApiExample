@@ -7,6 +7,10 @@ namespace ODataOpenApiExample.Persistence.Entities;
 /// </summary>
 public class Product : Entity<int>
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
     public Product(int id) : base(id) { }
     /// <summary>
     /// Gets or sets the product name.

@@ -6,10 +6,10 @@ using global::MediatR;
 using Microsoft.EntityFrameworkCore;
 using ODataOpenApiExample.Persistence.Contexts;
 
-public class OrderHandler
-    : IRequestHandler<CreateOrder, Order>
-    , IRequestHandler<UpdateOrder, Order>
-    , IRequestHandler<DeleteOrder>
+public class OrderCommandsHandler
+    : IRequestHandler<CreateOrderCommand, Order>
+    , IRequestHandler<UpdateOrderCommand, Order>
+    , IRequestHandler<DeleteOrderCommand>
 {
     private readonly IApplicationDbContext _dbContext;
 
@@ -19,16 +19,16 @@ public class OrderHandler
     /// </summary>
     /// <param name="context"></param>
     /// <param name="mapper"></param>
-    public OrderHandler(IApplicationDbContext context, IMapper mapper)
+    public OrderCommandsHandler(IApplicationDbContext context, IMapper mapper)
     {
         _dbContext = context;
         _mapper = mapper;
     }
 
 
-    public async Task<Order> Handle(CreateOrder request, CancellationToken cancellationToken)
+    public async Task<Order> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        var order = new Order
+        Order order = new Order
         {
             /*Age = request.Age,
             FirstName = request.FirstName*/
@@ -39,7 +39,7 @@ public class OrderHandler
         return order;
     }
 
-    public async Task<Order> Handle(UpdateOrder request, CancellationToken cancellationToken)
+    public async Task<Order> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
         var order = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
         if (order == null)
@@ -56,9 +56,9 @@ public class OrderHandler
         return _mapper.Map<Order>(order);
     }
 
-    public async Task<Unit> Handle(DeleteOrder request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
-        var person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
+        Persistence.Entities.Order person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
         if (person == null)
         {
             throw new Exception("Record does not exist");

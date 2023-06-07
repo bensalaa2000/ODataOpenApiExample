@@ -1,9 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ODataOpenApiExample.Persistence.Entities;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using Polly;
+using Address = ODataOpenApiExample.Persistence.Entities.Address;
+using Order = ODataOpenApiExample.Persistence.Entities.Order;
 
 namespace ODataOpenApiExample.Persistence.Contexts;
 
+/// <summary>
+/// 
+/// </summary>
 public class ApplicationDbContextInitialiser
 {
     private readonly ILogger<ApplicationDbContextInitialiser> _logger;
@@ -41,6 +46,7 @@ public class ApplicationDbContextInitialiser
             }
             else if (_context.Database.IsInMemory())
             {
+
                 SeedDatabase();
             }
         }
@@ -58,9 +64,17 @@ public class ApplicationDbContextInitialiser
         _context.Database.Migrate();
         SeedDatabase();
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public void SeedDatabase()
     {
+
+
+
+
+
+
 
         _context.Addresses.Add(new Address(42)
         {
@@ -69,14 +83,77 @@ public class ApplicationDbContextInitialiser
             State = "WA",
             ZipCode = "98052"
         });
-        Order order1 = new Order(1) { Customer = "John Doe" };
-        order1.AddLineItem(new LineItem(1) { Description = "Description", Number = 5, Fulfilled = false, Quantity = 23, UnitPrice = decimal.One });
-        _context.Orders.AddRange(new Order[]
+        /*
+         Order order1 = new Order(1) { Customer = "John Doe" };
+         order1.AddLineItem(new LineItem(1) { Description = "Description", Number = 5, Fulfilled = false, Quantity = 23, UnitPrice = decimal.One });
+        */
+
+
+        Random rnd = Random.Shared;
+
+        IEnumerable<Order> orders =
+            Enumerable
+                .Range(1, 100)
+                .Select(index =>
+                {
+                    Faker faker = new();
+                    Bogus.Person person = faker.Person;
+
+                    Order order = new(index)
+                    {
+                        Customer = $"{person.FullName}",
+                        EffectiveDate = DateTime.UtcNow.AddDays(faker.Random.Double(0, 15))
+                    };
+
+
+                    /*IEnumerable<LineItem> lineItems = Enumerable
+                       .Range(index + 100, 150)
+                       .Select(index =>
+                       {
+                           Faker faker = new();
+                           LineItem lineItem = new(index)
+                           {
+                               Description = faker.Lorem.Slug(rnd.Next(3, 5)),
+                               Number = faker.Random.Int(1, 15),
+                               Fulfilled = faker.Random.Bool(),
+                               Quantity = faker.Random.Int(1, 50),
+                               UnitPrice = faker.Finance.Amount(min: 10, max: 9999, decimals: 2),
+                               OrderId = order.Id
+                           };
+                           return lineItem;
+                       });*/
+
+                    /*foreach (LineItem lineItem in lineItems)
+                    {
+                        lineItem.OrderId = order.Id;
+                    }*/
+
+                    //order.AddRange(lineItems);
+                    return order;
+                });
+
+
+
+        _context.Orders.AddRange(orders);
+        //_context.LineItems.AddRange(lineItems);
+
+        /*_context.Orders.ForEachAsync(order =>
+        {
+
+            _context.LineItems.ForEachAsync(item =>
+            {
+                order.LineItems.Add(item);
+            });
+
+        });*/
+
+        /*
+        _context.Orders.AddRange(new []
         {
             order1,
             new Order(2){ Customer = "John Doe" },
             new Order(3){ Customer = "Jane Doe", EffectiveDate = DateTime.UtcNow.AddDays( 7d ) },
-        });
+        });*/
 
         _context.SaveChangesAsync();
         // // Default roles

@@ -4,8 +4,9 @@ using ApiVersioning.Examples.Models;
 using global::MediatR;
 using System.Collections.Generic;
 
-public class CreateOrder : IRequest<Order>
+public class UpdateOrderCommand : IRequest<Order>
 {
+    public int Id { get; set; }
     public DateTime CreatedDate { get; set; } = DateTime.Now;
     public DateTime EffectiveDate { get; set; } = DateTime.Now;
     public string Customer { get; set; }

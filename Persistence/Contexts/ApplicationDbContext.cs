@@ -3,11 +3,19 @@ using ODataOpenApiExample.Persistence.Entities;
 using System.Reflection;
 
 namespace ODataOpenApiExample.Persistence.Contexts;
+/// <summary>
+/// 
+/// </summary>
 public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     //private readonly IMediator _mediator;
     protected readonly IConfiguration Configuration;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="options"></param>
+    /// <param name="configuration"></param>
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         IConfiguration configuration/*,
          IMediator mediator*/) : base(options)

@@ -1,0 +1,28 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ODataOpenApiExample.Persistence.Entities;
+
+namespace ODataOpenApiExample.Persistence.Configurations.Entities;
+
+/// <summary>
+/// Configuration de l'entité 
+/// </summary>
+public sealed class LineItemEntityTypeConfiguration : EntityTypeConfigurationBase<LineItem, int>
+{
+    /// <inheritdoc/>
+    public override void Configure(EntityTypeBuilder<LineItem> builder)
+    {
+        base.Configure(builder);
+
+        builder.Property(p => p.Quantity).IsRequired().HasDefaultValue(0).IsRequired();
+        builder.Property(p => p.Number).IsRequired().HasDefaultValue(0).IsRequired();
+        builder.Property(p => p.UnitPrice).HasPrecision(10, 2).HasDefaultValueSql("0.00").IsRequired();
+        builder.Property(p => p.Fulfilled).HasDefaultValue(true).IsRequired();
+        builder.Property(p => p.Description).HasMaxLength(200).IsRequired();
+
+        builder.HasIndex(u => u.OrderId).IsUnique();
+
+        builder.HasOne(p => p.Order).WithMany(p => p.LineItems);
+    }
+
+}
