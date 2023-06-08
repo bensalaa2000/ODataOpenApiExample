@@ -15,7 +15,6 @@ public sealed class LineItemEntityTypeConfiguration : EntityTypeConfigurationBas
         base.Configure(builder);
 
         builder.Property(p => p.Quantity).IsRequired().HasDefaultValue(0).IsRequired();
-        builder.Property(p => p.Number).IsRequired().HasDefaultValue(0).IsRequired();
         builder.Property(p => p.UnitPrice).HasPrecision(10, 2).HasDefaultValueSql("0.00").IsRequired();
         builder.Property(p => p.Fulfilled).HasDefaultValue(true).IsRequired();
         builder.Property(p => p.Description).HasMaxLength(200).IsRequired();

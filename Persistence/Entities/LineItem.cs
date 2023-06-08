@@ -9,11 +9,6 @@ namespace ODataOpenApiExample.Persistence.Entities;
 public class LineItem : Entity<int>
 {
     public LineItem(int id) : base(id) { }
-    /// <summary>
-    /// Gets or sets the line item number.
-    /// </summary>
-    /// <value>The line item number.</value>
-    public int Number { get; set; }
 
     /// <summary>
     /// Gets or sets the line item description.

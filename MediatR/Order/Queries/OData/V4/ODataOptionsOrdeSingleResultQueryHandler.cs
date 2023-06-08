@@ -5,7 +5,7 @@ using ODataOpenApiExample.Extensions;
 using ODataOpenApiExample.MediatR.OData.Queries;
 using ODataOpenApiExample.Persistence.Contexts;
 
-namespace ODataOpenApiExample.MediatR.Order.Queries.OData;
+namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V4;
 using Order = ApiVersioning.Examples.Models.Order;
 /// <summary>
 /// 
@@ -20,8 +20,8 @@ public sealed class ODataOptionsOrdeSingleResultQueryHandler : IRequestHandler<O
     /// <inheritdoc/>
     public ODataOptionsOrdeSingleResultQueryHandler(IApplicationDbContext context, IMapper mapper)
     {
-        this._dbContext = context;
-        this._mapper = mapper;
+        _dbContext = context;
+        _mapper = mapper;
     }
 
     /// <inheritdoc/>

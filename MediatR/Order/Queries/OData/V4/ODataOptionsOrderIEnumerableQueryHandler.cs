@@ -4,7 +4,7 @@ using ODataOpenApiExample.MediatR.OData.Queries;
 using ODataOpenApiExample.Persistence.Contexts;
 using System.Collections;
 
-namespace ODataOpenApiExample.MediatR.Order.Queries.OData;
+namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V4;
 using Order = ApiVersioning.Examples.Models.Order;
 /// <summary>
 /// 
@@ -19,8 +19,8 @@ public sealed class ODataOptionsOrderIEnumerableQueryHandler : IRequestHandler<O
     /// <inheritdoc/>
     public ODataOptionsOrderIEnumerableQueryHandler(IApplicationDbContext context, IMapper mapper)
     {
-        this._dbContext = context;
-        this._mapper = mapper;
+        _dbContext = context;
+        _mapper = mapper;
     }
 
     /// <inheritdoc/>

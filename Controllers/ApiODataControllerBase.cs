@@ -7,8 +7,9 @@ namespace ODataOpenApiExample.Controllers;
 /// </summary>
 public abstract class ApiODataControllerBase : ODataController
 {
+    private ISender _mediator = null!;
     /// <summary>
     /// 
     /// </summary>
-    protected ISender Mediator => HttpContext.RequestServices.GetRequiredService<ISender>();
+    protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
 }
