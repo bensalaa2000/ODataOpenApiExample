@@ -27,12 +27,10 @@ public sealed class ODataOptionsOrdeSingleResultQueryHandler : IRequestHandler<O
     /// <inheritdoc/>
     public async Task<SingleResult<Order>> Handle(ODataOptionsSingleResultQuery<Order> request, CancellationToken cancellationToken)
     {
-        IQueryable<Persistence.Entities.Order> result = _dbContext.Orders/*.Where(o => o.Id == request.Key)*/;
-        IQueryable<Order> orders = result.ProjectAndApplyToIQueryable(_mapper, request.options);
+        IQueryable<Persistence.Entities.Order> entities = _dbContext.Orders;
+        IQueryable<Order> orders = entities.ProjectAndApplyToIQueryable(_mapper, request.options);
         SingleResult<Order> singleResult = SingleResult.Create(orders);
-        SingleResult<Order> resultat = await Task.FromResult(singleResult);
-        return resultat;
+        return await Task.FromResult(singleResult);
 
-        //return await Task.FromResult(SingleResult.Create(_dbContext.Orders.ProjectAndApplyToIQueryable<Order>(_mapper, request.options)));
     }
 }

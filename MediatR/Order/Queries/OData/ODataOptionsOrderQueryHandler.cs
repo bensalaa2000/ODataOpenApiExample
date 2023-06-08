@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-//using AutoMapper.AspNet.OData;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 using ODataOpenApiExample.Extensions;
@@ -40,7 +39,7 @@ public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptions
             PageSize = pageSize,
             EnsureStableOrdering = true,
         };
-        IEnumerable<Order> items = _dbContext.Orders.ProjectAndApplyTo<Order>(_mapper, request.Options, querySettings);
+        IEnumerable<Order> items = _dbContext.Orders.ProjectAndApplyTo<Order>(_mapper, options, querySettings);
         PaginatedList<Order> paginatedList = new(items, count, pageNumber, pageSize);
         return await Task.FromResult(paginatedList);
     }
