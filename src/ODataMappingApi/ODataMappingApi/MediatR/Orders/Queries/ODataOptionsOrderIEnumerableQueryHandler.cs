@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.AspNet.OData;
 using MediatR;
+using Microsoft.AspNetCore.OData.Query;
 using ODataOpenApiExample.MediatR.OData.Queries;
 using ODataOpenApiExample.Persistence.Contexts;
 
@@ -26,7 +27,9 @@ public sealed class ODataOptionsOrderIEnumerableQueryHandler : IRequestHandler<O
     /// <inheritdoc/>
     public async Task<IEnumerable<Order>> Handle(ODataOptionsQueryOrder request, CancellationToken cancellationToken)
     {
-        IQueryable<Order> result = await _dbContext.Orders.GetQueryAsync(_mapper, request.Options, null);
+        int pageSize = request.Options.Top?.Value ?? request.PageSize;/* Taille pa defaut si n'est pas indiqué */
+        QuerySettings querySettings = new QuerySettings { ODataSettings = new ODataSettings { HandleNullPropagation = HandleNullPropagationOption.False } };
+        IQueryable<Order> result = await _dbContext.Orders.GetQueryAsync(_mapper, request.Options, querySettings);
         return result;
         //return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<Order>(_dbContext.Orders)) as IEnumerable<Order>);
     }

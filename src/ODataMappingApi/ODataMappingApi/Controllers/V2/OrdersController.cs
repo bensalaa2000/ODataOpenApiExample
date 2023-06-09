@@ -4,6 +4,7 @@ using ODataOpenApiExample.Persistence.Contexts;
 
 namespace ODataMappingApi.Controllers.V2;
 
+[ApiVersion("2.0")]
 public class OrdersController : ControllerBase
 {
 
@@ -25,6 +26,7 @@ public class OrdersController : ControllerBase
     /// <response code="200">Documents was successfully retrieved.</response>
     [HttpGet]
     [EnableQuery]
+    [MapToApiVersion("2.0")]
     public IActionResult Get()
     {
         Microsoft.EntityFrameworkCore.DbSet<ODataOpenApiExample.Persistence.Entities.Order> orders = _dbContext.Orders;
@@ -34,6 +36,7 @@ public class OrdersController : ControllerBase
 
     [HttpGet]
     [EnableQuery]
+    [MapToApiVersion("2.0")]
     public IActionResult Get(int key)
     {
         ODataOpenApiExample.Persistence.Entities.Order? c = _dbContext.Orders.FirstOrDefault(c => c.Id == key);

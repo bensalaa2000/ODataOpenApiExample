@@ -10,7 +10,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 // Add services to the container.
 
-builder.Services.AddControllers().AddOData(options =>
+builder.Services.AddControllers()/*.AddNewtonsoftJson()*/.AddOData(options =>
 {
     DefaultODataBatchHandler defaultBatchHandler = new DefaultODataBatchHandler();
     defaultBatchHandler.MessageQuotas.MaxNestingDepth = 2;
@@ -18,8 +18,7 @@ builder.Services.AddControllers().AddOData(options =>
     defaultBatchHandler.MessageQuotas.MaxReceivedMessageSize = 100;
 
     options.EnableQueryFeatures(50000);//.Select().Filter().OrderBy().SetMaxTop(5000).Count().Expand()
-    //options.AddRouteComponents("odata/v1", ODataExtensions.GetEdmModelV1(), defaultBatchHandler);
-    options.AddRouteComponents("odata", ODataExtensions.GetEdmModelV2(), defaultBatchHandler);
+    options.AddRouteComponents("odata", ODataExtensions.GetEdmModel(), defaultBatchHandler);
     options.TimeZone = TimeZoneInfo.Utc;
 
     options.RouteOptions.EnableKeyInParenthesis = false;
@@ -102,7 +101,11 @@ app.UseODataBatching();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+/*app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapODataRoute(50000);
+});*/
 app.MapControllers();
 
 app.Run();

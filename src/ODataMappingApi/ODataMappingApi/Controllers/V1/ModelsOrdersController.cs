@@ -7,6 +7,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace Axess.Evrp.Api.Controllers.Medtra.V1;
 
+[ApiVersion("1.0")]
 public class ModelsOrdersController : ODataControllerBase<Order>
 {
 
@@ -32,10 +33,10 @@ public class ModelsOrdersController : ODataControllerBase<Order>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(typeof(IEnumerable<Order>), Status200OK)]
+    [MapToApiVersion("1.0")]
     public override async Task<IActionResult> Get(ODataQueryOptions<Order> options, CancellationToken ct)
     {
         return Ok(Mediator.Send(new ODataOptionsQueryOrder(options)));
-        //return Ok(await service.GetQueryAsync(options));
     }
 
     #endregion

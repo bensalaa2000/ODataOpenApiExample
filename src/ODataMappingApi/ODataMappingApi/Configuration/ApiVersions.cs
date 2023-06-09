@@ -1,8 +1,6 @@
-﻿using Asp.Versioning;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ApiVersioning.Examples.Configuration;
-
-
 
 internal static class ApiVersions
 {

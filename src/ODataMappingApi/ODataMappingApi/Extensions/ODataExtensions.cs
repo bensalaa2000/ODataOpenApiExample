@@ -15,35 +15,27 @@ using Models = ApiVersioning.Examples.Models;
 
 internal static class ODataExtensions
 {
-    public static IEdmModel GetEdmModelV1()
-    {
-        ODataConventionModelBuilder edmBuilder = new();
-        edmBuilder.EnableLowerCamelCase();
 
-
-        EntityTypeConfiguration<Models.Order> order = edmBuilder.EntitySet<Models.Order>("Orders").EntityType.HasKey(o => o.Id);
-        EntityTypeConfiguration<Models.LineItem> lineItem = edmBuilder.EntityType<Models.LineItem>().HasKey(li => li.Number);
-
-        /*   EntitySetConfiguration<Address> entitesWithEnum = edmBuilder.EntitySet<Address>("Address");
-           entitesWithEnum.EntityType.HasKey(o => o.Id);*/
-        /***
-			var functionEntitesWithEnum = entitesWithEnum.EntityType.Collection.Function("PersonSearchPerPhoneType");
-			functionEntitesWithEnum.Parameter<EReponseSecteurTypeDto>("EReponseSecteurTypeDto");
-			functionEntitesWithEnum.ReturnsCollectionFromEntitySet<MedtraDocumentDto>("MedtraDocument");
-		***/
-        return edmBuilder.GetEdmModel();
-    }
-
-    public static IEdmModel GetEdmModelV2()
+    public static IEdmModel GetEdmModel()
     {
         ODataConventionModelBuilder edmBuilder = new();
         edmBuilder.EnableLowerCamelCase();
 
         edmBuilder.EntitySet<Entities.Order>("Orders");
-        edmBuilder.EntityType<Entities.Order>().HasKey(o => o.Id);
+        EntityTypeConfiguration<Entities.Order> orderEntity = edmBuilder.EntityType<Entities.Order>();
+        orderEntity.HasKey(o => o.Id);
+        orderEntity.HasMany(x => x.LineItems);
+
         edmBuilder.EntitySet<Entities.LineItem>("LineItems");
         edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
 
+        edmBuilder.EntitySet<Models.Order>("ModelsOrders");
+        EntityTypeConfiguration<Models.Order> order = edmBuilder.EntityType<Models.Order>();
+        order.HasKey(o => o.Id);
+        order.HasMany(x => x.LineItems);
+
+        edmBuilder.EntitySet<Models.LineItem>("ModelsLineItems");
+        edmBuilder.EntityType<Models.LineItem>().HasKey(li => li.Number);
 
         IEdmModel model = edmBuilder.GetEdmModel();
 
