@@ -1,4 +1,4 @@
-﻿namespace DotNetCore.Axess.Domain;
+namespace DotNetCore.Axess.Domain;
 
 public abstract class Base<T> : IEquatable<Base<T>>
 {

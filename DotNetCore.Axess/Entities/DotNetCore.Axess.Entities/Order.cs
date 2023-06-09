@@ -35,7 +35,7 @@ public class Order : Entity<int>
     /// <summary>
     /// 
     /// </summary>
-    private readonly List<LineItem> _lineItems = new List<LineItem>();
+    private readonly List<LineItem> _lineItems = new();
     /// <summary>
     /// 
     /// </summary>

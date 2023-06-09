@@ -1,4 +1,4 @@
-﻿namespace DotNetCore.Axess.Domain;
+namespace DotNetCore.Axess.Domain;
 
 public abstract class Entity<TId> : Base<Entity<TId>>
 {
