@@ -30,7 +30,7 @@
  </ItemGroup>
 
  <ItemGroup>
-   <ProjectReference Include="..\DotNetCore.Axess.Domain\DotNetCore.Axess.Domain.csproj" />
+   <ProjectReference Include="DotNetCore.Axess\Domain\DotNetCore.Axess.Domain\DotNetCore.Axess.Domain\DotNetCore.Axess.Domain.csproj" />
  </ItemGroup>
  
 </Project>
