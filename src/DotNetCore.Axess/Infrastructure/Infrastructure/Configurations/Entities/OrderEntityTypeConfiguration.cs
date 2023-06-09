@@ -23,6 +23,7 @@ public sealed class OrderEntityTypeConfiguration : EntityTypeConfigurationBase<O
 
         builder.HasMany(p => p.LineItems)
             .WithOne(p => p.Order)
+            .HasForeignKey(p => p.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

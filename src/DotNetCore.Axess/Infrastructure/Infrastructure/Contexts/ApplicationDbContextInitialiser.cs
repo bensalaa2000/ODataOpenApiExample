@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ODataOpenApiExample.Persistence.Entities;
 using Polly;
 using Address = ODataOpenApiExample.Persistence.Entities.Address;
 using Order = ODataOpenApiExample.Persistence.Entities.Order;
@@ -71,12 +72,6 @@ public class ApplicationDbContextInitialiser
     public void SeedDatabase()
     {
 
-
-
-
-
-
-
         _context.Addresses.Add(new Address(42)
         {
             Street = "1 Microsoft Way",
@@ -91,10 +86,12 @@ public class ApplicationDbContextInitialiser
 
 
         Random rnd = Random.Shared;
+        int idLineItem = 1;
+
 
         IEnumerable<Order> orders =
             Enumerable
-                .Range(1, 100)
+                .Range(1, 20)
                 .Select(index =>
                 {
                     Faker faker = new();
@@ -107,33 +104,23 @@ public class ApplicationDbContextInitialiser
                     };
 
 
-                    /*IEnumerable<LineItem> lineItems = Enumerable
-                       .Range(index + 100, 150)
-                       .Select(index =>
-                       {
-                           Faker faker = new();
-                           LineItem lineItem = new(index)
-                           {
-                               Description = faker.Lorem.Slug(rnd.Next(3, 5)),
-                               Number = faker.Random.Int(1, 15),
-                               Fulfilled = faker.Random.Bool(),
-                               Quantity = faker.Random.Int(1, 50),
-                               UnitPrice = faker.Finance.Amount(min: 10, max: 9999, decimals: 2),
-                               OrderId = order.Id
-                           };
-                           return lineItem;
-                       });*/
-
-                    /*foreach (LineItem lineItem in lineItems)
+                    int elements = faker.Random.Int(0, 5);
+                    for (int i = 0; i < elements; i++)
                     {
-                        lineItem.OrderId = order.Id;
-                    }*/
-
-                    //order.AddRange(lineItems);
+                        LineItem lineItem = new(idLineItem++)
+                        {
+                            Description = faker.Lorem.Slug(rnd.Next(3, 5)),
+                            Fulfilled = faker.Random.Bool(),
+                            Quantity = faker.Random.Int(1, 50),
+                            UnitPrice = faker.Finance.Amount(min: 10, max: 9999, decimals: 2),
+                            OrderId = order.Id,
+                        };
+                        order.AddLineItem(lineItem);
+                    }
                     return order;
                 });
 
-
+        int countOrders = orders.Count();
 
         _context.Orders.AddRange(orders);
         //_context.LineItems.AddRange(lineItems);
