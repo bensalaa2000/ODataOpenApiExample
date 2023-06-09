@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="5.7.0" />
+    <PackageReference Include="AutoMapper.AspNetCore.OData.EFCore" Version="4.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Mapping\Axess.Mapping\Axess.Mapping.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Validators\Axess.Validators\Axess.Validators.csproj" />
+  </ItemGroup>
+
+</Project>
