@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using ODataMappingApi;
@@ -17,7 +18,8 @@ builder.Services.AddControllers().AddOData(options =>
     defaultBatchHandler.MessageQuotas.MaxReceivedMessageSize = 100;
 
     options.EnableQueryFeatures(50000);//.Select().Filter().OrderBy().SetMaxTop(5000).Count().Expand()
-    options.AddRouteComponents("odata", ODataExtensions.GetEdmModelV1(), defaultBatchHandler);
+    //options.AddRouteComponents("odata/v1", ODataExtensions.GetEdmModelV1(), defaultBatchHandler);
+    options.AddRouteComponents("odata", ODataExtensions.GetEdmModelV2(), defaultBatchHandler);
     options.TimeZone = TimeZoneInfo.Utc;
 
     options.RouteOptions.EnableKeyInParenthesis = false;
@@ -52,7 +54,32 @@ builder.Services.AddEndpointsApiExplorer();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddFluentValidationRulesToSwagger();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.ResolveConflictingActions(apiDescriptions =>
+    {
+        ApiDescription[] descriptions = apiDescriptions as ApiDescription[] ?? apiDescriptions.ToArray();
+        ApiDescription first = descriptions.First(); // build relative to the 1st method
+        List<ApiParameterDescription> parameters = descriptions.SelectMany(d => d.ParameterDescriptions).ToList();
+
+        first.ParameterDescriptions.Clear();
+        // add parameters and make them optional
+        foreach (ApiParameterDescription? parameter in parameters)
+            if (first.ParameterDescriptions.All(x => x.Name != parameter.Name))
+            {
+                first.ParameterDescriptions.Add(new ApiParameterDescription
+                {
+                    ModelMetadata = parameter.ModelMetadata,
+                    Name = parameter.Name,
+                    ParameterDescriptor = parameter.ParameterDescriptor,
+                    Source = parameter.Source,
+                    IsRequired = false,
+                    DefaultValue = null
+                });
+            }
+        return first;
+    });
+});
 
 WebApplication app = builder.Build();
 
@@ -66,11 +93,12 @@ if (app.Environment.IsDevelopment())
     }
     // navigate to ~/$odata to determine whether any endpoints did not match an odata route template
     app.UseODataRouteDebug();
-
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseODataQueryRequest();/*TODO : A explorer*/
+app.UseODataBatching();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

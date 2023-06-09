@@ -9,7 +9,9 @@ using Microsoft.OData.UriParser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Entities = Persistence.Entities;
+using Models = ApiVersioning.Examples.Models;
 
 internal static class ODataExtensions
 {
@@ -18,11 +20,9 @@ internal static class ODataExtensions
         ODataConventionModelBuilder edmBuilder = new();
         edmBuilder.EnableLowerCamelCase();
 
-        EntityTypeConfiguration<Entities.Order> entityOrder = edmBuilder.EntitySet<Entities.Order>("Orders").EntityType.HasKey(o => o.Id);
-        EntityTypeConfiguration<Entities.LineItem> entityLineItem = edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
 
-        /*EntityTypeConfiguration<Order> order = edmBuilder.EntitySet<Order>("Orders").EntityType.HasKey(o => o.Id);
-        EntityTypeConfiguration<LineItem> lineItem = edmBuilder.EntityType<LineItem>().HasKey(li => li.Number);*/
+        EntityTypeConfiguration<Models.Order> order = edmBuilder.EntitySet<Models.Order>("Orders").EntityType.HasKey(o => o.Id);
+        EntityTypeConfiguration<Models.LineItem> lineItem = edmBuilder.EntityType<Models.LineItem>().HasKey(li => li.Number);
 
         /*   EntitySetConfiguration<Address> entitesWithEnum = edmBuilder.EntitySet<Address>("Address");
            entitesWithEnum.EntityType.HasKey(o => o.Id);*/
@@ -32,6 +32,37 @@ internal static class ODataExtensions
 			functionEntitesWithEnum.ReturnsCollectionFromEntitySet<MedtraDocumentDto>("MedtraDocument");
 		***/
         return edmBuilder.GetEdmModel();
+    }
+
+    public static IEdmModel GetEdmModelV2()
+    {
+        ODataConventionModelBuilder edmBuilder = new();
+        edmBuilder.EnableLowerCamelCase();
+
+        edmBuilder.EntitySet<Entities.Order>("Orders");
+        edmBuilder.EntityType<Entities.Order>().HasKey(o => o.Id);
+        edmBuilder.EntitySet<Entities.LineItem>("LineItems");
+        edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
+
+
+        IEdmModel model = edmBuilder.GetEdmModel();
+
+        // Only Add the ClrPropertyInfoAnnotation for the previous one, not the last one.
+        IEdmEntityType orderType = model.SchemaElements.OfType<IEdmEntityType>().FirstOrDefault(e => e.Name == "Order");
+        IEdmProperty idProperty = orderType.FindProperty("id");
+
+        PropertyInfo idPropertyInfo = typeof(Entities.Order).GetProperty("Id");
+        model.SetAnnotationValue(idProperty, new ClrPropertyInfoAnnotation(idPropertyInfo));
+
+
+        /*   EntitySetConfiguration<Address> entitesWithEnum = edmBuilder.EntitySet<Address>("Address");
+           entitesWithEnum.EntityType.HasKey(o => o.Id);*/
+        /***
+			var functionEntitesWithEnum = entitesWithEnum.EntityType.Collection.Function("PersonSearchPerPhoneType");
+			functionEntitesWithEnum.Parameter<EReponseSecteurTypeDto>("EReponseSecteurTypeDto");
+			functionEntitesWithEnum.ReturnsCollectionFromEntitySet<MedtraDocumentDto>("MedtraDocument");
+		***/
+        return model;
     }
 
     public static IReadOnlyDictionary<string, object> GetRelatedKeys(this ControllerBase controller, Uri uri)

@@ -7,7 +7,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace Axess.Evrp.Api.Controllers.Medtra.V1;
 
-public class ModelOrdersController : ODataControllerBase<Order>
+public class ModelsOrdersController : ODataControllerBase<Order>
 {
 
     #region Constructeurs

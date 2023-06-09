@@ -27,7 +27,9 @@ public class OrdersController : ControllerBase
     [EnableQuery]
     public IActionResult Get()
     {
-        return Ok(_dbContext.Orders);
+        Microsoft.EntityFrameworkCore.DbSet<ODataOpenApiExample.Persistence.Entities.Order> orders = _dbContext.Orders;
+        int count = orders.Count();
+        return Ok(orders);
     }
 
     [HttpGet]
