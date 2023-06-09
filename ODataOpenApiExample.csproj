@@ -4,7 +4,16 @@
   <TargetFramework>net7.0</TargetFramework>
   <GenerateDocumentationFile>true</GenerateDocumentationFile>
   <ImplicitUsings>enable</ImplicitUsings>
+   <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+   <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
  </PropertyGroup>
+
+ <ItemGroup>
+   <Compile Remove="Validators\**" />
+   <Content Remove="Validators\**" />
+   <EmbeddedResource Remove="Validators\**" />
+   <None Remove="Validators\**" />
+ </ItemGroup>
 
  <ItemGroup>
   <!--<PackageReference Include="AutoMapper.AspNetCore.OData.EFCore" Version="2.2.1" />-->
@@ -26,7 +35,6 @@
    <Folder Include="Persistence\Enums\" />
    <Folder Include="Persistence\Migrations\" />
    <Folder Include="Persistence\Repositories\" />
-   <Folder Include="Validators\" />
  </ItemGroup>
 
  <ItemGroup>
