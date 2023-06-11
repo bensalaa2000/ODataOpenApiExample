@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\DotNetCore.Axess\Domain\DotNetCore.Axess.Domain\Axess.Domain.csproj" />
+    <ProjectReference Include="..\..\Specifications\Axess.Specification\Axess.Specification.csproj" />
+  </ItemGroup>
+
+</Project>
