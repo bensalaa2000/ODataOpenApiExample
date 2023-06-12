@@ -1,4 +1,4 @@
-﻿namespace ODataOpenApiExample.Extensions;
+﻿namespace ODataMappingApi.Extensions;
 using System;
 using System.Collections;
 

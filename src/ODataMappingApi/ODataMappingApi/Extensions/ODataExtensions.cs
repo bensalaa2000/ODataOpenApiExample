@@ -1,4 +1,4 @@
-﻿namespace ODataOpenApiExample.Extensions;
+﻿namespace ODataMappingApi.Extensions;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Extensions;
@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Entities = Persistence.Entities;
+using Entities = Axess.Entities;
 using Models = ApiVersioning.Examples.Models;
 
 internal static class ODataExtensions

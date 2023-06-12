@@ -1,9 +1,12 @@
 ﻿using AutoMapper.Extensions.ExpressionMapping;
+using Axess.Infrastructure.Persistence.Contexts;
+using Axess.Repositories;
+using Axess.Repositories.Interfaces;
 using FluentValidation;
 using MediatR;
 //using MediatR;
 using Microsoft.EntityFrameworkCore;
-using ODataOpenApiExample.Persistence.Contexts;
+using ODataMappingApi.Repositories.Orders;
 using System.Reflection;
 
 namespace ODataMappingApi;
@@ -30,9 +33,13 @@ public static class ConfigureServices
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
         services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("TestDB"));
-
         // Ajoute l'interface du contexte aux services.
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+
+        services.AddTransient(typeof(IRepository<,>), typeof(Repository<,>));
+        // Ajoute les repositories
+        services.AddTransient<IOrderReadRepository, OrderReadRepository>();
+
         //services.AddScoped(typeof(IApplicationDbContext), typeof(ApplicationDbContext));
 
 
@@ -45,7 +52,7 @@ public static class ConfigureServices
 
         //services.AddMediator(typeof(ConfigureServices).Assembly);
 
-        /*services.TryAddScoped<ODataOpenApiExample.MediatR.IMediator, ODataOpenApiExample.MediatR.Mediator>();*/
+        /*services.TryAddScoped<ODataMappingApi.MediatR.IMediator, ODataMappingApi.MediatR.Mediator>();*/
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
 

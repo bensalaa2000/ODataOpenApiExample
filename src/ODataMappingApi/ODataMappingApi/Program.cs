@@ -1,9 +1,9 @@
+using Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using ODataMappingApi;
-using ODataOpenApiExample.Extensions;
-using ODataOpenApiExample.Persistence.Contexts;
+using ODataMappingApi.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.OData.Query;
 
-namespace ODataOpenApiExample.Extensions;
+namespace ODataMappingApi.Extensions;
 /// <summary>
 /// 
 /// </summary>

@@ -1,6 +1,6 @@
 ﻿using DotNetCore.Axess.Domain;
 
-namespace ODataOpenApiExample.Persistence.Entities;
+namespace Axess.Entities;
 
 /// <summary>
 /// Represents a person.

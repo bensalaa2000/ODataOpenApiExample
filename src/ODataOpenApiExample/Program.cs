@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OData.UriParser;
 using ODataOpenApiExample;
 using ODataOpenApiExample.Filters;
-using ODataOpenApiExample.Persistence.Contexts;
+using Axess.Infrastructure.Persistence.Contexts;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text.Json.Serialization;

@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Axess.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using ODataOpenApiExample.Persistence.Entities;
 using System.Reflection;
 
-namespace ODataOpenApiExample.Persistence.Contexts;
+namespace Axess.Infrastructure.Persistence.Contexts;
 /// <summary>
 /// 
 /// </summary>

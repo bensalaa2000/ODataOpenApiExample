@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ODataOpenApiExample.Persistence.Entities;
+﻿using Axess.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace ODataOpenApiExample.Persistence.Contexts;
+namespace Axess.Infrastructure.Persistence.Contexts;
 
 public interface IApplicationDbContext
 {

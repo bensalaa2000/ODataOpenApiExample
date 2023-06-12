@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Axess.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ODataOpenApiExample.Persistence.Entities;
 
-namespace ODataOpenApiExample.Persistence.Configurations.Entities;
+namespace Axess.Infrastructure.Persistence.Configurations.Entities;
 
 /// <summary>
 /// Configuration de l'entité 

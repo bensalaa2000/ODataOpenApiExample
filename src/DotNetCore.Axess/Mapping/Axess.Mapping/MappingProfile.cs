@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Axess.Entities;
 using System.Reflection;
-using Entities = ODataOpenApiExample.Persistence.Entities;
 using Models = ApiVersioning.Examples.Models;
 
 namespace ODataOpenApiExample.Mappings.Profiles;
@@ -16,19 +16,19 @@ public class MappingProfile : Profile
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
 
-        CreateProjection<Entities.Address, Models.Address>();
-        CreateProjection<Entities.LineItem, Models.LineItem>()
+        CreateProjection<Address, Models.Address>();
+        CreateProjection<LineItem, Models.LineItem>()
             .ForMember(a => a.Number, o => o.MapFrom(x => x.Id));
-        CreateProjection<Entities.Order, Models.Order>()
+        CreateProjection<Order, Models.Order>()
             .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
-        CreateProjection<Entities.Person, Models.Person>();
-        CreateProjection<Entities.Product, Models.Product>();
-        CreateProjection<Entities.Supplier, Models.Supplier>();
+        CreateProjection<Person, Models.Person>();
+        CreateProjection<Product, Models.Product>();
+        CreateProjection<Supplier, Models.Supplier>();
 
-        CreateMap<Entities.Order, Models.Order>()
+        CreateMap<Order, Models.Order>()
              .ForMember(a => a.LineItems, o => o.ExplicitExpansion())
              .ReverseMap();
-        CreateMap<Entities.LineItem, Models.LineItem>()
+        CreateMap<LineItem, Models.LineItem>()
             .ForMember(a => a.Number, o => o.MapFrom(x => x.Id))
             .ReverseMap();
     }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ODataOpenApiExample.Persistence.Configurations;
+namespace Axess.Infrastructure.Persistence.Configurations;
 
 /// <inheritdoc/>
 public abstract class EntityTypeConfigurationBase<TEntity, TId> : IEntityTypeConfiguration<TEntity> where TEntity : Entity<TId>

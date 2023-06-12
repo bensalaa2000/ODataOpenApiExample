@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace ODataOpenApiExample.Persistence.Contexts;
+namespace Axess.Infrastructure.Persistence.Contexts;
 /// <summary>
 /// 
 /// </summary>

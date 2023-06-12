@@ -1,7 +1,7 @@
 ﻿using ApiVersioning.Examples.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using ODataOpenApiExample.MediatR.OData.Queries;
+using ODataMappingApi.MediatR.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 

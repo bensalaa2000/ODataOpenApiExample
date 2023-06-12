@@ -12,7 +12,7 @@ namespace Axess.Repositories;
 /// Représente l'ensemble des méthodes de base pour gérer une entité.
 /// </summary>
 /// <typeparam name="TEntity">L'entité à gérer.</typeparam>
-public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : Entity<TId>
+public class Repository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : Entity<TId>
 {
     #region Membres
 

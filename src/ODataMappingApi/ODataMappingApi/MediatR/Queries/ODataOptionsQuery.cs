@@ -1,4 +1,4 @@
-﻿namespace ODataOpenApiExample.MediatR.OData.Queries;
+﻿namespace ODataMappingApi.MediatR.Queries;
 using global::MediatR;
 using Microsoft.AspNetCore.OData.Query;
 using Order = ApiVersioning.Examples.Models.Order;

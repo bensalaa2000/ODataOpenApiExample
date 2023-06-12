@@ -1,12 +1,10 @@
-﻿using Bogus;
+﻿using Axess.Entities;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ODataOpenApiExample.Persistence.Entities;
 using Polly;
-using Address = ODataOpenApiExample.Persistence.Entities.Address;
-using Order = ODataOpenApiExample.Persistence.Entities.Order;
 
-namespace ODataOpenApiExample.Persistence.Contexts;
+namespace Axess.Infrastructure.Persistence.Contexts;
 
 /// <summary>
 /// 

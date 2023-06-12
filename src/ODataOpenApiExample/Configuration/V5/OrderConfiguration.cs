@@ -2,8 +2,8 @@
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using Axess.Entities;
 using Microsoft.OData.ModelBuilder;
-using ODataOpenApiExample.Persistence.Entities;
 
 /// <summary>
 /// Represents the model configuration for orders.

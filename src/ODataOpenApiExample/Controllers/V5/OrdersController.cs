@@ -2,10 +2,10 @@
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using Axess.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ODataOpenApiExample.MediatR.OData.Queries;
-using ODataOpenApiExample.Persistence.Entities;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 /// <summary>
