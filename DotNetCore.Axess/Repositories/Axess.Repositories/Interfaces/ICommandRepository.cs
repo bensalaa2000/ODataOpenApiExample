@@ -6,7 +6,7 @@ namespace Axess.Repositories.Interfaces;
 /// Représente l'ensemble des méthodes pour persister une entité.
 /// </summary>
 /// <typeparam name="TEntity">L'entité à gérer.</typeparam>
-public interface ICommandRepository<TEntity, TId> where TEntity : Base<Entity<TId>>
+public interface ICommandRepository<TEntity, TId> where TEntity : Entity<TId>
 {
     /// <summary>
     /// Ajoute une entité.
@@ -29,7 +29,7 @@ public interface ICommandRepository<TEntity, TId> where TEntity : Base<Entity<TI
     /// </summary>
     /// <param name="key">La clef</param>
     /// <returns></returns>
-    void Delete(Guid key);
+    void Delete(TId key);
     /// <summary>
     /// Supprime une entité à partir d'une expression.
     /// </summary>
@@ -47,7 +47,7 @@ public interface ICommandRepository<TEntity, TId> where TEntity : Base<Entity<TI
     /// </summary>
     /// <param name="key">La clef</param>
     /// <returns></returns>
-    Task DeleteAsync(Guid key);
+    Task DeleteAsync(TId key);
     /// <summary>
     /// Supprime une entité à partir d'une expression.
     /// </summary>
@@ -74,8 +74,8 @@ public interface ICommandRepository<TEntity, TId> where TEntity : Base<Entity<TI
     /// </summary>
     /// <param name="item">L'entité à mettre à jour.</param>
     /// <returns></returns>
-    void UpdatePartial(TEntity item);
-    Task UpdatePartialAsync(TEntity entity);
+    void UpdatePartial(TEntity item, object id);
+    Task UpdatePartialAsync(TEntity entity, object id);
     /// <summary>
     /// Met à jourplusieurs entités.
     /// </summary>
