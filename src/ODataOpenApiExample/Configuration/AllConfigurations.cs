@@ -1,4 +1,4 @@
-﻿namespace ApiVersioning.Examples.Configuration;
+﻿namespace Axess.Architecture.Configuration;
 
 using Asp.Versioning;
 using Asp.Versioning.OData;

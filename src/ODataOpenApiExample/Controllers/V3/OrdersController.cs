@@ -1,6 +1,6 @@
-﻿namespace ODataOpenApiExample.Controllers.V3;
+﻿namespace Axess.Controllers.V3;
 
-using ApiVersioning.Examples.Models;
+using Axess.Architecture.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using AutoMapper;

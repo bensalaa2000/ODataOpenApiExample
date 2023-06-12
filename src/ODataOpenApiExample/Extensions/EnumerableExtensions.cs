@@ -1,4 +1,4 @@
-﻿namespace ODataOpenApiExample.Extensions;
+﻿namespace Axess.Extensions;
 using System;
 using System.Collections;
 

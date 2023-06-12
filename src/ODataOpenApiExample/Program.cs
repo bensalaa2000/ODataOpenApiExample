@@ -1,19 +1,19 @@
-﻿using ApiVersioning.Examples;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using Asp.Versioning.Conventions;
+using Axess;
+using Axess.Architecture;
+using Axess.Filters;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using Microsoft.Extensions.Options;
 using Microsoft.OData.UriParser;
-using ODataOpenApiExample;
-using ODataOpenApiExample.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
-using PeopleControllerV2 = ODataOpenApiExample.Controllers.V2.PeopleController;
-using PeopleControllerV3 = ODataOpenApiExample.Controllers.V3.PeopleController;
+using PeopleControllerV2 = Axess.Controllers.V2.PeopleController;
+using PeopleControllerV3 = Axess.Controllers.V3.PeopleController;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

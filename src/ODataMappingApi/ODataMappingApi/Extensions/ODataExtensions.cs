@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Entities = DotNetCore.Axess.Entities;
-using Models = ApiVersioning.Examples.Models;
+using Models = Axess.Architecture.Models;
 
 internal static class ODataExtensions
 {

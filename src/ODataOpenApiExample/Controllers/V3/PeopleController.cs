@@ -1,6 +1,6 @@
-﻿namespace ODataOpenApiExample.Controllers.V3;
+﻿namespace Axess.Controllers.V3;
 
-using ApiVersioning.Examples.Models;
+using Axess.Architecture.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Query.Validator;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.OData;
-using ODataOpenApiExample.Extensions;
+using Axess.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

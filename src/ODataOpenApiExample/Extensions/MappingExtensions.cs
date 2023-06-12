@@ -3,11 +3,11 @@ using AutoMapper.Extensions.ExpressionMapping;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using ODataOpenApiExample.Results;
+using Axess.Results;
 using System.Linq.Expressions;
 using IConfigurationProvider = AutoMapper.IConfigurationProvider;
 
-namespace ODataOpenApiExample.Extensions;
+namespace Axess.Extensions;
 /// <summary>
 /// 
 /// </summary>

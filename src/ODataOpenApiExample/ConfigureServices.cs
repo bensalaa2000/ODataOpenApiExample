@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace ODataOpenApiExample;
+namespace Axess;
 
 public static class ConfigureServices
 {

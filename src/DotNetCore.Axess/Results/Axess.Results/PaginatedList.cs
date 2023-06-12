@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ODataOpenApiExample.Results;
+namespace Axess.Results;
 
 /// <summary>
 /// 

@@ -1,4 +1,4 @@
-﻿namespace ApiVersioning.Examples.Models;
+﻿namespace Axess.Architecture.Models;
 
 using System;
 using System.Collections.Generic;

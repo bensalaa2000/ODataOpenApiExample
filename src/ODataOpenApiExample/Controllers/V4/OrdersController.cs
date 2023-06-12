@@ -1,11 +1,11 @@
-﻿namespace ODataOpenApiExample.Controllers.V4;
+﻿namespace Axess.Controllers.V4;
 
-using ApiVersioning.Examples.Models;
+using Axess.Architecture.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using ODataOpenApiExample.MediatR.OData.Queries;
+using Axess.MediatR.OData.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 /// <summary>

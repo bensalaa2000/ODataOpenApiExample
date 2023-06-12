@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ApiVersioning.Examples.Configuration;
+namespace Axess.Architecture.Configuration;
 
 internal static class ApiVersions
 {

@@ -1,8 +1,8 @@
-﻿namespace ODataOpenApiExample.MediatR.OData.Queries;
+﻿namespace Axess.MediatR.OData.Queries;
 
 using global::MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using ODataOpenApiExample.Results;
+using Axess.Results;
 
 /// <summary>
 /// 

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using Axess.MediatR.OData.Queries;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
-using ODataOpenApiExample.MediatR.OData.Queries;
 
-namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V4;
-using Order = ApiVersioning.Examples.Models.Order;
+namespace Axess.MediatR.Order.Queries.OData.V4;
+using Order = Axess.Architecture.Models.Order;
 /// <summary>
 /// 
 /// </summary>

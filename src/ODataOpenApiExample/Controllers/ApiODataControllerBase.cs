@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 
-namespace ODataOpenApiExample.Controllers;
+namespace Axess.Controllers;
 /// <summary>
 /// 
 /// </summary>

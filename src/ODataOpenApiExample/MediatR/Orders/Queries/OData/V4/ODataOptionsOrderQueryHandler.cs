@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
+using Axess.Extensions;
+using Axess.MediatR.OData.Queries;
+using Axess.Results;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using ODataOpenApiExample.Extensions;
-using ODataOpenApiExample.MediatR.OData.Queries;
-using ODataOpenApiExample.Results;
 
-namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V4;
-using Order = ApiVersioning.Examples.Models.Order;
+namespace Axess.MediatR.Order.Queries.OData.V4;
+using Order = Axess.Architecture.Models.Order;
 /// <inheritdoc/>
 public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<Order>, PaginatedList<Order>>
 {

@@ -1,6 +1,6 @@
-﻿namespace ODataOpenApiExample.MediatR.Order.Commands;
+﻿namespace Axess.MediatR.Order.Commands;
 
-using ApiVersioning.Examples.Models;
+using Axess.Architecture.Models;
 using global::MediatR;
 using System.Collections.Generic;
 

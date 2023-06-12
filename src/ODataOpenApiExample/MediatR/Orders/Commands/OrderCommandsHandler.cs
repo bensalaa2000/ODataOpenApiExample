@@ -1,11 +1,11 @@
-﻿namespace ODataOpenApiExample.MediatR.Order.Commands;
+﻿namespace Axess.MediatR.Order.Commands;
 
 using AutoMapper;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using global::MediatR;
 using Microsoft.EntityFrameworkCore;
 using Entities = DotNetCore.Axess.Entities;
-using Models = ApiVersioning.Examples.Models;
+using Models = Axess.Architecture.Models;
 
 public class OrderCommandsHandler
     : IRequestHandler<CreateOrderCommand, Models.Order>

@@ -1,6 +1,6 @@
-﻿namespace ApiVersioning.Examples.Configuration;
+﻿namespace Axess.Architecture.Configuration;
 
-using ApiVersioning.Examples.Models;
+using Axess.Architecture.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.OData.ModelBuilder;

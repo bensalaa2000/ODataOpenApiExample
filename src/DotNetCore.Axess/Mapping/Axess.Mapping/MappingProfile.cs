@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using DotNetCore.Axess.Entities;
 using System.Reflection;
-using Models = ApiVersioning.Examples.Models;
+using Models = Axess.Architecture.Models;
 
-namespace ODataOpenApiExample.Mappings.Profiles;
+namespace Axess.Mappings.Profiles;
 /// <summary>
 /// 
 /// </summary>

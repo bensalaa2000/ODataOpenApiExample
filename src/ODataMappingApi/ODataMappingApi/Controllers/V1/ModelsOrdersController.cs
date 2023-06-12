@@ -1,4 +1,4 @@
-﻿using ApiVersioning.Examples.Models;
+﻿using Axess.Architecture.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ODataMappingApi.MediatR.Queries;

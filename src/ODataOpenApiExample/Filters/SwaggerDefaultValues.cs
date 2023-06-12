@@ -1,4 +1,4 @@
-﻿namespace ODataOpenApiExample.Filters;
+﻿namespace Axess.Filters;
 
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;

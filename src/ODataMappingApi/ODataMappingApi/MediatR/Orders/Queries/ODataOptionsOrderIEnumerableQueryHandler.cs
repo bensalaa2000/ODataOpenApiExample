@@ -7,7 +7,7 @@ using ODataMappingApi.MediatR.Queries;
 using ODataMappingApi.Repositories.Orders;
 
 namespace ODataMappingApi.MediatR.Orders.Queries;
-using Models = ApiVersioning.Examples.Models;
+using Models = Axess.Architecture.Models;
 //using Order = ApiVersioning.Examples.Models.Order;
 /// <summary>
 /// 

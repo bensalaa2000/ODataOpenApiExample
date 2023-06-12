@@ -1,4 +1,4 @@
-﻿namespace ODataOpenApiExample.MediatR.Order.Commands;
+﻿namespace Axess.MediatR.Order.Commands;
 using global::MediatR;
 
 public class DeleteOrderCommand : IRequest

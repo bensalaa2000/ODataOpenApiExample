@@ -2,10 +2,10 @@
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using ODataOpenApiExample.Extensions;
-using ODataOpenApiExample.MediatR.OData.Queries;
-using ODataOpenApiExample.Results;
-namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V5;
+using Axess.Extensions;
+using Axess.MediatR.OData.Queries;
+using Axess.Results;
+namespace Axess.MediatR.Order.Queries.OData.V5;
 
 /// <inheritdoc/>
 public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<DotNetCore.Axess.Entities.Order>, PaginatedList<DotNetCore.Axess.Entities.Order>>
