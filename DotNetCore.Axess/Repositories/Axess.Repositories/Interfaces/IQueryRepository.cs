@@ -8,7 +8,7 @@ namespace Axess.Repositories.Interfaces;
 /// Représente l'ensemble des méthodes pour requeter une entité.
 /// </summary>
 /// <typeparam name="TEntity">L'entité à gérer.</typeparam>
-public interface IQueryRepository<TEntity, TId> where TEntity : Base<Entity<TId>>
+public interface IQueryRepository<TEntity, TId> where TEntity : Entity<TId>
 {
     /// <summary>
     /// Renvoie un <see cref="IQueryable"/> de l'entité.
@@ -104,13 +104,13 @@ public interface IQueryRepository<TEntity, TId> where TEntity : Base<Entity<TId>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    TEntity? GetById(Guid id);
+    TEntity? GetById(object id);
     /// <summary>
     /// Récupère un entité en fonction de son identifiant.
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<TEntity?> GetByIdAsync(Guid id);
+    Task<TEntity?> GetByIdAsync(object id);
     /// <summary>
     ///Recherche contient à partir d'une specification.
     /// </summary>

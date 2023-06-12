@@ -6,4 +6,4 @@ namespace Axess.Repositories.Interfaces;
 /// Représente l'ensemble des méthodes pour gérer une entité.
 /// </summary>
 /// <typeparam name="TEntity">L'entité à gérer.</typeparam>
-public interface IRepository<TEntity, TId> : ICommandRepository<TEntity, TId>, IQueryRepository<TEntity, TId> where TEntity : Base<Entity<TId>> { }
+public interface IRepository<TEntity, TId> : ICommandRepository<TEntity, TId>, IQueryRepository<TEntity, TId> where TEntity : Entity<TId> { }

@@ -2,9 +2,9 @@
 using DotNetCore.Axess.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Axess.Evrp.Dal.Specifications;
+namespace Axess.Specification;
 
-public static class SpecificationEvaluator<TEntity, TId> where TEntity : Entity<TId>
+public static class SpecificationEvaluator<TEntity, TId> where TEntity : Base<Entity<TId>>
 {
     public static async Task<IQueryable<TEntity>> GetQueryAsync(IQueryable<TEntity> inputQuery, ISpecification<TEntity> specification)
     {
