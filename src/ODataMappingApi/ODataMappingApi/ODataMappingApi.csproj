@@ -20,10 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DotNetCore.Axess\Repositories\Axess.Repositories\Axess.Repositories.csproj" />
     <ProjectReference Include="..\..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
     <ProjectReference Include="..\..\DotNetCore.Axess\Mapping\Axess.Mapping\Axess.Mapping.csproj" />
     <ProjectReference Include="..\..\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj" />
     <ProjectReference Include="..\..\DotNetCore.Axess\Validators\Axess.Validators\Axess.Validators.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Orders\" />
   </ItemGroup>
 
 </Project>

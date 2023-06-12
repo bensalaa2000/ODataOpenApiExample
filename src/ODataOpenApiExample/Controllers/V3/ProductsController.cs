@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.OData.UriParser;
-using ODataOpenApiExample.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -200,7 +199,7 @@ public class ProductsController : ODataController
         string navigationProperty,
         [FromBody] Uri link)
     {
-        object relatedKey = this.GetRelatedKey(link);
+        //object relatedKey = this.GetRelatedKey(link);
         return NoContent();
     }
 

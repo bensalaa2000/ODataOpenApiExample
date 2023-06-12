@@ -1,10 +1,9 @@
-﻿
+﻿using Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using ODataOpenApiExample.MediatR.OData.Queries;
-using ODataOpenApiExample.Persistence.Contexts;
 
 namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V5;
-using Order = ODataOpenApiExample.Persistence.Entities.Order;
+using Order = Axess.Entities.Order;
 /// <summary>
 /// 
 /// </summary>

@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Axess.Infrastructure.Persistence.Contexts;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using ODataOpenApiExample.Persistence.Contexts;
+using ODataMappingApi.Repositories.Orders;
 
 namespace ODataMappingApi.Controllers.V2;
 
@@ -8,11 +9,12 @@ namespace ODataMappingApi.Controllers.V2;
 public class OrdersController : ControllerBase
 {
 
-
+    private readonly IOrderReadRepository _orderReadRepository;
     private readonly IApplicationDbContext _dbContext;
     /// <inheritdoc/>
-    public OrdersController(IApplicationDbContext context)
+    public OrdersController(IApplicationDbContext context, IOrderReadRepository orderReadRepository)
     {
+        _orderReadRepository = orderReadRepository;
         _dbContext = context;
     }
     #region Actions
@@ -29,17 +31,19 @@ public class OrdersController : ControllerBase
     [MapToApiVersion("2.0")]
     public IActionResult Get()
     {
-        Microsoft.EntityFrameworkCore.DbSet<ODataOpenApiExample.Persistence.Entities.Order> orders = _dbContext.Orders;
-        int count = orders.Count();
+        IQueryable<Axess.Entities.Order> orders = _orderReadRepository.Queryable;
+        //Microsoft.EntityFrameworkCore.DbSet<Axess.Entities.Order> orders = _dbContext.Orders;
+        //int count = orders.Count();
+        int count = _orderReadRepository.Queryable.Count();
         return Ok(orders);
     }
 
     [HttpGet]
     [EnableQuery]
     [MapToApiVersion("2.0")]
-    public IActionResult Get(int key)
+    public IActionResult Get([FromRoute] int key)
     {
-        ODataOpenApiExample.Persistence.Entities.Order? c = _dbContext.Orders.FirstOrDefault(c => c.Id == key);
+        Axess.Entities.Order? c = _dbContext.Orders.AsQueryable().SingleOrDefault(c => c.Id.Equals(key));
         if (c is null)
         {
             return NotFound($"Cannot find customer with Id={key}");

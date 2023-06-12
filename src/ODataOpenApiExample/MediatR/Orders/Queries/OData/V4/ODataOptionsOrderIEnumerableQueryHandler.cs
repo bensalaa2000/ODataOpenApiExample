@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using ODataOpenApiExample.MediatR.OData.Queries;
-using ODataOpenApiExample.Persistence.Contexts;
 using System.Collections;
 
 namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V4;

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 using ODataOpenApiExample.Extensions;
 using ODataOpenApiExample.MediatR.OData.Queries;
-using ODataOpenApiExample.Persistence.Contexts;
 using ODataOpenApiExample.Results;
 
 namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V4;

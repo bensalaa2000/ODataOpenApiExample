@@ -1,14 +1,15 @@
 ﻿namespace ODataOpenApiExample.MediatR.Order.Commands;
 
-using ApiVersioning.Examples.Models;
 using AutoMapper;
+using Axess.Infrastructure.Persistence.Contexts;
 using global::MediatR;
 using Microsoft.EntityFrameworkCore;
-using ODataOpenApiExample.Persistence.Contexts;
+using Entities = Axess.Entities;
+using Models = ApiVersioning.Examples.Models;
 
 public class OrderCommandsHandler
-    : IRequestHandler<CreateOrderCommand, Order>
-    , IRequestHandler<UpdateOrderCommand, Order>
+    : IRequestHandler<CreateOrderCommand, Models.Order>
+    , IRequestHandler<UpdateOrderCommand, Models.Order>
     , IRequestHandler<DeleteOrderCommand>
 {
     private readonly IApplicationDbContext _dbContext;
@@ -26,22 +27,22 @@ public class OrderCommandsHandler
     }
 
 
-    public async Task<Order> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+    public async Task<Models.Order> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        Order order = new Order
+        Models.Order order = new Models.Order
         {
             /*Age = request.Age,
             FirstName = request.FirstName*/
         };
 
-        _dbContext.Orders.Add(_mapper.Map<Persistence.Entities.Order>(order));
+        _dbContext.Orders.Add(_mapper.Map<Axess.Entities.Order>(order));
         await _dbContext.SaveChangesAsync();
         return order;
     }
 
-    public async Task<Order> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+    public async Task<Models.Order> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
-        var order = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
+        Entities.Order order = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
         if (order == null)
         {
             // instead of throwing an exception here, we ideally indicate to the
@@ -53,12 +54,12 @@ public class OrderCommandsHandler
         person.FirstName = request.FirstName;*/
         _dbContext.Orders.Update(order);
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<Order>(order);
+        return _mapper.Map<Models.Order>(order);
     }
 
     public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
-        Persistence.Entities.Order person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
+        Axess.Entities.Order person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
         if (person == null)
         {
             throw new Exception("Record does not exist");
