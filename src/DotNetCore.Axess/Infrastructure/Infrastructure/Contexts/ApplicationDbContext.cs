@@ -1,9 +1,9 @@
-﻿using Axess.Entities;
+﻿using DotNetCore.Axess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
-namespace Axess.Infrastructure.Persistence.Contexts;
+namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 /// <summary>
 /// 
 /// </summary>

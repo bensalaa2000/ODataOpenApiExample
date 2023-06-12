@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Axess.Repositories;
+namespace DotNetCore.Axess.Repositories;
 
 public static class Extensions
 {

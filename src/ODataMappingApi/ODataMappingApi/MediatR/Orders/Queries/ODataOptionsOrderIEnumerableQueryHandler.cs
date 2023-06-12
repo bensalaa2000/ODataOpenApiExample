@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.AspNet.OData;
-using Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 using ODataMappingApi.MediatR.Queries;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 using ODataOpenApiExample.Extensions;

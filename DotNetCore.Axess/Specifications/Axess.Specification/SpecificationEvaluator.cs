@@ -1,8 +1,8 @@
-﻿using Axess.Specification.Interfaces;
+﻿using DotNetCore.Axess.Specification.Interfaces;
 using DotNetCore.Axess.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Axess.Specification;
+namespace DotNetCore.Axess.Specification;
 
 public static class SpecificationEvaluator<TEntity, TId> where TEntity : Base<Entity<TId>>
 {

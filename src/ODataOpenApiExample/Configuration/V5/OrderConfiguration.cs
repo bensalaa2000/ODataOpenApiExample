@@ -2,7 +2,7 @@
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
-using Axess.Entities;
+using DotNetCore.Axess.Entities;
 using Microsoft.OData.ModelBuilder;
 
 /// <summary>

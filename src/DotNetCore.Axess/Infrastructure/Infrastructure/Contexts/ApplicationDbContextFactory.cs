@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Axess.Infrastructure.Persistence.Contexts;
+namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 /// <summary>
 /// 
 /// </summary>

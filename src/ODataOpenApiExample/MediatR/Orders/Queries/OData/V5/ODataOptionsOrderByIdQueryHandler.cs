@@ -1,10 +1,10 @@
-﻿using Axess.Infrastructure.Persistence.Contexts;
+﻿using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Results;
 using ODataOpenApiExample.MediatR.OData.Queries;
 
 namespace ODataOpenApiExample.MediatR.Order.Queries.OData.V5;
-using Order = Axess.Entities.Order;
+using Order = DotNetCore.Axess.Entities.Order;
 /// <summary>
 /// 
 /// </summary>

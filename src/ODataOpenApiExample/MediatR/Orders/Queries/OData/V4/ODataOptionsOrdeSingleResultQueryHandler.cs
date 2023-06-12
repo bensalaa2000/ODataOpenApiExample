@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Results;
 using ODataOpenApiExample.Extensions;
@@ -27,7 +27,7 @@ public sealed class ODataOptionsOrdeSingleResultQueryHandler : IRequestHandler<O
     /// <inheritdoc/>
     public async Task<SingleResult<Order>> Handle(ODataOptionsSingleResultQuery<Order> request, CancellationToken cancellationToken)
     {
-        IQueryable<Axess.Entities.Order> entities = _dbContext.Orders;
+        IQueryable<DotNetCore.Axess.Entities.Order> entities = _dbContext.Orders;
         IQueryable<Order> orders = entities.ProjectAndApplyToIQueryable(_mapper, request.options);
         SingleResult<Order> singleResult = SingleResult.Create(orders);
         return await Task.FromResult(singleResult);

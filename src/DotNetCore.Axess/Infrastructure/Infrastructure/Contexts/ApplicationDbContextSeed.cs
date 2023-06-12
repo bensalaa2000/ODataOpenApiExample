@@ -1,7 +1,7 @@
-﻿using Axess.Entities;
+﻿using DotNetCore.Axess.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Axess.Infrastructure.Persistence.Contexts;
+namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 
 public static class ApplicationDbContextSeed
 {

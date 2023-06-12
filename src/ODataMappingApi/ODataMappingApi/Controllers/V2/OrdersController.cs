@@ -1,4 +1,4 @@
-﻿using Axess.Infrastructure.Persistence.Contexts;
+﻿using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ODataMappingApi.Repositories.Orders;
@@ -31,7 +31,7 @@ public class OrdersController : ControllerBase
     [MapToApiVersion("2.0")]
     public IActionResult Get()
     {
-        IQueryable<Axess.Entities.Order> orders = _orderReadRepository.Queryable;
+        IQueryable<DotNetCore.Axess.Entities.Order> orders = _orderReadRepository.Queryable;
         //Microsoft.EntityFrameworkCore.DbSet<Axess.Entities.Order> orders = _dbContext.Orders;
         //int count = orders.Count();
         int count = _orderReadRepository.Queryable.Count();
@@ -43,7 +43,7 @@ public class OrdersController : ControllerBase
     [MapToApiVersion("2.0")]
     public IActionResult Get([FromRoute] int key)
     {
-        Axess.Entities.Order? c = _dbContext.Orders.AsQueryable().SingleOrDefault(c => c.Id.Equals(key));
+        DotNetCore.Axess.Entities.Order? c = _dbContext.Orders.AsQueryable().SingleOrDefault(c => c.Id.Equals(key));
         if (c is null)
         {
             return NotFound($"Cannot find customer with Id={key}");

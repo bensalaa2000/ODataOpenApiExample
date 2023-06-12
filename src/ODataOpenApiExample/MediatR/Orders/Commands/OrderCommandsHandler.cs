@@ -1,10 +1,10 @@
 ﻿namespace ODataOpenApiExample.MediatR.Order.Commands;
 
 using AutoMapper;
-using Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using global::MediatR;
 using Microsoft.EntityFrameworkCore;
-using Entities = Axess.Entities;
+using Entities = DotNetCore.Axess.Entities;
 using Models = ApiVersioning.Examples.Models;
 
 public class OrderCommandsHandler
@@ -35,7 +35,7 @@ public class OrderCommandsHandler
             FirstName = request.FirstName*/
         };
 
-        _dbContext.Orders.Add(_mapper.Map<Axess.Entities.Order>(order));
+        _dbContext.Orders.Add(_mapper.Map<DotNetCore.Axess.Entities.Order>(order));
         await _dbContext.SaveChangesAsync();
         return order;
     }
@@ -59,7 +59,7 @@ public class OrderCommandsHandler
 
     public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
-        Axess.Entities.Order person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
+        DotNetCore.Axess.Entities.Order person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
         if (person == null)
         {
             throw new Exception("Record does not exist");

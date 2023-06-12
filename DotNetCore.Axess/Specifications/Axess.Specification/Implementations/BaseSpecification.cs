@@ -1,8 +1,8 @@
 ﻿
-using Axess.Specification.Interfaces;
+using DotNetCore.Axess.Specification.Interfaces;
 using System.Linq.Expressions;
 
-namespace Axess.Specifications;
+namespace DotNetCore.Axess.Specifications;
 public abstract class BaseSpecification<T> : ISpecification<T>
 {
     /****/

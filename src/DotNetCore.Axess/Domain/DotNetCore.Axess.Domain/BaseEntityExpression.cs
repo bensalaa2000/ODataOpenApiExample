@@ -1,7 +1,7 @@
-﻿using DotNetCore.Axess.Domain;
+﻿
 using System.Linq.Expressions;
 
-namespace Axess.Domain;
+namespace DotNetCore.Axess.Domain;
 public static class BaseEntityExpression<TEntity, TId> where TEntity : Entity<TId>
 {
     public static Expression<Func<TEntity, TId>> TKey => entity => entity.Id;

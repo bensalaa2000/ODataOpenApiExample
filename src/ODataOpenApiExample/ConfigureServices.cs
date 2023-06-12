@@ -1,5 +1,5 @@
 ﻿using AutoMapper.Extensions.ExpressionMapping;
-using Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using FluentValidation;
 using MediatR;
 //using MediatR;

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Axess.Specification.Interfaces;
+namespace DotNetCore.Axess.Specification.Interfaces;
 public interface ISpecification<T>
 {
     Expression<Func<T, bool>> Criteria { get; }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 //using ODataMappingApi.Services;
 using System.Net.Mime;
 
-namespace Axess.Evrp.Api.Controllers;
+namespace DotNetCore.Axess.Evrp.Api.Controllers;
 
 public abstract class ODataControllerBase<TDto> : ODataControllerBase where TDto : class
 {

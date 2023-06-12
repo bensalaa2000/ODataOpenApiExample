@@ -5,7 +5,7 @@ using ODataMappingApi.MediatR.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace Axess.Evrp.Api.Controllers.Medtra.V1;
+namespace DotNetCore.Axess.Evrp.Api.Controllers.Medtra.V1;
 
 [ApiVersion("1.0")]
 public class ModelsOrdersController : ODataControllerBase<Order>

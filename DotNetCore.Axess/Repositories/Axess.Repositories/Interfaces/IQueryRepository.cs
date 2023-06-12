@@ -1,8 +1,8 @@
-﻿using Axess.Specification.Interfaces;
+﻿using DotNetCore.Axess.Specification.Interfaces;
 using DotNetCore.Axess.Domain;
 using System.Linq.Expressions;
 
-namespace Axess.Repositories.Interfaces;
+namespace DotNetCore.Axess.Repositories.Interfaces;
 
 /// <summary>
 /// Représente l'ensemble des méthodes pour requeter une entité.

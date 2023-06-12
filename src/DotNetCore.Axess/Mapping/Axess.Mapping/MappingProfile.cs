@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Axess.Entities;
+using DotNetCore.Axess.Entities;
 using System.Reflection;
 using Models = ApiVersioning.Examples.Models;
 

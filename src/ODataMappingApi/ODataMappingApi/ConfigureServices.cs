@@ -1,7 +1,7 @@
 ﻿using AutoMapper.Extensions.ExpressionMapping;
-using Axess.Infrastructure.Persistence.Contexts;
-using Axess.Repositories;
-using Axess.Repositories.Interfaces;
+using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Repositories;
+using DotNetCore.Axess.Repositories.Interfaces;
 using FluentValidation;
 using MediatR;
 //using MediatR;

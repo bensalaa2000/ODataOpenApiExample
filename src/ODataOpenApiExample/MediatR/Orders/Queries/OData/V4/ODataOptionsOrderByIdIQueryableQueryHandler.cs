@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using ODataOpenApiExample.Extensions;
 using ODataOpenApiExample.MediatR.OData.Queries;
@@ -35,7 +35,7 @@ public sealed class ODataOptionsOrderByIdIQueryableQueryHandler : IRequestHandle
     /// <returns></returns>
     public async Task<IQueryable<Order>> Handle(ODataOptionsByIdIQueryableQuery<Order> request, CancellationToken cancellationToken)
     {
-        IQueryable<Axess.Entities.Order> result = _dbContext.Orders.Where(o => o.Id == request.Key);
+        IQueryable<DotNetCore.Axess.Entities.Order> result = _dbContext.Orders.Where(o => o.Id == request.Key);
         IQueryable<Order> orders = result.ProjectAndApplyToIQueryable(_mapper, request.Options);
         return await Task.FromResult(orders);
     }

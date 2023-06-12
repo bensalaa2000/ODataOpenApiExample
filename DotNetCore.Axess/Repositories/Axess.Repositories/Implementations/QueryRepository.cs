@@ -1,11 +1,11 @@
-﻿using Axess.Evrp.Dal.Specifications;
-using Axess.Repositories.Interfaces;
-using Axess.Specification.Interfaces;
+﻿using DotNetCore.Axess.Evrp.Dal.Specifications;
+using DotNetCore.Axess.Repositories.Interfaces;
+using DotNetCore.Axess.Specification.Interfaces;
 using DotNetCore.Axess.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Axess.Repositories;
+namespace DotNetCore.Axess.Repositories;
 public class QueryRepository<TEntity, TId> : IQueryRepository<TEntity, TId> where TEntity : Entity<TId>
 {
     private readonly DbContext _context;

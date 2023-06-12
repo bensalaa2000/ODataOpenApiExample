@@ -2,7 +2,7 @@
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
-using Axess.Entities;
+using DotNetCore.Axess.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ODataOpenApiExample.MediatR.OData.Queries;
