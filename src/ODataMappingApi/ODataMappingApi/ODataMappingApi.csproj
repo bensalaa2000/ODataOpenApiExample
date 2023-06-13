@@ -15,20 +15,18 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DotNetCore.Axess\Repositories\Axess.Repositories\Axess.Repositories.csproj" />
-    <ProjectReference Include="..\..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\DotNetCore.Axess\Mapping\Axess.Mapping\Axess.Mapping.csproj" />
-    <ProjectReference Include="..\..\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj" />
-    <ProjectReference Include="..\..\DotNetCore.Axess\Validators\Axess.Validators\Axess.Validators.csproj" />
+    <Folder Include="Services\Orders\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Orders\" />
+    <ProjectReference Include="..\..\..\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,4 +8,9 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
 </Project>

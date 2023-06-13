@@ -5,11 +5,10 @@ using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using global::MediatR;
 using Microsoft.EntityFrameworkCore;
 using Entities = DotNetCore.Axess.Entities;
-using Models = Axess.Architecture.Models;
-
+using Models = ApiVersioning.Examples.Models;
 public class OrderCommandsHandler
-    : IRequestHandler<CreateOrderCommand, Models.Order>
-    , IRequestHandler<UpdateOrderCommand, Models.Order>
+    : IRequestHandler<CreateOrderCommand, Models.OrderDto>
+    , IRequestHandler<UpdateOrderCommand, Models.OrderDto>
     , IRequestHandler<DeleteOrderCommand>
 {
     private readonly IApplicationDbContext _dbContext;
@@ -27,9 +26,9 @@ public class OrderCommandsHandler
     }
 
 
-    public async Task<Models.Order> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+    public async Task<Models.OrderDto> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        Models.Order order = new Models.Order
+        Models.OrderDto order = new Models.OrderDto
         {
             /*Age = request.Age,
             FirstName = request.FirstName*/
@@ -40,7 +39,7 @@ public class OrderCommandsHandler
         return order;
     }
 
-    public async Task<Models.Order> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+    public async Task<Models.OrderDto> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
         Entities.Order order = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
         if (order == null)
@@ -54,7 +53,7 @@ public class OrderCommandsHandler
         person.FirstName = request.FirstName;*/
         _dbContext.Orders.Update(order);
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<Models.Order>(order);
+        return _mapper.Map<Models.OrderDto>(order);
     }
 
     public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)

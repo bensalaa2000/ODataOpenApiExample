@@ -2,12 +2,12 @@
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
-using DotNetCore.Axess.Entities;
+using Axess.MediatR.OData.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Axess.MediatR.OData.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
+using Entities = DotNetCore.Axess.Entities;
 /// <summary>
 /// Represents a RESTful service of orders.
 /// </summary>
@@ -22,9 +22,9 @@ public class OrdersController : ApiODataControllerBase
     /// <response code="400">The order is invalid.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Order>>), Status200OK)]
-    public IActionResult Get(ODataQueryOptions<Order> options) =>
-        Ok(Mediator.Send(new ODataOptionsQuery<Order>(options)));
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<Entities.Order>>), Status200OK)]
+    public IActionResult Get(ODataQueryOptions<Entities.Order> options) =>
+        Ok(Mediator.Send(new ODataOptionsQuery<Entities.Order>(options)));
 
 
 
@@ -36,15 +36,15 @@ public class OrdersController : ApiODataControllerBase
     /// <returns></returns>
     [HttpGet]//("api/Orders/{key:int}") // ("api/Orders({key}}")
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(Entities.Order), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     //[ODataRouteComponent("({key})")]
     //[EnableQuery(AllowedQueryOptions = AllowedQueryOptions.Select)]
-    public IActionResult/*async Task<SingleResult<Order>>*/ Get(int key, ODataQueryOptions<Order> options)
+    public IActionResult/*async Task<SingleResult<Order>>*/ Get(Guid key, ODataQueryOptions<Entities.Order> options)
     {
         /*SingleResult<Order>*/
         //Task<SingleResult<Order>> result = Mediator.Send(new ODataOptionsByIdQuery<Order>(options, key));
-        Task<IQueryable<Order>> result = Mediator.Send(new ODataOptionsByIdIQueryableQuery<Order>(options, key));
+        Task<IQueryable<Entities.Order>> result = Mediator.Send(new ODataOptionsByIdIQueryableQuery<Entities.Order>(options, key));
         return Ok(result);
     }
 }

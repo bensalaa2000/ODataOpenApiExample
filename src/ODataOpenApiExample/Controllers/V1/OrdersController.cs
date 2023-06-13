@@ -1,6 +1,6 @@
 ﻿namespace Axess.Controllers.V1;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -31,11 +31,11 @@ public class OrdersController : ODataController
     /// <response code="404">The order does not exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
-    public SingleResult<Order> Get(int key) =>
-        SingleResult.Create(new[] { new Order() { Id = key, Customer = "John Doe" } }.AsQueryable());
+    public SingleResult<OrderDto> Get(Guid key) =>
+        SingleResult.Create(new[] { new OrderDto() { Code = Guid.NewGuid(), Customer = "John Doe" } }.AsQueryable());
 
     /// <summary>
     /// Places a new order.
@@ -47,16 +47,16 @@ public class OrdersController : ODataController
     [HttpPost]
     [MapToApiVersion(1.0)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status201Created)]
+    [ProducesResponseType(typeof(OrderDto), Status201Created)]
     [ProducesResponseType(Status400BadRequest)]
-    public IActionResult Post([FromBody] Order order)
+    public IActionResult Post([FromBody] OrderDto order)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        order.Id = 42;
+        order.Code = Guid.NewGuid();
 
         return Created(order);
     }
@@ -70,11 +70,11 @@ public class OrdersController : ODataController
     [HttpGet]
     [MapToApiVersion("1.0")]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
-    public SingleResult<Order> MostExpensive() =>
-        SingleResult.Create(new[] { new Order() { Id = 42, Customer = "Bill Mei" } }.AsQueryable());
+    public SingleResult<OrderDto> MostExpensive() =>
+        SingleResult.Create(new[] { new OrderDto() { Code = Guid.NewGuid(), Customer = "Bill Mei" } }.AsQueryable());
 
     /// <summary>
     /// Gets the most expensive order.
@@ -86,11 +86,11 @@ public class OrdersController : ODataController
     [HttpGet]
     [MapToApiVersion(1.0)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
-    public SingleResult<Order> MostExpensive(int key) =>
-        SingleResult.Create(new[] { new Order() { Id = key, Customer = "Bill Mei" } }.AsQueryable());
+    public SingleResult<OrderDto> MostExpensive(Guid key) =>
+        SingleResult.Create(new[] { new OrderDto() { Code = key, Customer = "Bill Mei" } }.AsQueryable());
 
     /// <summary>
     /// Gets the line items for the specified order.
@@ -101,16 +101,16 @@ public class OrdersController : ODataController
     /// <response code="404">The order does not exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<LineItem>>), Status200OK)]
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<LineItemDto>>), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select | Count)]
-    public IActionResult GetLineItems(int key)
+    public IActionResult GetLineItems(Guid key)
     {
-        LineItem[] lineItems = new LineItem[]
+        LineItemDto[] lineItems = new LineItemDto[]
         {
-            new() { Number = 1, Quantity = 1, UnitPrice = 2m, Description = "Dry erase wipes" },
-            new() { Number = 2, Quantity = 1, UnitPrice = 3.5m, Description = "Dry erase eraser" },
-            new() { Number = 3, Quantity = 1, UnitPrice = 5m, Description = "Dry erase markers" },
+            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 2m, Description = "Dry erase wipes" },
+            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 3.5m, Description = "Dry erase eraser" },
+            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 5m, Description = "Dry erase markers" },
         };
 
         return Ok(lineItems);

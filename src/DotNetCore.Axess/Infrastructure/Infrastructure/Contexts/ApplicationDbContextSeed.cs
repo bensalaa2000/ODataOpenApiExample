@@ -9,13 +9,13 @@ public static class ApplicationDbContextSeed
 
     private static ModelBuilder SeedOrders(this ModelBuilder builder)
     {
-        builder.Entity<Order>(entity => entity.HasData(new Order(1)
+        builder.Entity<Order>(entity => entity.HasData(new Order(Guid.NewGuid())
         {
             Customer = "John Doe",
             CreatedDate = DateTime.Now,
             Description = "A man",
             EffectiveDate = DateTime.Now
-        }, new Order(2)
+        }, new Order(Guid.NewGuid())
         {
             Customer = "Jane Doe",
             Description = "A Woman",
@@ -25,13 +25,13 @@ public static class ApplicationDbContextSeed
 
     private static ModelBuilder SeedAddresses(this ModelBuilder builder)
     {
-        builder.Entity<Address>(entity => entity.HasData(new Address(42)
+        builder.Entity<Address>(entity => entity.HasData(new Address(Guid.NewGuid())
         {
             Street = "1 Microsoft Way",
             City = "Redmond",
             State = "WA",
             ZipCode = "98052"
-        }, new Address(41)
+        }, new Address(Guid.NewGuid())
         {
             Street = "123 Some Place",
             City = "Seattle",
@@ -43,24 +43,24 @@ public static class ApplicationDbContextSeed
 
     private static ModelBuilder SeedPersons(this ModelBuilder builder)
     {
-        builder.Entity<Person>(entity => entity.HasData(new Person(1)
+        builder.Entity<Person>(entity => entity.HasData(new Person(Guid.NewGuid())
         {
             FirstName = "John",
             LastName = "Doe",
-            WorkAddressId = 42,
-            WorkAddress = new Address(42)
+            WorkAddressId = Guid.NewGuid(),
+            WorkAddress = new Address(Guid.NewGuid())
             {
                 Street = "1 Microsoft Way",
                 City = "Redmond",
                 State = "WA",
                 ZipCode = "98052"
             }
-        }, new Person(2)
+        }, new Person(Guid.NewGuid())
         {
             FirstName = "Jane",
             LastName = "Doe",
             HomeAddressId = 41,
-            HomeAddress = new Address(41)
+            HomeAddress = new Address(Guid.NewGuid())
             {
 
                 Street = "123 Some Place",
@@ -73,11 +73,11 @@ public static class ApplicationDbContextSeed
     }
     private static ModelBuilder SeedSuppliers(this ModelBuilder builder)
     {
-        builder.Entity<Supplier>(entity => entity.HasData(NewSupplier(1), NewSupplier(2), NewSupplier(3)));
+        builder.Entity<Supplier>(entity => entity.HasData(NewSupplier(Guid.NewGuid()), NewSupplier(Guid.NewGuid()), NewSupplier(Guid.NewGuid())));
         return builder;
     }
 
-    private static Supplier NewSupplier(int id) =>
+    private static Supplier NewSupplier(Guid id) =>
         new Supplier(id)
         {
             Name = "Supplier " + id.ToString(),
@@ -87,8 +87,8 @@ public static class ApplicationDbContextSeed
                 {
                     Name = "Product "  + id.ToString(),
                     Category = "Test",
-                    Price = id,
-                    SupplierId = id,
+                    Price = 10,
+                    SupplierId = Guid.NewGuid(),
                 },
             },
         };

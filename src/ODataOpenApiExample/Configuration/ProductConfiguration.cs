@@ -1,6 +1,6 @@
-﻿namespace Axess.Architecture.Configuration;
+﻿namespace ApiVersioning.Examples.Configuration;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.OData.ModelBuilder;
@@ -18,6 +18,6 @@ public class ProductConfiguration : IModelConfiguration
             return;
         }
 
-        var product = builder.EntitySet<Product>( "Products" ).EntityType.HasKey( p => p.Id );
+        var product = builder.EntitySet<ProductDto>( "Products" ).EntityType.HasKey( p => p.Code );
     }
 }

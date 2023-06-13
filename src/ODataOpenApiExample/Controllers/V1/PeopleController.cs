@@ -1,12 +1,12 @@
 ﻿namespace Axess.Controllers.V1;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
+using Axess.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using Axess.Extensions;
 using System.Linq;
 using System.Net.Mime;
 using System.Threading;
@@ -30,15 +30,15 @@ public class PeopleController : ODataController
     /// <response code="404">The person does not exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Person), Status200OK)]
+    [ProducesResponseType(typeof(PersonDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
-    public IActionResult Get(int key, ODataQueryOptions<Person> options)
+    public IActionResult Get(Guid key, ODataQueryOptions<PersonDto> options)
     {
-        Person[] people = new Person[]
+        PersonDto[] people = new PersonDto[]
         {
             new()
             {
-                Id = key,
+                Code = key,
                 FirstName = "John",
                 LastName = "Doe",
             },
@@ -63,16 +63,16 @@ public class PeopleController : ODataController
     [HttpGet]
     [MapToApiVersion(1.0)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Person), Status200OK)]
+    [ProducesResponseType(typeof(PersonDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
-    public SingleResult<Person> MostExpensive(ODataQueryOptions<Person> options, CancellationToken ct) =>
+    public SingleResult<PersonDto> MostExpensive(ODataQueryOptions<PersonDto> options, CancellationToken ct) =>
             SingleResult.Create(
-                new Person[]
+                new PersonDto[]
                 {
                 new()
                 {
-                    Id = 42,
+                    Code = Guid.NewGuid(),
                     FirstName = "Elon",
                     LastName = "Musk",
                 },
@@ -87,19 +87,19 @@ public class PeopleController : ODataController
     [HttpGet]
     [MapToApiVersion(1.0)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
-    public SingleResult<Person> MostExpensive(
+    public SingleResult<PersonDto> MostExpensive(
         int key,
-        ODataQueryOptions<Person> options,
+        ODataQueryOptions<PersonDto> options,
         CancellationToken ct) =>
         SingleResult.Create(
-            new Person[]
+            new PersonDto[]
             {
                 new()
                 {
-                    Id = key,
+                    Code = Guid.NewGuid(),
                     FirstName = "John",
                     LastName = "Doe",
                 },

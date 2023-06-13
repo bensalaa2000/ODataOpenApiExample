@@ -1,6 +1,6 @@
 ﻿namespace Axess.Controllers.V3;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -22,11 +22,11 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 [ApiVersion(3.0)]
 public class ProductsController : ODataController
 {
-    private readonly IQueryable<Product> products = new[]
+    private readonly IQueryable<ProductDto> products = new[]
     {
-        NewProduct( 1 ),
-        NewProduct( 2 ),
-        NewProduct( 3 ),
+        NewProduct( Guid.NewGuid() ),
+        NewProduct( Guid.NewGuid() ),
+        NewProduct( Guid.NewGuid() ),
     }.AsQueryable();
 
     /// <summary>
@@ -37,8 +37,8 @@ public class ProductsController : ODataController
     [HttpGet]
     [EnableQuery]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Product>>), Status200OK)]
-    public IQueryable<Product> Get() => products;
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<ProductDto>>), Status200OK)]
+    public IQueryable<ProductDto> Get() => products;
 
     /// <summary>
     /// Gets a single product.
@@ -50,10 +50,10 @@ public class ProductsController : ODataController
     [HttpGet]
     [EnableQuery]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Product), Status200OK)]
+    [ProducesResponseType(typeof(ProductDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
-    public SingleResult<Product> Get(int key) =>
-        SingleResult.Create(products.Where(p => p.Id == key));
+    public SingleResult<ProductDto> Get(Guid key) =>
+        SingleResult.Create(products.Where(p => p.Code == key));
 
     /// <summary>
     /// Creates a new product.
@@ -65,17 +65,17 @@ public class ProductsController : ODataController
     /// <response code="400">The product is invalid.</response>
     [HttpPost]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Product), Status201Created)]
+    [ProducesResponseType(typeof(ProductDto), Status201Created)]
     [ProducesResponseType(Status204NoContent)]
     [ProducesResponseType(Status400BadRequest)]
-    public IActionResult Post([FromBody] Product product)
+    public IActionResult Post([FromBody] ProductDto product)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        product.Id = 42;
+        product.Code = Guid.NewGuid();
 
         return Created(product);
     }
@@ -92,18 +92,18 @@ public class ProductsController : ODataController
     /// <response code="404">The product does not exist.</response>
     [HttpPatch]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Product), Status200OK)]
+    [ProducesResponseType(typeof(ProductDto), Status200OK)]
     [ProducesResponseType(Status204NoContent)]
     [ProducesResponseType(Status400BadRequest)]
     [ProducesResponseType(Status404NotFound)]
-    public IActionResult Patch(int key, [FromBody] Delta<Product> delta)
+    public IActionResult Patch(Guid key, [FromBody] Delta<ProductDto> delta)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        Product product = new Product() { Id = key, Name = "Updated Product " + key.ToString() };
+        ProductDto product = new ProductDto() { Code = key, Name = "Updated Product " + key.ToString() };
 
         delta.Patch(product);
 
@@ -122,11 +122,11 @@ public class ProductsController : ODataController
     /// <response code="404">The product does not exist.</response>
     [HttpPut]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Product), Status200OK)]
+    [ProducesResponseType(typeof(ProductDto), Status200OK)]
     [ProducesResponseType(Status204NoContent)]
     [ProducesResponseType(Status400BadRequest)]
     [ProducesResponseType(Status404NotFound)]
-    public IActionResult Put(int key, [FromBody] Product update)
+    public IActionResult Put(int key, [FromBody] ProductDto update)
     {
         if (!ModelState.IsValid)
         {
@@ -156,10 +156,10 @@ public class ProductsController : ODataController
     [HttpGet]
     [EnableQuery]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Supplier), Status200OK)]
+    [ProducesResponseType(typeof(SupplierDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
-    public SingleResult<Supplier> GetSupplier(int key) =>
-        SingleResult.Create(products.Where(p => p.Id == key).Select(p => p.Supplier));
+    public SingleResult<SupplierDto> GetSupplier(Guid key) =>
+        SingleResult.Create(products.Where(p => p.Code == key).Select(p => p.Supplier));
 
     /// <summary>
     /// Gets the link to the associated supplier, if any.
@@ -218,14 +218,14 @@ public class ProductsController : ODataController
         string navigationProperty,
         int relatedKey) => NoContent();
 
-    private static Product NewProduct(int id) =>
+    private static ProductDto NewProduct(Guid id) =>
         new()
         {
-            Id = id,
+
             Category = "Test",
             Name = "Product " + id.ToString(),
-            Price = id,
-            Supplier = new Supplier() { Id = id, Name = "Supplier " + id.ToString() },
-            SupplierId = id,
+            Price = 10,
+            Supplier = new SupplierDto() { Code = Guid.NewGuid(), Name = "Supplier " + id.ToString() },
+            SupplierId = Guid.NewGuid(),
         };
 }

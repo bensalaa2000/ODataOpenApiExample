@@ -1,12 +1,12 @@
 namespace DotNetCore.Axess.Domain;
 
-public abstract class Entity<TId> : Base<Entity<TId>>
+public abstract class Entity : Base<Entity>
 {
-    public TId Id { get; protected set; }
+    public Guid Id { get; protected set; }
 
     protected sealed override IEnumerable<object> Equals() { yield return Id; }
 
-    protected Entity(TId id)
+    protected Entity(Guid id)
     {
         Id = id;
     }

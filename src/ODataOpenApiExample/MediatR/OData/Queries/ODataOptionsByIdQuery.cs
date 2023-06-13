@@ -10,4 +10,4 @@ using Microsoft.AspNetCore.OData.Results;
 /// <typeparam name="T"></typeparam>
 /// <param name="Options"></param>
 /// <param name="Key"></param>
-public sealed record ODataOptionsByIdQuery<T>(ODataQueryOptions<T> Options, int Key) : IRequest<SingleResult<T>>;
+public sealed record ODataOptionsByIdQuery<T>(ODataQueryOptions<T> Options, Guid Key) : IRequest<SingleResult<T>>;

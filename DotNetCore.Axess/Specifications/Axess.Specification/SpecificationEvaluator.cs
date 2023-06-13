@@ -1,5 +1,5 @@
-﻿using DotNetCore.Axess.Specification.Interfaces;
-using DotNetCore.Axess.Domain;
+﻿using DotNetCore.Axess.Domain;
+using DotNetCore.Axess.Specification.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCore.Axess.Specification;
@@ -47,8 +47,7 @@ public static class SpecificationEvaluator<TEntity, TId> where TEntity : Base<En
         // Apply paging if enabled
         if (specification.IsPagingEnabled)
         {
-            query = query.Skip(specification.Skip)
-                         .Take(specification.Take);
+            query = query.Skip(specification.Skip).Take(specification.Take);
         }
         return query;
     }

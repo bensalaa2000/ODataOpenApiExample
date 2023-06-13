@@ -1,6 +1,6 @@
-﻿namespace Axess.Architecture.Configuration;
+﻿namespace ApiVersioning.Examples.Configuration;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.OData.ModelBuilder;
@@ -14,10 +14,10 @@ public class PersonModelConfiguration : IModelConfiguration
     /// <inheritdoc />
     public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
-        EntityTypeConfiguration<Person> person = builder.EntitySet<Person>("People").EntityType;
-        EntityTypeConfiguration<Address> address = builder.EntityType<Address>().HasKey(a => a.Id);
+        EntityTypeConfiguration<PersonDto> person = builder.EntitySet<PersonDto>("People").EntityType;
+        EntityTypeConfiguration<AddressDto> address = builder.EntityType<AddressDto>().HasKey(a => a.Code);
 
-        person.HasKey(p => p.Id);
+        person.HasKey(p => p.Code);
         person.Select().OrderBy("firstName", "lastName");
 
         if (apiVersion < ApiVersions.V3)
@@ -34,8 +34,8 @@ public class PersonModelConfiguration : IModelConfiguration
 
         if (apiVersion == ApiVersions.V1)
         {
-            person.Function("MostExpensive").ReturnsFromEntitySet<Person>("People");
-            person.Collection.Function("MostExpensive").ReturnsFromEntitySet<Person>("People");
+            person.Function("MostExpensive").ReturnsFromEntitySet<PersonDto>("People");
+            person.Collection.Function("MostExpensive").ReturnsFromEntitySet<PersonDto>("People");
         }
 
         if (apiVersion > ApiVersions.V1)
@@ -46,7 +46,7 @@ public class PersonModelConfiguration : IModelConfiguration
             FunctionConfiguration function = person.Collection.Function("NewHires");
 
             function.Parameter<DateTime>("Since");
-            function.ReturnsFromEntitySet<Person>("People");
+            function.ReturnsFromEntitySet<PersonDto>("People");
         }
 
         if (apiVersion > ApiVersions.V2)

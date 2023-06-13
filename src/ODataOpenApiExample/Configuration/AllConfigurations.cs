@@ -1,4 +1,4 @@
-﻿namespace Axess.Architecture.Configuration;
+﻿namespace ApiVersioning.Examples.Configuration;
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
@@ -10,8 +10,8 @@ using Microsoft.OData.ModelBuilder;
 public class AllConfigurations : IModelConfiguration
 {
     /// <inheritdoc />
-    public void Apply( ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix )
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
-        builder.Function( "GetSalesTaxRate" ).Returns<double>().Parameter<int>( "PostalCode" );
+        //builder.Function( "GetSalesTaxRate" ).Returns<double>().Parameter( "PostalCode" );
     }
 }

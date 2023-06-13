@@ -1,13 +1,13 @@
 ﻿namespace Axess.MediatR.Order.Commands;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using global::MediatR;
 using System.Collections.Generic;
 
 /// <summary>
 /// 
 /// </summary>
-public class CreateOrderCommand : IRequest<Order>
+public class CreateOrderCommand : IRequest<OrderDto>
 {
     /// <summary>
     /// 
@@ -28,5 +28,5 @@ public class CreateOrderCommand : IRequest<Order>
     /// <summary>
     /// 
     /// </summary>
-    public virtual IList<LineItem> LineItems { get; } = new List<LineItem>();
+    public virtual IList<LineItemDto> LineItems { get; } = new List<LineItemDto>();
 }

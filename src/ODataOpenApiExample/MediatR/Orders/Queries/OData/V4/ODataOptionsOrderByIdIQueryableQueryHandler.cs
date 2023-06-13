@@ -5,11 +5,11 @@ using Axess.Extensions;
 using Axess.MediatR.OData.Queries;
 
 namespace Axess.MediatR.Order.Queries.OData.V4;
-using Order = Axess.Architecture.Models.Order;
+using OrderDto = ApiVersioning.Examples.Models.OrderDto;
 /// <summary>
 /// 
 /// </summary>
-public sealed class ODataOptionsOrderByIdIQueryableQueryHandler : IRequestHandler<ODataOptionsByIdIQueryableQuery<Order>, IQueryable<Order>>
+public sealed class ODataOptionsOrderByIdIQueryableQueryHandler : IRequestHandler<ODataOptionsByIdIQueryableQuery<OrderDto>, IQueryable<OrderDto>>
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
@@ -33,10 +33,10 @@ public sealed class ODataOptionsOrderByIdIQueryableQueryHandler : IRequestHandle
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public async Task<IQueryable<Order>> Handle(ODataOptionsByIdIQueryableQuery<Order> request, CancellationToken cancellationToken)
+    public async Task<IQueryable<OrderDto>> Handle(ODataOptionsByIdIQueryableQuery<OrderDto> request, CancellationToken cancellationToken)
     {
         IQueryable<DotNetCore.Axess.Entities.Order> result = _dbContext.Orders.Where(o => o.Id == request.Key);
-        IQueryable<Order> orders = result.ProjectAndApplyToIQueryable(_mapper, request.Options);
+        IQueryable<OrderDto> orders = result.ProjectAndApplyToIQueryable(_mapper, request.Options);
         return await Task.FromResult(orders);
     }
 }

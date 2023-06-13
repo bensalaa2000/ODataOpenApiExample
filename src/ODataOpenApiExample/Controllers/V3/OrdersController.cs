@@ -1,6 +1,6 @@
 ﻿namespace Axess.Controllers.V3;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using AutoMapper;
@@ -45,11 +45,11 @@ public class OrdersController : ODataController
     /// <response code="400">The order is invalid.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Order>>), Status200OK)]
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
     [EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Top | Skip | Count)]
-    public IQueryable<Order> Get()
+    public IQueryable<OrderDto> Get()
     {
-        return _dbContext.Orders/*.Where(o => o.Id == 1)*/.ProjectTo<Order>(_mapper.ConfigurationProvider)/*.ToList()*/;
+        return _dbContext.Orders/*.Where(o => o.Id == 1)*/.ProjectTo<OrderDto>(_mapper.ConfigurationProvider)/*.ToList()*/;
         /*Console.WriteLine(entityOrders.Count);
         Order[] orders = new Order[]
         {
@@ -71,11 +71,11 @@ public class OrdersController : ODataController
     /// <response code="404">The order does not exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
-    public SingleResult<Order> Get(int key) =>
-        SingleResult.Create(new[] { new Order() { Id = key, Customer = "John Doe" } }.AsQueryable());
+    public SingleResult<OrderDto> Get(Guid key) =>
+        SingleResult.Create(new[] { new OrderDto() { Code = key, Customer = "John Doe" } }.AsQueryable());
 
     /// <summary>
     /// Places a new order.
@@ -85,16 +85,16 @@ public class OrdersController : ODataController
     /// <response code="201">The order was successfully placed.</response>
     /// <response code="400">The order is invalid.</response>
     [HttpPost]
-    [ProducesResponseType(typeof(Order), Status201Created)]
+    [ProducesResponseType(typeof(OrderDto), Status201Created)]
     [ProducesResponseType(Status400BadRequest)]
-    public IActionResult Post([FromBody] Order order)
+    public IActionResult Post([FromBody] OrderDto order)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        order.Id = 42;
+        order.Code = Guid.NewGuid();
 
         return Created(order);
     }
@@ -110,18 +110,18 @@ public class OrdersController : ODataController
     /// <response code="404">The order does not exist.</response>
     [HttpPatch]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status204NoContent)]
     [ProducesResponseType(Status400BadRequest)]
     [ProducesResponseType(Status404NotFound)]
-    public IActionResult Patch(int key, [FromBody] Delta<Order> delta)
+    public IActionResult Patch(int key, [FromBody] Delta<OrderDto> delta)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        Order order = new Order() { Id = 42, Customer = "Bill Mei" };
+        OrderDto order = new OrderDto() { Code = Guid.NewGuid(), Customer = "Bill Mei" };
 
         delta.Patch(order);
 
@@ -149,11 +149,11 @@ public class OrdersController : ODataController
     /// <response code="404">The no orders exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
-    public SingleResult<Order> MostExpensive() =>
-        SingleResult.Create(new[] { new Order() { Id = 42, Customer = "Bill Mei" } }.AsQueryable());
+    public SingleResult<OrderDto> MostExpensive() =>
+        SingleResult.Create(new[] { new OrderDto() { Code = Guid.NewGuid(), Customer = "Bill Mei" } }.AsQueryable());
 
     /// <summary>
     /// Rates an order.
@@ -188,16 +188,16 @@ public class OrdersController : ODataController
     /// <response code="404">The order does not exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<LineItem>>), Status200OK)]
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<LineItemDto>>), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select | Count)]
-    public IActionResult GetLineItems(int key)
+    public IActionResult GetLineItems(Guid key)
     {
-        LineItem[] lineItems = new LineItem[]
+        LineItemDto[] lineItems = new LineItemDto[]
         {
-            new() { Number = 1, Quantity = 1, UnitPrice = 2m, Description = "Dry erase wipes" },
-            new() { Number = 2, Quantity = 1, UnitPrice = 3.5m, Description = "Dry erase eraser" },
-            new() { Number = 3, Quantity = 1, UnitPrice = 5m, Description = "Dry erase markers" },
+            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 2m, Description = "Dry erase wipes" },
+            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 3.5m, Description = "Dry erase eraser" },
+            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 5m, Description = "Dry erase markers" },
         };
 
         return Ok(lineItems);

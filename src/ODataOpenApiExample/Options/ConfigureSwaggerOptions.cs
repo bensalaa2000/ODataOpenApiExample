@@ -1,4 +1,4 @@
-﻿namespace Axess.Architecture;
+﻿namespace ApiVersioning.Examples;
 
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;

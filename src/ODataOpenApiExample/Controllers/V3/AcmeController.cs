@@ -1,6 +1,6 @@
 ﻿namespace Axess.Controllers.V3;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +26,8 @@ public class AcmeController : ODataController
     [HttpGet]
     [EnableQuery]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<Supplier>), Status200OK)]
-    public IActionResult Get() => Ok(NewSupplier());
+    [ProducesResponseType(typeof(ODataValue<SupplierDto>), Status200OK)]
+    public IActionResult Get() => Ok(NewSupplier(Guid.NewGuid()));
 
     /// <summary>
     /// Gets the products associated with the supplier.
@@ -35,7 +35,7 @@ public class AcmeController : ODataController
     /// <returns>The associated supplier products.</returns>
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Product> GetProducts() => NewSupplier().Products.AsQueryable();
+    public IQueryable<ProductDto> GetProducts() => NewSupplier(Guid.NewGuid()).Products.AsQueryable();
 
     /// <summary>
     /// Links a product to a supplier.
@@ -67,20 +67,20 @@ public class AcmeController : ODataController
         int relatedKey,
         string navigationProperty) => NoContent();
 
-    private static Supplier NewSupplier() =>
+    private static SupplierDto NewSupplier(Guid id) =>
         new()
         {
-            Id = 42,
+            Code = id,
             Name = "Acme",
-            Products = new List<Product>()
+            Products = new List<ProductDto>()
             {
                 new()
                 {
-                    Id = 42,
+                    Code = Guid.NewGuid(),
                     Name = "Product 42",
                     Category = "Test",
                     Price = 42,
-                    SupplierId = 42,
+                    SupplierId = id,
                 },
             },
         };

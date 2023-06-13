@@ -7,9 +7,9 @@ using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 
 namespace Axess.MediatR.Order.Queries.OData.V4;
-using Order = Axess.Architecture.Models.Order;
+using OrderDto = ApiVersioning.Examples.Models.OrderDto;
 /// <inheritdoc/>
-public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<Order>, PaginatedList<Order>>
+public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<OrderDto>, PaginatedList<OrderDto>>
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
@@ -23,9 +23,9 @@ public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptions
         _mapper = mapper;
     }
     /// <inheritdoc/>
-    public async Task<PaginatedList<Order>> Handle(ODataOptionsQuery<Order> request, CancellationToken cancellationToken)
+    public async Task<PaginatedList<OrderDto>> Handle(ODataOptionsQuery<OrderDto> request, CancellationToken cancellationToken)
     {
-        ODataQueryOptions<Order> options = request.Options;
+        ODataQueryOptions<OrderDto> options = request.Options;
         /*Init PaginatedList header */
         int skip = options.Skip?.Value ?? 0;
         int pageSize = options.Top?.Value ?? request.PageSize;/* Taille pa defaut si n'est pas indiqué */
@@ -39,8 +39,8 @@ public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptions
             PageSize = pageSize,
             EnsureStableOrdering = true,
         };
-        IEnumerable<Order> items = _dbContext.Orders.ProjectAndApplyTo(_mapper, options, querySettings);
-        PaginatedList<Order> paginatedList = new(items, count, pageNumber, pageSize);
+        IEnumerable<OrderDto> items = _dbContext.Orders.ProjectAndApplyTo(_mapper, options, querySettings);
+        PaginatedList<OrderDto> paginatedList = new(items, count, pageNumber, pageSize);
         return await Task.FromResult(paginatedList);
     }
 }

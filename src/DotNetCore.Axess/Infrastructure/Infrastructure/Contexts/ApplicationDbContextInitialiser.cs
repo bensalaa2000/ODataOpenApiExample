@@ -1,5 +1,5 @@
-﻿using DotNetCore.Axess.Entities;
-using Bogus;
+﻿using Bogus;
+using DotNetCore.Axess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Polly;
@@ -70,7 +70,7 @@ public class ApplicationDbContextInitialiser
     public void SeedDatabase()
     {
 
-        _context.Addresses.Add(new Address(42)
+        _context.Addresses.Add(new Address(Guid.NewGuid())
         {
             Street = "1 Microsoft Way",
             City = "Redmond",
@@ -84,7 +84,7 @@ public class ApplicationDbContextInitialiser
 
 
         Random rnd = Random.Shared;
-        int idLineItem = 1;
+
 
 
         IEnumerable<Order> orders =
@@ -95,7 +95,7 @@ public class ApplicationDbContextInitialiser
                     Faker faker = new();
                     Bogus.Person person = faker.Person;
 
-                    Order order = new(index)
+                    Order order = new(Guid.NewGuid())
                     {
                         Customer = $"{person.FullName}",
                         EffectiveDate = DateTime.UtcNow.AddDays(faker.Random.Double(0, 15)),
@@ -105,7 +105,7 @@ public class ApplicationDbContextInitialiser
                     int elements = faker.Random.Int(0, 5);
                     for (int i = 0; i < elements; i++)
                     {
-                        LineItem lineItem = new(idLineItem++)
+                        LineItem lineItem = new(Guid.NewGuid())
                         {
                             Description = faker.Lorem.Slug(rnd.Next(3, 5)),
                             Fulfilled = faker.Random.Bool(),

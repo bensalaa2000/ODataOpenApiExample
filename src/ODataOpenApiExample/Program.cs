@@ -1,7 +1,7 @@
-﻿using Asp.Versioning;
+﻿using ApiVersioning.Examples;
+using Asp.Versioning;
 using Asp.Versioning.Conventions;
 using Axess;
-using Axess.Architecture;
 using Axess.Filters;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.OData;

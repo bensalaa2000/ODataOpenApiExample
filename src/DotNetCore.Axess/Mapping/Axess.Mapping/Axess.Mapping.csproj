@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Entities\DotNetCore.Axess.Entities\Axess.Entities.csproj" />
     <ProjectReference Include="..\..\Models\DotNetCore.Axess.Domain\Axess.Models.csproj" />
   </ItemGroup>
 

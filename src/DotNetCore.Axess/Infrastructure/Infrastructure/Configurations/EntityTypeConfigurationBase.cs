@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace DotNetCore.Axess.Infrastructure.Persistence.Configurations;
 
 /// <inheritdoc/>
-public abstract class EntityTypeConfigurationBase<TEntity, TId> : IEntityTypeConfiguration<TEntity> where TEntity : Entity<TId>
+public abstract class EntityTypeConfigurationBase<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : Entity
 {
     /// <inheritdoc/>
     public virtual void Configure(EntityTypeBuilder<TEntity> builder)

@@ -41,7 +41,7 @@ public class OrdersController : ControllerBase
     [HttpGet]
     [EnableQuery]
     [MapToApiVersion("2.0")]
-    public IActionResult Get([FromRoute] int key)
+    public IActionResult Get([FromRoute] Guid key)
     {
         DotNetCore.Axess.Entities.Order? c = _dbContext.Orders.AsQueryable().SingleOrDefault(c => c.Id.Equals(key));
         if (c is null)

@@ -1,4 +1,4 @@
-﻿namespace Axess.Architecture.Models;
+﻿namespace ApiVersioning.Examples.Models;
 
 using System.ComponentModel.DataAnnotations;
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using DotNetCore.Axess.Entities;
 using System.Reflection;
-using Models = Axess.Architecture.Models;
+using Entities = DotNetCore.Axess.Entities;
+using Models = ApiVersioning.Examples.Models;
 
 namespace Axess.Mappings.Profiles;
 /// <summary>
@@ -16,19 +16,19 @@ public class MappingProfile : Profile
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
 
-        CreateProjection<Address, Models.Address>();
-        CreateProjection<LineItem, Models.LineItem>()
+        CreateProjection<Entities.Address, Models.Address>();
+        CreateProjection<Entities.LineItem, Models.LineItem>()
             .ForMember(a => a.Number, o => o.MapFrom(x => x.Id));
-        CreateProjection<Order, Models.Order>()
+        CreateProjection<Entities.Order, Models.Order>()
             .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
-        CreateProjection<Person, Models.Person>();
-        CreateProjection<Product, Models.Product>();
-        CreateProjection<Supplier, Models.Supplier>();
+        CreateProjection<Entities.Person, Models.Person>();
+        CreateProjection<Entities.Product, Models.Product>();
+        CreateProjection<Entities.Supplier, Models.Supplier>();
 
-        CreateMap<Order, Models.Order>()
+        CreateMap<Entities.Order, Models.Order>()
              .ForMember(a => a.LineItems, o => o.ExplicitExpansion())
              .ReverseMap();
-        CreateMap<LineItem, Models.LineItem>()
+        CreateMap<Entities.LineItem, Models.LineItem>()
             .ForMember(a => a.Number, o => o.MapFrom(x => x.Id))
             .ReverseMap();
     }

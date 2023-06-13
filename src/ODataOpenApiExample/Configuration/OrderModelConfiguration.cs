@@ -1,6 +1,6 @@
-﻿namespace Axess.Architecture.Configuration;
+﻿namespace ApiVersioning.Examples.Configuration;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.OData.ModelBuilder;
@@ -14,8 +14,8 @@ public class OrderModelConfiguration : IModelConfiguration
     public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
 
-        EntityTypeConfiguration<Order> order = builder.EntitySet<Order>("Orders").EntityType.HasKey(o => o.Id);
-        EntityTypeConfiguration<LineItem> lineItem = builder.EntityType<LineItem>().HasKey(li => li.Number);
+        EntityTypeConfiguration<OrderDto> order = builder.EntitySet<OrderDto>("Orders").EntityType.HasKey(o => o.Code);
+        EntityTypeConfiguration<LineItemDto> lineItem = builder.EntityType<LineItemDto>().HasKey(li => li.Code);
 
         if (apiVersion < ApiVersions.V2)
         {
@@ -31,17 +31,17 @@ public class OrderModelConfiguration : IModelConfiguration
 
         if (apiVersion == ApiVersions.V1)
         {
-            order.Function("MostExpensive").ReturnsFromEntitySet<Order>("Orders");
+            order.Function("MostExpensive").ReturnsFromEntitySet<OrderDto>("Orders");
         }
 
         if (apiVersion >= ApiVersions.V1)
         {
-            order.Collection.Function("MostExpensive").ReturnsFromEntitySet<Order>("Orders");
+            order.Collection.Function("MostExpensive").ReturnsFromEntitySet<OrderDto>("Orders");
         }
 
-        if (apiVersion >= ApiVersions.V2)
+        /*if (apiVersion >= ApiVersions.V2)
         {
-            order.Action("Rate").Parameter<int>("rating");
-        }
+            order.Action("Rate").Parameter("rating");
+        }*/
     }
 }

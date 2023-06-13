@@ -1,4 +1,4 @@
-﻿using Axess.Architecture.Models;
+﻿using ApiVersioning.Examples.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ODataMappingApi.MediatR.Queries;
@@ -8,7 +8,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 namespace DotNetCore.Axess.Evrp.Api.Controllers.Medtra.V1;
 
 [ApiVersion("1.0")]
-public class ModelsOrdersController : ODataControllerBase<Order>
+public class ModelsOrdersController : ODataControllerBase<OrderDto>
 {
 
     #region Constructeurs
@@ -32,9 +32,9 @@ public class ModelsOrdersController : ODataControllerBase<Order>
     /// <response code="200">Documents was successfully retrieved.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(IEnumerable<Order>), Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<OrderDto>), Status200OK)]
     [MapToApiVersion("1.0")]
-    public override async Task<IActionResult> Get(ODataQueryOptions<Order> options, CancellationToken ct)
+    public override async Task<IActionResult> Get(ODataQueryOptions<OrderDto> options, CancellationToken ct)
     {
         return Ok(Mediator.Send(new ODataOptionsQueryOrder(options)));
     }

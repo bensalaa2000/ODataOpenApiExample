@@ -1,4 +1,4 @@
-﻿namespace Axess.Architecture.Models;
+﻿namespace ApiVersioning.Examples.Models;
 /// <summary>
 /// Represents the line item on an order.
 /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace Axess.Architecture.Models;
+﻿namespace ApiVersioning.Examples.Models;
 
 using System.Runtime.Serialization;
 
@@ -39,6 +39,6 @@ public class Address
     /// Gets or sets the address zip code.
     /// </summary>
     /// <value>The address zip code.</value>
-    [DataMember(Name = "zip")]
+    [DataMember( Name = "zip" )]
     public string ZipCode { get; set; }
 }

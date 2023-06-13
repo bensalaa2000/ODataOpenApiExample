@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Entities = DotNetCore.Axess.Entities;
-using Models = Axess.Architecture.Models;
+using Models = ApiVersioning.Examples.Models;
 
 internal static class ODataExtensions
 {
@@ -29,13 +29,13 @@ internal static class ODataExtensions
         edmBuilder.EntitySet<Entities.LineItem>("LineItems");
         edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
 
-        edmBuilder.EntitySet<Models.Order>("ModelsOrders");
-        EntityTypeConfiguration<Models.Order> order = edmBuilder.EntityType<Models.Order>();
-        order.HasKey(o => o.Id);
+        edmBuilder.EntitySet<Models.OrderDto>("ModelsOrders");
+        EntityTypeConfiguration<Models.OrderDto> order = edmBuilder.EntityType<Models.OrderDto>();
+        order.HasKey(o => o.Code);
         order.HasMany(x => x.LineItems);
 
-        edmBuilder.EntitySet<Models.LineItem>("ModelsLineItems");
-        edmBuilder.EntityType<Models.LineItem>().HasKey(li => li.Number);
+        edmBuilder.EntitySet<Models.LineItemDto>("ModelsLineItems");
+        edmBuilder.EntityType<Models.LineItemDto>().HasKey(li => li.Code);
 
         IEdmModel model = edmBuilder.GetEdmModel();
 

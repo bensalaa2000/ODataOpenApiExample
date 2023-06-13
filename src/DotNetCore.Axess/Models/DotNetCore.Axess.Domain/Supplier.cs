@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Axess.Architecture.Models;
+namespace ApiVersioning.Examples.Models;
 
 /// <summary>
 /// Represents a supplier.

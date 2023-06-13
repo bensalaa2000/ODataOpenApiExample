@@ -4,11 +4,11 @@ using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 
 namespace Axess.MediatR.Order.Queries.OData.V4;
-using Order = Axess.Architecture.Models.Order;
+using OrderDto = ApiVersioning.Examples.Models.OrderDto;
 /// <summary>
 /// 
 /// </summary>
-public sealed class ODataOptionsOrderIQueryableQueryHandler : IRequestHandler<ODataOptionsIQueryableQuery<Order>, IQueryable>
+public sealed class ODataOptionsOrderIQueryableQueryHandler : IRequestHandler<ODataOptionsIQueryableQuery<OrderDto>, IQueryable>
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
@@ -23,8 +23,8 @@ public sealed class ODataOptionsOrderIQueryableQueryHandler : IRequestHandler<OD
     }
 
     /// <inheritdoc/>
-    public async Task<IQueryable> Handle(ODataOptionsIQueryableQuery<Order> request, CancellationToken cancellationToken)
+    public async Task<IQueryable> Handle(ODataOptionsIQueryableQuery<OrderDto> request, CancellationToken cancellationToken)
     {
-        return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<Order>(_dbContext.Orders)));
+        return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<OrderDto>(_dbContext.Orders)));
     }
 }

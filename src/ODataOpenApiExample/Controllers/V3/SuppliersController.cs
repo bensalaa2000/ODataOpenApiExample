@@ -1,6 +1,6 @@
 ﻿namespace Axess.Controllers.V3;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +20,11 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 [ApiVersion(3.0)]
 public class SuppliersController : ODataController
 {
-    private readonly IQueryable<Supplier> suppliers = new[]
+    private readonly IQueryable<SupplierDto> suppliers = new[]
     {
-        NewSupplier( 1 ),
-        NewSupplier( 2 ),
-        NewSupplier( 3 ),
+        NewSupplier( Guid.NewGuid() ),
+        NewSupplier( Guid.NewGuid() ),
+        NewSupplier(Guid.NewGuid() ),
     }.AsQueryable();
 
     /// <summary>
@@ -35,8 +35,8 @@ public class SuppliersController : ODataController
     [HttpGet]
     [EnableQuery]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Supplier>>), Status200OK)]
-    public IQueryable<Supplier> Get() => suppliers;
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<SupplierDto>>), Status200OK)]
+    public IQueryable<SupplierDto> Get() => suppliers;
 
     /// <summary>
     /// Gets a single supplier.
@@ -48,10 +48,10 @@ public class SuppliersController : ODataController
     [HttpGet]
     [EnableQuery]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Supplier), Status200OK)]
+    [ProducesResponseType(typeof(SupplierDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
-    public SingleResult<Supplier> Get(int key) =>
-        SingleResult.Create(suppliers.Where(p => p.Id == key));
+    public SingleResult<SupplierDto> Get(Guid key) =>
+        SingleResult.Create(suppliers.Where(p => p.Code == key));
 
     /// <summary>
     /// Creates a new supplier.
@@ -63,17 +63,17 @@ public class SuppliersController : ODataController
     /// <response code="400">The supplier is invalid.</response>
     [HttpPost]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Supplier), Status201Created)]
+    [ProducesResponseType(typeof(SupplierDto), Status201Created)]
     [ProducesResponseType(Status204NoContent)]
     [ProducesResponseType(Status400BadRequest)]
-    public IActionResult Post([FromBody] Supplier supplier)
+    public IActionResult Post([FromBody] SupplierDto supplier)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        supplier.Id = 42;
+        supplier.Code = Guid.NewGuid();
 
         return Created(supplier);
     }
@@ -90,18 +90,18 @@ public class SuppliersController : ODataController
     /// <response code="404">The supplier does not exist.</response>
     [HttpPatch]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Supplier), Status200OK)]
+    [ProducesResponseType(typeof(SupplierDto), Status200OK)]
     [ProducesResponseType(Status204NoContent)]
     [ProducesResponseType(Status400BadRequest)]
     [ProducesResponseType(Status404NotFound)]
-    public IActionResult Patch(int key, [FromBody] Delta<Supplier> delta)
+    public IActionResult Patch(Guid key, [FromBody] Delta<SupplierDto> delta)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        Supplier supplier = new Supplier() { Id = key, Name = "Updated Supplier " + key.ToString() };
+        SupplierDto supplier = new SupplierDto() { Code = key, Name = "Updated Supplier " + key.ToString() };
 
         delta.Patch(supplier);
 
@@ -120,11 +120,11 @@ public class SuppliersController : ODataController
     /// <response code="404">The supplier does not exist.</response>
     [HttpPut]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Supplier), Status200OK)]
+    [ProducesResponseType(typeof(SupplierDto), Status200OK)]
     [ProducesResponseType(Status204NoContent)]
     [ProducesResponseType(Status400BadRequest)]
     [ProducesResponseType(Status404NotFound)]
-    public IActionResult Put(int key, [FromBody] Supplier update)
+    public IActionResult Put(int key, [FromBody] SupplierDto update)
     {
         if (!ModelState.IsValid)
         {
@@ -152,8 +152,8 @@ public class SuppliersController : ODataController
     /// <returns>The associated supplier products.</returns>
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Product> GetProducts(int key) =>
-        suppliers.Where(s => s.Id == key).SelectMany(s => s.Products);
+    public IQueryable<ProductDto> GetProducts(Guid key) =>
+        suppliers.Where(s => s.Code == key).SelectMany(s => s.Products);
 
     /// <summary>
     /// Links a product to a supplier.
@@ -189,19 +189,19 @@ public class SuppliersController : ODataController
         int relatedKey,
         string navigationProperty) => NoContent();
 
-    private static Supplier NewSupplier(int id) =>
+    private static SupplierDto NewSupplier(Guid id) =>
         new()
         {
-            Id = id,
+            Code = id,
             Name = "Supplier " + id.ToString(),
-            Products = new List<Product>()
+            Products = new List<ProductDto>()
             {
                 new()
                 {
-                    Id = id,
+                    Code = Guid.NewGuid(),
                     Name = "Product "  + id.ToString(),
                     Category = "Test",
-                    Price = id,
+                    Price = 10,
                     SupplierId = id,
                 },
             },

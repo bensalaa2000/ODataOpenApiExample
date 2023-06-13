@@ -1,6 +1,6 @@
-﻿namespace Axess.Architecture.Configuration;
+﻿namespace ApiVersioning.Examples.Configuration;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.OData.ModelBuilder;
@@ -18,7 +18,7 @@ public class SupplierConfiguration : IModelConfiguration
             return;
         }
 
-        builder.EntitySet<Supplier>( "Suppliers" ).EntityType.HasKey( p => p.Id );
-        builder.Singleton<Supplier>( "Acme" );
+        builder.EntitySet<SupplierDto>( "Suppliers" ).EntityType.HasKey( p => p.Code );
+        builder.Singleton<SupplierDto>( "Acme" );
     }
 }

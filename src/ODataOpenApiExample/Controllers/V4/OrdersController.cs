@@ -1,11 +1,11 @@
 ﻿namespace Axess.Controllers.V4;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using Axess.MediatR.OData.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Axess.MediatR.OData.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 /// <summary>
@@ -22,10 +22,10 @@ public class OrdersController : ApiODataControllerBase
     /// <response code="400">The order is invalid.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Order>>), Status200OK)]
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
     //[ProducesResponseType(typeof(PageResult<Order>), Status200OK)]
-    public IActionResult Get(ODataQueryOptions<Order> options) =>
-        Ok(Mediator.Send(new ODataOptionsQuery<Order>(options)));
+    public IActionResult Get(ODataQueryOptions<OrderDto> options) =>
+        Ok(Mediator.Send(new ODataOptionsQuery<OrderDto>(options)));
 
 
     /// <summary>
@@ -36,9 +36,9 @@ public class OrdersController : ApiODataControllerBase
     /// <response code="400">The order is invalid.</response>
     [HttpGet("GetIEnumerable")]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Order>>), Status200OK)]
-    public IActionResult GetIEnumerable(ODataQueryOptions<Order> options) =>
-        Ok(Mediator.Send(new ODataOptionsIEnumerableQuery<Order>(options)));
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
+    public IActionResult GetIEnumerable(ODataQueryOptions<OrderDto> options) =>
+        Ok(Mediator.Send(new ODataOptionsIEnumerableQuery<OrderDto>(options)));
 
     /// <summary>
     /// Retrieves all orders.
@@ -48,9 +48,9 @@ public class OrdersController : ApiODataControllerBase
     /// <response code="400">The order is invalid.</response>
     [HttpGet("GetIQueryable")]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Order>>), Status200OK)]
-    public IActionResult GetIQueryable(ODataQueryOptions<Order> options) =>
-        Ok(Mediator.Send(new ODataOptionsIQueryableQuery<Order>(options)));
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
+    public IActionResult GetIQueryable(ODataQueryOptions<OrderDto> options) =>
+        Ok(Mediator.Send(new ODataOptionsIQueryableQuery<OrderDto>(options)));
 
     /// <summary>
     /// Retrieves all orders.
@@ -60,10 +60,10 @@ public class OrdersController : ApiODataControllerBase
     /// <response code="400">The order is invalid.</response>
     [HttpGet("GetSingleResult")]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Order>>), Status200OK)]
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
     //[ProducesResponseType(typeof(PageResult<Order>), Status200OK)]
-    public IActionResult GetSingleResult(ODataQueryOptions<Order> options) =>
-        Ok(Mediator.Send(new ODataOptionsSingleResultQuery<Order>(options)));
+    public IActionResult GetSingleResult(ODataQueryOptions<OrderDto> options) =>
+        Ok(Mediator.Send(new ODataOptionsSingleResultQuery<OrderDto>(options)));
 
     /// <summary>
     /// 
@@ -73,15 +73,15 @@ public class OrdersController : ApiODataControllerBase
     /// <returns></returns>
     [HttpGet]//("api/Orders/{key:int}") // ("api/Orders({key}}")
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Order), Status200OK)]
+    [ProducesResponseType(typeof(OrderDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     //[ODataRouteComponent("({key})")]
     //[EnableQuery(AllowedQueryOptions = AllowedQueryOptions.Select)]
-    public IActionResult/*async Task<SingleResult<Order>>*/ Get(int key, ODataQueryOptions<Order> options)
+    public IActionResult/*async Task<SingleResult<Order>>*/ Get(Guid key, ODataQueryOptions<OrderDto> options)
     {
         /*SingleResult<Order>*/
         //Task<SingleResult<Order>> result = Mediator.Send(new ODataOptionsByIdQuery<Order>(options, key));
-        Task<IQueryable<Order>> result = Mediator.Send(new ODataOptionsByIdIQueryableQuery<Order>(options, key));
+        Task<IQueryable<OrderDto>> result = Mediator.Send(new ODataOptionsByIdIQueryableQuery<OrderDto>(options, key));
         return Ok(result);
     }
 }

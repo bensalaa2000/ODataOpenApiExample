@@ -9,7 +9,7 @@ namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 /// </summary>
 public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    //private readonly IMediator _mediator;
+
     protected readonly IConfiguration Configuration;
 
     /// <summary>
@@ -18,18 +18,10 @@ public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
     /// <param name="options"></param>
     /// <param name="configuration"></param>
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        IConfiguration configuration/*,
-         IMediator mediator*/) : base(options)
+        IConfiguration configuration) : base(options)
     {
-        //_mediator = mediator;
         Configuration = configuration;
     }
-
-    /* protected override void OnConfiguring(DbContextOptionsBuilder options)
-     {
-         // in memory database used for simplicity, change to a real db for production applications
-         //options.UseInMemoryDatabase("TestDb");
-     }*/
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -37,6 +29,15 @@ public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
         base.OnModelCreating(builder);
     }
 
+    async Task IApplicationDbContext.SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        await base.SaveChangesAsync(cancellationToken);
+    }
+
+    async Task IApplicationDbContext.SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+    {
+        await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
 
     public DbSet<Address> Addresses => Set<Address>();
     public DbSet<Order> Orders => Set<Order>();

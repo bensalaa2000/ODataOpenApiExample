@@ -1,14 +1,14 @@
 ﻿namespace Axess.Controllers.V2;
 
-using Axess.Architecture.Models;
+using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using Axess.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Query.Validator;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.OData;
-using Axess.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +30,8 @@ public class PeopleController : ODataController
     /// <response code="200">The successfully retrieved people.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Person>>), Status200OK)]
-    public IActionResult Get(ODataQueryOptions<Person> options)
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<PersonDto>>), Status200OK)]
+    public IActionResult Get(ODataQueryOptions<PersonDto> options)
     {
         ODataValidationSettings validationSettings = new ODataValidationSettings()
         {
@@ -53,25 +53,25 @@ public class PeopleController : ODataController
             return BadRequest();
         }
 
-        Person[] people = new Person[]
+        PersonDto[] people = new PersonDto[]
         {
             new()
             {
-                Id = 1,
+                Code = Guid.NewGuid(),
                 FirstName = "John",
                 LastName = "Doe",
                 Email = "john.doe@somewhere.com",
             },
             new()
             {
-                Id = 2,
+                Code = Guid.NewGuid(),
                 FirstName = "Bob",
                 LastName = "Smith",
                 Email = "bob.smith@somewhere.com",
             },
             new()
             {
-                Id = 3,
+                Code = Guid.NewGuid(),
                 FirstName = "Jane",
                 LastName = "Doe",
                 Email = "jane.doe@somewhere.com",
@@ -91,15 +91,15 @@ public class PeopleController : ODataController
     /// <response code="404">The person does not exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Person), Status200OK)]
+    [ProducesResponseType(typeof(PersonDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
-    public IActionResult Get(int key, ODataQueryOptions<Person> options)
+    public IActionResult Get(Guid key, ODataQueryOptions<PersonDto> options)
     {
-        Person[] people = new Person[]
+        PersonDto[] people = new PersonDto[]
         {
             new()
             {
-                Id = key,
+                Code = key,
                 FirstName = "John",
                 LastName = "Doe",
                 Email = "john.doe@somewhere.com",
@@ -125,8 +125,8 @@ public class PeopleController : ODataController
     /// <response code="200">The people were successfully retrieved.</response>
     [HttpGet("api/People/NewHires(Since={since})")]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(ODataValue<IEnumerable<Person>>), Status200OK)]
-    public IActionResult NewHires(DateTime since, ODataQueryOptions<Person> options) => Get(options);
+    [ProducesResponseType(typeof(ODataValue<IEnumerable<PersonDto>>), Status200OK)]
+    public IActionResult NewHires(DateTime since, ODataQueryOptions<PersonDto> options) => Get(options);
 
     /// <summary>
     /// Gets the home address of a person.
@@ -137,12 +137,12 @@ public class PeopleController : ODataController
     /// <response code="404">The person does not exist.</response>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Address), Status200OK)]
+    [ProducesResponseType(typeof(AddressDto), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     public IActionResult GetHomeAddress(int key) =>
-        Ok(new Address()
+        Ok(new AddressDto()
         {
-            Id = 42,
+            Code = Guid.NewGuid(),
             Street = "123 Some Place",
             City = "Seattle",
             State = "WA",
