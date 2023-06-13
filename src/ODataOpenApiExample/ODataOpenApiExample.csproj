@@ -19,7 +19,7 @@
  </ItemGroup>
 
  <ItemGroup>
-   <ProjectReference Include="..\..\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj" />
+   <ProjectReference Include="..\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj" />
    <ProjectReference Include="..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
  </ItemGroup>
  
