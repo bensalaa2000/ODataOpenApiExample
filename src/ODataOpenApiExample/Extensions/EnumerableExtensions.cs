@@ -1,4 +1,4 @@
-﻿namespace Axess.Extensions;
+﻿namespace Shared.Extensions;
 using System;
 using System.Collections;
 

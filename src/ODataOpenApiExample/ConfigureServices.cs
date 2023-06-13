@@ -1,11 +1,14 @@
 ﻿using AutoMapper.Extensions.ExpressionMapping;
-using Axess.Infrastructure;
-using Axess.Mappings.Profiles;
-using FluentValidation;
+using DotNetCore.Axess.Repositories;
+using DotNetCore.Axess.Repositories.Interfaces;
 using MediatR;
+using ODataMappingApi.Repositories.Orders;
+using Shared.Application;
+using Shared.Infrastructure;
+using Shared.Mappings.Profiles;
 //using MediatR;
 using System.Reflection;
-namespace Axess;
+namespace Shared;
 
 public static class ConfigureServices
 {
@@ -34,18 +37,24 @@ public static class ConfigureServices
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         //services.AddScoped(typeof(IApplicationDbContext), typeof(ApplicationDbContext));
 
-
+        services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+        // Ajoute les repositories
+        services.AddTransient<IOrderReadRepository, OrderReadRepository>();
         //services.AddScoped<ApplicationDbContextInitialiser>();
 
+
+        /*A placer dan sla couche Application*/
         services.AddAutoMapper(cfg =>
         {
             cfg.AddExpressionMapping();
         }, typeof(Program).Assembly, typeof(MappingProfile).Assembly/*Assembly.GetExecutingAssembly()*/);
 
+        services.AddApplication();
+
         //services.AddMediator(typeof(ConfigureServices).Assembly);
 
         /*services.TryAddScoped<ODataOpenApiExample.MediatR.IMediator, ODataOpenApiExample.MediatR.Mediator>();*/
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
         return services;
     }

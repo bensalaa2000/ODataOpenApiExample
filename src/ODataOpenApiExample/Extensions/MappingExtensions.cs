@@ -3,11 +3,11 @@ using AutoMapper.Extensions.ExpressionMapping;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Axess.Results;
+using Shared.Dto;
 using System.Linq.Expressions;
 using IConfigurationProvider = AutoMapper.IConfigurationProvider;
 
-namespace Axess.Extensions;
+namespace Shared.Extensions;
 /// <summary>
 /// 
 /// </summary>

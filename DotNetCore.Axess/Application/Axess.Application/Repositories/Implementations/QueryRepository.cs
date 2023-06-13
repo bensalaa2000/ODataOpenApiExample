@@ -24,8 +24,8 @@ public class QueryRepository<TEntity> : IQueryRepository<TEntity> where TEntity 
     public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression) => await Find(expression).ToListAsync(new CancellationToken());
 
 
-    public async Task<TEntity?> GetByIdAsync(Guid id) => await Task.FromResult(GetById(id));
-    public TEntity? GetById(Guid id) => _context.DetectChangesLazyLoading(false).Set<TEntity>().Find(id);
+    public async Task<TEntity?> GetByIdAsync(Guid id) => await _context.Set<TEntity>().FindAsync(id);
+
 
     public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> expression) => Queryable.Where(expression);
 
@@ -33,8 +33,6 @@ public class QueryRepository<TEntity> : IQueryRepository<TEntity> where TEntity 
 
     public async Task<bool> ContainsAsync(Expression<Func<TEntity, bool>> predicate) => await CountAsync(predicate) > 0;
 
-
-    private long Count() => Queryable.LongCount();
     private long Count(Expression<Func<TEntity, bool>> where) => Queryable.LongCount(where);
 
 }

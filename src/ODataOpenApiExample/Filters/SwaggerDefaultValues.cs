@@ -1,4 +1,4 @@
-﻿namespace Axess.Filters;
+﻿namespace Shared.Filters;
 
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Axess.Mappings.Profiles;
+namespace Shared.Mappings.Profiles;
 /// <summary>
 /// 
 /// </summary>

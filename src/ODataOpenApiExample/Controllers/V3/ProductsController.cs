@@ -1,4 +1,4 @@
-﻿namespace Axess.Controllers.V3;
+﻿namespace Shared.Controllers.V3;
 
 using ApiVersioning.Examples.Models;
 using Asp.Versioning;

@@ -1,8 +1,8 @@
 ﻿using ApiVersioning.Examples;
 using Asp.Versioning;
 using Asp.Versioning.Conventions;
-using Axess;
-using Axess.Filters;
+using Shared;
+using Shared.Filters;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
@@ -12,8 +12,8 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
-using PeopleControllerV2 = Axess.Controllers.V2.PeopleController;
-using PeopleControllerV3 = Axess.Controllers.V3.PeopleController;
+using PeopleControllerV2 = Shared.Controllers.V2.PeopleController;
+using PeopleControllerV3 = Shared.Controllers.V3.PeopleController;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

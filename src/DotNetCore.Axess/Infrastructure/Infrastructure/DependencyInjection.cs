@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-namespace Axess.Infrastructure;
+namespace Shared.Infrastructure;
 
 public static class DependencyInjection
 {

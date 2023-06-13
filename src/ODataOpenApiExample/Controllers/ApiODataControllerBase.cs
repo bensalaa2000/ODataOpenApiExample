@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 
-namespace Axess.Controllers;
+namespace Shared.Controllers;
 /// <summary>
 /// 
 /// </summary>

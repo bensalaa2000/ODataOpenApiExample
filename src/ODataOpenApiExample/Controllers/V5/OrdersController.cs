@@ -1,8 +1,8 @@
-﻿namespace Axess.Controllers.V5;
+﻿namespace Shared.Controllers.V5;
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
-using Axess.MediatR.OData.Queries;
+using Shared.MediatR.OData.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using System.Net.Mime;

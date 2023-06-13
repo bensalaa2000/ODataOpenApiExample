@@ -1,4 +1,4 @@
-﻿namespace Axess.MediatR.Order.Commands;
+﻿namespace Shared.MediatR.Order.Commands;
 
 using ApiVersioning.Examples.Models;
 using global::MediatR;

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Axess.MediatR.OData.Queries;
+using Shared.MediatR.OData.Queries;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 
-namespace Axess.MediatR.Order.Queries.OData.V4;
+namespace Shared.MediatR.Order.Queries.OData.V4;
 using OrderDto = ApiVersioning.Examples.Models.OrderDto;
 /// <summary>
 /// 

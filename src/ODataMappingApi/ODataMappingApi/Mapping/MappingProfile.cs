@@ -3,7 +3,7 @@ using System.Reflection;
 using Entities = DotNetCore.Axess.Entities;
 using Models = ApiVersioning.Examples.Models;
 
-namespace Axess.Mappings.Profiles;
+namespace Shared.Mappings.Profiles;
 /// <summary>
 /// 
 /// </summary>
@@ -16,16 +16,22 @@ public class MappingProfile : Profile
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
 
-        CreateProjection<Entities.Address, Models.AddressDto>();
+        CreateProjection<Entities.Address, Models.AddressDto>()
+            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
         CreateProjection<Entities.LineItem, Models.LineItemDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
         CreateProjection<Entities.Order, Models.OrderDto>()
+            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
             .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
-        CreateProjection<Entities.Person, Models.PersonDto>();
-        CreateProjection<Entities.Product, Models.ProductDto>();
-        CreateProjection<Entities.Supplier, Models.SupplierDto>();
+        CreateProjection<Entities.Person, Models.PersonDto>()
+            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+        CreateProjection<Entities.Product, Models.ProductDto>()
+            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+        CreateProjection<Entities.Supplier, Models.SupplierDto>()
+            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
 
         CreateMap<Entities.Order, Models.OrderDto>()
+            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
              .ForMember(a => a.LineItems, o => o.ExplicitExpansion())
              .ReverseMap();
         CreateMap<Entities.LineItem, Models.LineItemDto>()

@@ -1,11 +1,10 @@
 ﻿using AutoMapper.Extensions.ExpressionMapping;
-using Axess.Infrastructure;
 using DotNetCore.Axess.Repositories;
 using DotNetCore.Axess.Repositories.Interfaces;
-using FluentValidation;
 using MediatR;
-
 using ODataMappingApi.Repositories.Orders;
+using Shared.Application;
+using Shared.Infrastructure;
 using System.Reflection;
 
 namespace ODataMappingApi;
@@ -48,10 +47,13 @@ public static class ConfigureServices
             cfg.AddExpressionMapping();
         }, Assembly.GetExecutingAssembly());
 
+
+        services.AddApplication();
+
         //services.AddMediator(typeof(ConfigureServices).Assembly);
 
         /*services.TryAddScoped<ODataMappingApi.MediatR.IMediator, ODataMappingApi.MediatR.Mediator>();*/
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
 
 

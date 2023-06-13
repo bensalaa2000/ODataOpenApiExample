@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Axess.Results;
+namespace Shared.Dto;
 
 /// <summary>
 /// 
