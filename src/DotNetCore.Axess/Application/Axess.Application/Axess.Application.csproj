@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\DotNetCore.Axess\Domain\DotNetCore.Axess.Domain\Axess.Domain.csproj" />
-    <ProjectReference Include="..\..\..\src\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\src\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Domain\DotNetCore.Axess.Domain\Axess.Domain.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj" />
   </ItemGroup>
 
   <ItemGroup>

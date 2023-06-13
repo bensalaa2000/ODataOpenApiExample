@@ -26,7 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj" />
     <ProjectReference Include="..\..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj" />
   </ItemGroup>
 
 </Project>
