@@ -41,7 +41,7 @@ public static class ConfigureServices
 
         //services.AddScoped(typeof(IApplicationDbContext), typeof(ApplicationDbContext));
 
-
+        /*A placer dan sla couche Application*/
         services.AddAutoMapper(cfg =>
         {
             cfg.AddExpressionMapping();
