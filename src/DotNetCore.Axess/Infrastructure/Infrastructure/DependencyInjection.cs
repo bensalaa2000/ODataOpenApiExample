@@ -1,14 +1,18 @@
 ﻿using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
+using DotNetCore.Axess.Repositories;
+using DotNetCore.Axess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-namespace Shared.Infrastructure;
+using ODataMappingApi.Repositories.Orders;
+
+namespace Axess.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static void AddPersistence(this IServiceCollection services, IConfiguration configuration, bool useInMemoryDatabase)
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        if (useInMemoryDatabase/*configuration.GetValue<bool>("UseInMemoryDatabase")*/)
+        if (configuration.GetValue<bool>("UseInMemoryDatabase"))
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -29,5 +33,10 @@ public static class DependencyInjection
         services.AddScoped<ApplicationDbContextInitialiser>();
 
         //services.AddTransient(typeof(IRepository<,>), typeof(Repository<,>));
+        services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+        // Ajoute les repositories
+        services.AddTransient<IOrderReadRepository, OrderReadRepository>();
+
+        return services;
     }
 }

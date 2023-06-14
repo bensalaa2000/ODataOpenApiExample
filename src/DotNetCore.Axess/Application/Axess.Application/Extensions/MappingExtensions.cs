@@ -3,7 +3,7 @@ using AutoMapper.Extensions.ExpressionMapping;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Shared.Dto;
+using Axess.Dto;
 using System.Linq.Expressions;
 using IConfigurationProvider = AutoMapper.IConfigurationProvider;
 

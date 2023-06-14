@@ -13,7 +13,7 @@ using System.Reflection;
 using Entities = DotNetCore.Axess.Entities;
 using Models = ApiVersioning.Examples.Models;
 
-internal static class ODataExtensions
+public static class ODataExtensions
 {
 
     public static IEdmModel GetEdmModel()

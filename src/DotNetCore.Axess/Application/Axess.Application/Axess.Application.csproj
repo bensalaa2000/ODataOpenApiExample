@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,15 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
-    <!-- Automapper + OData -->
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\DotNetCore.Axess.Domain\Axess.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Results\Axess.Results\Axess.Results.csproj" />
+    <ProjectReference Include="..\..\Results\Axess.Results\Axess.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

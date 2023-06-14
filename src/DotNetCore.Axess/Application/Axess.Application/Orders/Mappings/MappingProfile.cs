@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Axess.Mappings.Profiles;
 using System.Reflection;
 using Entities = DotNetCore.Axess.Entities;
 using Models = ApiVersioning.Examples.Models;
 
-namespace Shared.Mappings.Profiles;
+namespace Axess.Application.Orders.Mappings;
 /// <summary>
 /// 
 /// </summary>
