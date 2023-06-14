@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper.Extensions.ExpressionMapping;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -9,10 +10,10 @@ public static class DependencyInjection
 {
     public static void AddApplication(this IServiceCollection services)
     {
-        /*services.AddAutoMapper(cfg =>
+        services.AddAutoMapper(cfg =>
         {
             cfg.AddExpressionMapping();
-        }, Assembly.GetExecutingAssembly());*/
+        }, Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
     }

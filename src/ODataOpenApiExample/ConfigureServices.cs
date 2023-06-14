@@ -1,12 +1,9 @@
-﻿using AutoMapper.Extensions.ExpressionMapping;
+﻿//using MediatR;
 using DotNetCore.Axess.Repositories;
 using DotNetCore.Axess.Repositories.Interfaces;
 using MediatR;
 using ODataMappingApi.Repositories.Orders;
 using Shared.Application;
-using Shared.Infrastructure;
-using Shared.Mappings.Profiles;
-//using MediatR;
 using System.Reflection;
 namespace Shared;
 
@@ -44,10 +41,7 @@ public static class ConfigureServices
 
 
         /*A placer dan sla couche Application*/
-        services.AddAutoMapper(cfg =>
-        {
-            cfg.AddExpressionMapping();
-        }, typeof(Program).Assembly, typeof(MappingProfile).Assembly/*Assembly.GetExecutingAssembly()*/);
+
 
         services.AddApplication();
 
