@@ -31,12 +31,12 @@ public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
 
     async Task IApplicationDbContext.SaveChangesAsync(CancellationToken cancellationToken)
     {
-        await base.SaveChangesAsync(cancellationToken);
+        await SaveChangesAsync(cancellationToken);
     }
 
     async Task IApplicationDbContext.SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken)
     {
-        await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        await SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
     }
 
     public DbSet<Address> Addresses => Set<Address>();
