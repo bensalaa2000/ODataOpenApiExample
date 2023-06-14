@@ -1,11 +1,11 @@
 ﻿//using AutoMapper;
 using DotNetCore.Axess.Entities;
-using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Shared.Dto;
+using Axess.Dto;
+using Axess.Infrastructure.Contexts;
 
-namespace Shared.Application.Orders.Commands.CreateOrder;
+namespace Axess.Application.Orders.Commands.CreateOrder;
 
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, ApiResult<string>>
 {

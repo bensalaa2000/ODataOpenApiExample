@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Domain", "src\DotNetC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Infrastructure", "src\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj", "{38A62247-84AA-4BD1-B28F-2DC28036E0F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Results", "src\DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj", "{43B0051C-9B04-4808-84A4-3C987433671B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Shared", "src\DotNetCore.Axess\Results\Axess.Results\Axess.Shared.csproj", "{43B0051C-9B04-4808-84A4-3C987433671B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ODataOpenApiExample", "src\ODataOpenApiExample\ODataOpenApiExample.csproj", "{C91CE120-08A5-4A43-80A8-CA86F3E36524}"
 EndProject

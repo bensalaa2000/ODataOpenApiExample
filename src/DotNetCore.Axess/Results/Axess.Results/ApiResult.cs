@@ -1,4 +1,4 @@
-﻿namespace Shared.Dto;
+﻿namespace Axess.Dto;
 
 public class ApiResult<T>
 {

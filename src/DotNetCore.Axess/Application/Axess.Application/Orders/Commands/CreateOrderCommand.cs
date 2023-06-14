@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Shared.Dto;
+using Axess.Dto;
 
-namespace Shared.Application.Orders.Commands.CreateOrder;
+namespace Axess.Application.Orders.Commands.CreateOrder;
 
 public class CreateOrderCommand : IRequest<ApiResult<string>>
 {

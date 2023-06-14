@@ -9,14 +9,12 @@
  </PropertyGroup>
 
  <ItemGroup>
-  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  <PackageReference Include="Asp.Versioning.OData.ApiExplorer" Version="7.0.2" />
+
  </ItemGroup>
 
  <ItemGroup>
    <ProjectReference Include="..\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj" />
-   <ProjectReference Include="..\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
  </ItemGroup>
  
 </Project>

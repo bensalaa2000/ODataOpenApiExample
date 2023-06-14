@@ -1,4 +1,5 @@
-﻿using DotNetCore.Axess.Entities;
+﻿using Axess.Infrastructure.Contexts;
+using DotNetCore.Axess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;

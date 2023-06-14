@@ -1,9 +1,9 @@
-﻿namespace Shared.Controllers.V2;
+﻿namespace Axess.Controllers.V2;
 
 using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
-using Shared.Extensions;
+using Axess.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Query.Validator;

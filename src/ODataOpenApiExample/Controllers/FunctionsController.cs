@@ -1,4 +1,4 @@
-﻿namespace Shared.Controllers;
+﻿namespace Axess.Controllers;
 
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;

@@ -1,11 +1,11 @@
-﻿namespace Shared.Controllers.V3;
+﻿namespace Axess.Controllers.V3;
 
 using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
+using Axess.Infrastructure.Contexts;
 //using global::MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;

@@ -1,4 +1,4 @@
-﻿namespace Shared.Configuration.V5;
+﻿namespace Axess.Configuration.V5;
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
