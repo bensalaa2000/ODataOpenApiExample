@@ -11,7 +11,6 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 
-
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.

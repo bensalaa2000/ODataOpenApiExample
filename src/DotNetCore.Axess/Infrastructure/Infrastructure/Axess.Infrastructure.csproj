@@ -9,12 +9,13 @@
   </PropertyGroup>
   
    <ItemGroup>
-     <PackageReference Include="Bogus" Version="34.0.2" />
-     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.7" />
-     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
      <PackageReference Include="AutoMapper.AspNetCore.OData.EFCore" Version="4.0.0" />
+     <PackageReference Include="Bogus" Version="34.0.2" />
+     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
+     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.7" />
+     <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.2" />
      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
-     <PackageReference Include="Polly" Version="7.2.4" />
+     <PackageReference Include="Polly" Version="7.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\DotNetCore.Axess.Domain\Axess.Domain.csproj" />
+    <ProjectReference Include="..\..\Domain\Axess.Domain\Axess.Domain.csproj" />
   </ItemGroup>
 
 </Project>

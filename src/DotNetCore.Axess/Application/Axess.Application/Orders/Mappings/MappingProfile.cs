@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Axess.Application.Orders.Commands.CreateOrder;
 using Axess.Mappings.Profiles;
 using System.Reflection;
 using Entities = DotNetCore.Axess.Entities;
@@ -16,6 +17,15 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+
+        CreateMap<CreateOrderCommand, Entities.Order>()
+            .ForMember(src => src.Customer, o => o.MapFrom(dest => dest.CustomerId))
+            .ConstructUsing(v => new Entities.Order(Guid.NewGuid()))
+            .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
+
+        CreateMap<OrderItemDto, Entities.LineItem>()
+            .ForMember(src => src.UnitPrice, o => o.MapFrom(dest => dest.Price))
+            .ForMember(src => src.Quantity, o => o.MapFrom(dest => dest.Count));
 
         CreateProjection<Entities.Address, Models.AddressDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
@@ -35,6 +45,7 @@ public class MappingProfile : Profile
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
              .ForMember(a => a.LineItems, o => o.ExplicitExpansion())
              .ReverseMap();
+
         CreateMap<Entities.LineItem, Models.LineItemDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
             .ReverseMap();

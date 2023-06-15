@@ -1,4 +1,4 @@
-﻿using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ODataMappingApi.Repositories.Orders;
@@ -8,14 +8,17 @@ namespace ODataMappingApi.Controllers.V2;
 [ApiVersion("2.0")]
 public class OrdersController : ControllerBase
 {
+    #region Propriétés
+    private ISender _mediator = null!;
+    protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
 
     private readonly IOrderQueryRepository _orderReadRepository;
-    private readonly IApplicationDbContext _dbContext;
+
+    #endregion
     /// <inheritdoc/>
-    public OrdersController(IApplicationDbContext context, IOrderQueryRepository orderReadRepository)
+    public OrdersController(IOrderQueryRepository orderReadRepository)
     {
         _orderReadRepository = orderReadRepository;
-        _dbContext = context;
     }
     #region Actions
 
@@ -31,19 +34,15 @@ public class OrdersController : ControllerBase
     [MapToApiVersion("2.0")]
     public IActionResult Get()
     {
-        IQueryable<DotNetCore.Axess.Entities.Order> orders = _orderReadRepository.Queryable;
-        //Microsoft.EntityFrameworkCore.DbSet<Axess.Entities.Order> orders = _dbContext.Orders;
-        //int count = orders.Count();
-        int count = _orderReadRepository.Queryable.Count();
-        return Ok(orders);
+        return Ok(_orderReadRepository.Queryable);
     }
 
     [HttpGet]
     [EnableQuery]
     [MapToApiVersion("2.0")]
-    public IActionResult Get([FromRoute] Guid key)
+    public async Task<IActionResult> Get([FromRoute] Guid key)
     {
-        DotNetCore.Axess.Entities.Order? c = _dbContext.Orders.AsQueryable().SingleOrDefault(c => c.Id.Equals(key));
+        DotNetCore.Axess.Entities.Order? c = await _orderReadRepository.GetByIdAsync(key);
         if (c is null)
         {
             return NotFound($"Cannot find customer with Id={key}");

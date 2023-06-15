@@ -1,4 +1,4 @@
-﻿using DotNetCore.Axess.Domain;
+﻿using Axess.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

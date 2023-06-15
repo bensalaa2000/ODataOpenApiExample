@@ -28,13 +28,15 @@ public static class DependencyInjection
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
-        services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("TestDB"));
+        //services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("TestDB"));
         // Ajoute l'interface du contexte aux services.
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-        services.AddScoped<ApplicationDbContextInitialiser>();
+        if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            services.AddScoped<ApplicationDbContextInitialiser>();
 
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         // Ajoute les repositories
+        services.AddTransient<IOrderRepository, OrderRepository>();
         services.AddTransient<IOrderQueryRepository, OrderQueryRepository>();
         services.AddTransient<IOrderCommandRepository, OrderCommandRepository>();
 

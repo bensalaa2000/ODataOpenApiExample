@@ -1,4 +1,5 @@
 ﻿//using AutoMapper;
+using AutoMapper;
 using Axess.Dto;
 using DotNetCore.Axess.Entities;
 using MediatR;
@@ -10,18 +11,21 @@ namespace Axess.Application.Orders.Commands.CreateOrder;
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, ApiResult<string>>
 {
     private readonly IOrderCommandRepository _orderCommandRepository;
-    //private readonly IMapper _mapper;
+    private readonly IMapper _mapper;
 
     private readonly ILogger<CreateOrderCommandHandler> _logger;
 
-    public CreateOrderCommandHandler(IOrderCommandRepository orderCommandRepository/*, IMapper mapper,*/, ILogger<CreateOrderCommandHandler> logger)
+    public CreateOrderCommandHandler(IOrderCommandRepository orderCommandRepository, IMapper mapper, ILogger<CreateOrderCommandHandler> logger)
     {
         _orderCommandRepository = orderCommandRepository;
+        _mapper = mapper;
         _logger = logger;
     }
 
     public async Task<ApiResult<string>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
+        //Order newOrder = _mapper.Map<Order>(request);
+
         Order newOrder = new Order(Guid.NewGuid(), request.CustomerId);
 
         List<LineItem> lineItems = request.OrderItemList.Select(item => new LineItem(Guid.NewGuid())

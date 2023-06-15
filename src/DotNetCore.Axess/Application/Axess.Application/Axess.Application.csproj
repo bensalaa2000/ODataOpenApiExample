@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Axess.Domain\Axess.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Results\Axess.Results\Axess.Shared.csproj" />
+    <ProjectReference Include="..\..\Results\Axess.Shared\Axess.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

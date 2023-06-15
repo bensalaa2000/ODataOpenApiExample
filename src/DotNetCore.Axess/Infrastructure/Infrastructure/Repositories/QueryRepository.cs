@@ -1,4 +1,4 @@
-﻿using DotNetCore.Axess.Domain;
+﻿using Axess.Domain;
 using DotNetCore.Axess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
