@@ -37,6 +37,7 @@ public static class DependencyInjection
         // Ajoute les repositories
         services.AddTransient<IOrderQueryRepository, OrderQueryRepository>();
         services.AddTransient<IOrderCommandRepository, OrderCommandRepository>();
+
         return services;
     }
 }

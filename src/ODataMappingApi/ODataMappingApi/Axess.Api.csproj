@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Orders\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj" />
   </ItemGroup>
 
