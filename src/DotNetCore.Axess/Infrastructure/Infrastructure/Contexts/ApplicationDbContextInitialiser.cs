@@ -1,10 +1,10 @@
-﻿using Bogus;
-using DotNetCore.Axess.Entities;
+﻿using Axess.Domain.Entities;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Polly;
 
-namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
+namespace Axess.Infrastructure.Contexts;
 
 /// <summary>
 /// 

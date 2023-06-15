@@ -1,7 +1,7 @@
 ﻿using Axess.Domain;
 using System.Linq.Expressions;
 
-namespace DotNetCore.Axess.Repositories.Interfaces;
+namespace Axess.Domain.Repositories.Interfaces;
 /// <summary>
 /// Représente l'ensemble des méthodes pour persister une entité.
 /// </summary>

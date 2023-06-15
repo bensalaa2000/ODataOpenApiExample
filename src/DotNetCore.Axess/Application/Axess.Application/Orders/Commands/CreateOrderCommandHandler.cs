@@ -1,10 +1,10 @@
 ﻿//using AutoMapper;
 using AutoMapper;
-using Axess.Dto;
-using DotNetCore.Axess.Entities;
+using Axess.Shared;
+using Axess.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using ODataMappingApi.Repositories.Orders;
+using Axess.Domain.Repositories.Interfaces.Orders;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 

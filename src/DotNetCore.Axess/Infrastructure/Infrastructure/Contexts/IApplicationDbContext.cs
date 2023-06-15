@@ -1,7 +1,7 @@
-﻿using DotNetCore.Axess.Entities;
+﻿using Axess.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
+namespace Axess.Infrastructure.Contexts;
 
 public interface IApplicationDbContext
 {

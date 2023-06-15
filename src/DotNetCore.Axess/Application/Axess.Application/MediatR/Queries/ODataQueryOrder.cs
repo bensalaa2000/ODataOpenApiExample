@@ -5,4 +5,4 @@ using global::MediatR;
 /// 
 /// </summary>
 /// <param name="Options"></param>
-public sealed record ODataQueryOrder(int Size) : IRequest<IQueryable<DotNetCore.Axess.Entities.Order>>;
+public sealed record ODataQueryOrder(int Size) : IRequest<IQueryable<Axess.Domain.Entities.Order>>;

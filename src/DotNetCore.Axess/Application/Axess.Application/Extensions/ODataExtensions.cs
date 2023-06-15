@@ -10,8 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Entities = DotNetCore.Axess.Entities;
-using Models = ApiVersioning.Examples.Models;
+using Entities = Axess.Domain.Entities;
+using Models = Axess.Application.Models;
 
 public static class ODataExtensions
 {

@@ -2,8 +2,7 @@
 using Axess.Application.Orders.Commands.CreateOrder;
 using Axess.Mappings.Profiles;
 using System.Reflection;
-using Entities = DotNetCore.Axess.Entities;
-using Models = ApiVersioning.Examples.Models;
+using Entities = Axess.Domain.Entities;
 
 namespace Axess.Application.Orders.Mappings;
 /// <summary>

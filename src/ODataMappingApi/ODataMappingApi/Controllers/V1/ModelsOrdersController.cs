@@ -1,11 +1,11 @@
-﻿using ApiVersioning.Examples.Models;
+﻿using Axess.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ODataMappingApi.MediatR.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace DotNetCore.Axess.Evrp.Api.Controllers.Medtra.V1;
+namespace Axess.Domain.Evrp.Api.Controllers.Medtra.V1;
 
 [ApiVersion("1.0")]
 public class ModelsOrdersController : ODataControllerBase<OrderDto>

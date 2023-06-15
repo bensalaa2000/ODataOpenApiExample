@@ -1,8 +1,8 @@
-﻿using DotNetCore.Axess.Entities;
+﻿using Axess.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
+namespace Axess.Infrastructure.Contexts;
 
 public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
 {

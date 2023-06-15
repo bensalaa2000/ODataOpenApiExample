@@ -1,11 +1,11 @@
-﻿using Axess.Infrastructure.Repositories;
+﻿using Axess.Domain.Repositories.Interfaces;
+using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Infrastructure.Contexts;
+using Axess.Infrastructure.Repositories;
 using Axess.Infrastructure.Repositories.Orders;
-using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
-using DotNetCore.Axess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ODataMappingApi.Repositories.Orders;
 
 namespace Axess.Infrastructure;
 

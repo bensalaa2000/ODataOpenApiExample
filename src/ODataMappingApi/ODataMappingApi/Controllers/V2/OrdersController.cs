@@ -1,7 +1,7 @@
-﻿using MediatR;
+﻿using Axess.Domain.Repositories.Interfaces.Orders;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using ODataMappingApi.Repositories.Orders;
 
 namespace ODataMappingApi.Controllers.V2;
 
@@ -42,7 +42,7 @@ public class OrdersController : ControllerBase
     [MapToApiVersion("2.0")]
     public async Task<IActionResult> Get([FromRoute] Guid key)
     {
-        DotNetCore.Axess.Entities.Order? c = await _orderReadRepository.GetByIdAsync(key);
+        Axess.Domain.Entities.Order? c = await _orderReadRepository.GetByIdAsync(key);
         if (c is null)
         {
             return NotFound($"Cannot find customer with Id={key}");

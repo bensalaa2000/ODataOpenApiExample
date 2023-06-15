@@ -1,6 +1,6 @@
-﻿using DotNetCore.Axess.Entities;
-using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
-using ODataMappingApi.Repositories.Orders;
+﻿using Axess.Domain.Entities;
+using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Infrastructure.Contexts;
 
 namespace Axess.Infrastructure.Repositories.Orders;
 

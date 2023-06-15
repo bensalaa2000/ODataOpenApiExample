@@ -1,8 +1,8 @@
 using Axess.Application;
 using Axess.Infrastructure;
-using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.OData;
 using ODataMappingApi;
+using Axess.Infrastructure.Contexts;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

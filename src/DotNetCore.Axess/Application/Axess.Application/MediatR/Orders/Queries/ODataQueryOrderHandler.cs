@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using ODataMappingApi.Repositories.Orders;
 
 namespace ODataMappingApi.MediatR.Orders.Queries;
-using DotNetCore.Axess.Entities;
+using Axess.Domain.Entities;
+using Axess.Domain.Repositories.Interfaces.Orders;
 using ODataMappingApi.MediatR.Queries;
 
 //using Order = ApiVersioning.Examples.Models.Order;
@@ -28,7 +28,7 @@ public sealed class ODataQueryOrderHandler : IRequestHandler<ODataQueryOrder, IQ
     /// <inheritdoc/>
     public async Task<IQueryable<Order>> Handle(ODataQueryOrder request, CancellationToken cancellationToken)
     {
-        IQueryable<DotNetCore.Axess.Entities.Order> orders = _orderReadRepository.Queryable;
+        IQueryable<Axess.Domain.Entities.Order> orders = _orderReadRepository.Queryable;
         //Microsoft.EntityFrameworkCore.DbSet<Axess.Entities.Order> orders = _dbContext.Orders;
         //int count = orders.Count();
         int count = _orderReadRepository.Queryable.Count();

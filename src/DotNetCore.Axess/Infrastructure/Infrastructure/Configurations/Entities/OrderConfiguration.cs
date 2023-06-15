@@ -1,8 +1,8 @@
-﻿using DotNetCore.Axess.Entities;
+﻿using Axess.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DotNetCore.Axess.Infrastructure.Persistence.Configurations.Entities;
+namespace Axess.Infrastructure.Configurations.Entities;
 
 /// <summary>
 /// Configuration de l'entité 
