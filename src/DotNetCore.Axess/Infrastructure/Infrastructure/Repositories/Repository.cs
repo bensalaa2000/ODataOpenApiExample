@@ -1,11 +1,10 @@
-﻿
-using DotNetCore.Axess.Domain;
+﻿using DotNetCore.Axess.Domain;
 using DotNetCore.Axess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 
-namespace DotNetCore.Axess.Repositories;
+namespace Axess.Infrastructure.Repositories;
 
 /// <summary>
 /// Représente l'ensemble des méthodes de base pour gérer une entité.

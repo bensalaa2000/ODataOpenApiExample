@@ -1,10 +1,9 @@
-﻿
-using DotNetCore.Axess.Domain;
+﻿using DotNetCore.Axess.Domain;
 using DotNetCore.Axess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DotNetCore.Axess.Repositories;
+namespace Axess.Infrastructure.Repositories;
 public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEntity : Entity
 {
     private readonly DbContext _context;
