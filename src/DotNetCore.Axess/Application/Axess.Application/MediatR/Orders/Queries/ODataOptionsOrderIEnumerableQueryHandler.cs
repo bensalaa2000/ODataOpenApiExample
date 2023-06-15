@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using AutoMapper.AspNet.OData;
+using Axess.Application.MediatR.Queries;
 using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using ODataMappingApi.MediatR.Queries;
 
-namespace ODataMappingApi.MediatR.Orders.Queries;
-using Models = Axess.Application.Models;
+namespace Axess.Application.MediatR.Orders.Queries;
+using Models = Models;
 //using Order = ApiVersioning.Examples.Models.Order;
 /// <summary>
 /// 

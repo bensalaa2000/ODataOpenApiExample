@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.OData.Query;
 
-namespace ODataMappingApi.Extensions;
+namespace Axess.Application.Extensions;
 /// <summary>
 /// 
 /// </summary>
@@ -20,7 +20,7 @@ public static class ODataMappingExtentions
         IMapper _mapper,
         ODataQueryOptions<T> queryOptions)
     {
-        return entities.ProjectTo<T>(_mapper.ConfigurationProvider).ApplyFilter<T>(queryOptions);
+        return entities.ProjectTo<T>(_mapper.ConfigurationProvider).ApplyFilter(queryOptions);
     }
     /// <summary>
     /// 
@@ -34,7 +34,7 @@ public static class ODataMappingExtentions
         IMapper _mapper,
         ODataQueryOptions<T> queryOptions)
     {
-        return entities.ApplyFilter<T>(_mapper, queryOptions).Count();
+        return entities.ApplyFilter(_mapper, queryOptions).Count();
     }
     /// <summary>
     /// 
@@ -85,7 +85,7 @@ public static class ODataMappingExtentions
         IMapper _mapper,
         ODataQueryOptions<T> queryOptions,
         ODataQuerySettings querySettings = null) =>
-            entities.ProjectAndApplyTo<T>(_mapper, queryOptions, querySettings).AsQueryable<T>();
+            entities.ProjectAndApplyTo(_mapper, queryOptions, querySettings).AsQueryable();
 
     /// <summary>
     /// 
@@ -100,5 +100,5 @@ public static class ODataMappingExtentions
         IQueryable entities,
         ODataQueryOptions<T> queryOptions,
         ODataQuerySettings querySettings = null) =>
-            _mapper.ProjectAndApplyTo<T>(entities, queryOptions, querySettings).AsQueryable<T>();
+            _mapper.ProjectAndApplyTo(entities, queryOptions, querySettings).AsQueryable();
 }

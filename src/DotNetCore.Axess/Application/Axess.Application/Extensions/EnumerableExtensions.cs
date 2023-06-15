@@ -1,4 +1,4 @@
-﻿namespace ODataMappingApi.Extensions;
+﻿namespace Axess.Application.Extensions;
 using System;
 using System.Collections;
 

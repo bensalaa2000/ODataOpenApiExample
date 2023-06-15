@@ -1,7 +1,7 @@
-﻿namespace ODataMappingApi.MediatR.Queries;
+﻿namespace Axess.Application.MediatR.Queries;
 using global::MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using OrderDto = Axess.Application.Models.OrderDto;
+using OrderDto = Models.OrderDto;
 
 /// <summary>
 /// 

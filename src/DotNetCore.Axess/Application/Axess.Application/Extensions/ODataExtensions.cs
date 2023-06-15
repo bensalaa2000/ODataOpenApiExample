@@ -1,5 +1,6 @@
-﻿namespace ODataMappingApi.Extensions;
+﻿namespace Axess.Application.Extensions;
 
+using Axess.Application.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.OData;
@@ -10,8 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Entities = Axess.Domain.Entities;
-using Models = Axess.Application.Models;
+using Entities = Domain.Entities;
+using Models = Models;
 
 public static class ODataExtensions
 {

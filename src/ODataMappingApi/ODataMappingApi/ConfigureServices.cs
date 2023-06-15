@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Axess.Application.Extensions;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
-using ODataMappingApi.Extensions;
 
 namespace ODataMappingApi;
 

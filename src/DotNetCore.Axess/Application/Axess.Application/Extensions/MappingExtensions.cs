@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using AutoMapper.QueryableExtensions;
+using Axess.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Axess.Shared;
 using System.Linq.Expressions;
 using IConfigurationProvider = AutoMapper.IConfigurationProvider;
 
-namespace ODataMappingApi.Extensions;
+namespace Axess.Application.Extensions;
 /// <summary>
 /// 
 /// </summary>

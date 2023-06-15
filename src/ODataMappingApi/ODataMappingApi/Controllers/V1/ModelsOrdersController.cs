@@ -1,7 +1,7 @@
-﻿using Axess.Application.Models;
+﻿using Axess.Application.MediatR.Queries;
+using Axess.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using ODataMappingApi.MediatR.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 

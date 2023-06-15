@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.OData.Query;
 
-namespace ODataMappingApi.Extensions;
+namespace Axess.Application.Extensions;
 /// <summary>
 /// 
 /// </summary>
@@ -15,7 +15,7 @@ public static class ODataQuerySettingsExtensions
     /// <returns></returns>
     public static int ApplyFilterCount<T>(this IQueryable<T> entities, ODataQueryOptions<T> queryOptions)
     {
-        return entities.ApplyFilter<T>(queryOptions).Count();
+        return entities.ApplyFilter(queryOptions).Count();
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Axess.Application.Mappings;
 using Axess.Application.Orders.Commands.CreateOrder;
-using Axess.Mappings.Profiles;
 using System.Reflection;
 using Entities = Axess.Domain.Entities;
 
