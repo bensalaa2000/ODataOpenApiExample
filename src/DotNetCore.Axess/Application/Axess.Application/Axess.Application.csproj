@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Axess.Domain\Axess.Domain.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Axess.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Results\Axess.Shared\Axess.Shared.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Axess.Infrastructure\Axess.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Shared\Axess.Shared\Axess.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

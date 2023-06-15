@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8118A572-76F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Domain", "src\DotNetCore.Axess\Domain\Axess.Domain\Axess.Domain.csproj", "{517E2866-FD90-49DB-9789-648A91475B1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Infrastructure", "src\DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj", "{38A62247-84AA-4BD1-B28F-2DC28036E0F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Infrastructure", "src\DotNetCore.Axess\Infrastructure\Axess.Infrastructure\Axess.Infrastructure.csproj", "{38A62247-84AA-4BD1-B28F-2DC28036E0F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Shared", "src\DotNetCore.Axess\Results\Axess.Shared\Axess.Shared.csproj", "{43B0051C-9B04-4808-84A4-3C987433671B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Shared", "src\DotNetCore.Axess\Shared\Axess.Shared\Axess.Shared.csproj", "{43B0051C-9B04-4808-84A4-3C987433671B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Api", "src\ODataMappingApi\ODataMappingApi\Axess.Api.csproj", "{E4363F7E-93D3-4DFC-9D3F-1C3D9FC9503E}"
 EndProject
