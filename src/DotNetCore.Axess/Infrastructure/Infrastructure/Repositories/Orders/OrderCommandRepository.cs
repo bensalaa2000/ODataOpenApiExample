@@ -4,9 +4,9 @@ using ODataMappingApi.Repositories.Orders;
 
 namespace Axess.Infrastructure.Repositories.Orders;
 
-public class OrderReadRepository : QueryRepository<Order>, IOrderReadRepository
+public class OrderCommandRepository : CommandRepository<Order>, IOrderCommandRepository
 {
     /// <inheritdoc/>
-    public OrderReadRepository(ApplicationDbContext dbContext) : base(dbContext) { }
+    public OrderCommandRepository(ApplicationDbContext dbContext) : base(dbContext) { }
 
 }

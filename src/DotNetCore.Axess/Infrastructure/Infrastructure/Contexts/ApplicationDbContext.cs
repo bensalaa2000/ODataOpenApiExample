@@ -1,42 +1,23 @@
 ﻿using DotNetCore.Axess.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 namespace DotNetCore.Axess.Infrastructure.Persistence.Contexts;
-/// <summary>
-/// 
-/// </summary>
+
 public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
 {
 
-    protected readonly IConfiguration Configuration;
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="options"></param>
-    /// <param name="configuration"></param>
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        IConfiguration configuration) : base(options)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        Configuration = configuration;
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(modelBuilder);
     }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())/*.Seed()*/;
-        base.OnModelCreating(builder);
-    }
-
-    async Task IApplicationDbContext.SaveChangesAsync(CancellationToken cancellationToken)
-    {
-        await SaveChangesAsync(cancellationToken);
-    }
-
-    async Task IApplicationDbContext.SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-    {
-        await SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        return await base.SaveChangesAsync(cancellationToken);
     }
 
     public DbSet<Address> Addresses => Set<Address>();

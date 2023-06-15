@@ -9,9 +9,9 @@ namespace DotNetCore.Axess.Repositories.Interfaces;
 public interface ICommandRepository<TEntity> where TEntity : Entity
 {
 
-    Task AddAsync(TEntity entity);
+    Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-    Task AddRangeAsync(IEnumerable<TEntity> entities);
+    Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
     Task DeleteAsync(Guid key);
 
@@ -25,8 +25,6 @@ public interface ICommandRepository<TEntity> where TEntity : Entity
 
     Task UpdateRangeAsync(IEnumerable<TEntity> entities);
 
-    Task SaveChangesAsync();
-
-    Task SaveChangesAsync(bool acceptAllChangesOnSuccess);
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
 }

@@ -33,11 +33,10 @@ public static class DependencyInjection
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<ApplicationDbContextInitialiser>();
 
-        //services.AddTransient(typeof(IRepository<,>), typeof(Repository<,>));
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         // Ajoute les repositories
-        services.AddTransient<IOrderReadRepository, OrderReadRepository>();
-
+        services.AddTransient<IOrderQueryRepository, OrderQueryRepository>();
+        services.AddTransient<IOrderCommandRepository, OrderCommandRepository>();
         return services;
     }
 }

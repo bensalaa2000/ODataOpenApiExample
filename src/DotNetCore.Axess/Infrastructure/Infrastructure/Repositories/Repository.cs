@@ -45,9 +45,9 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     #region Commande Implementations
 
     /// <inheritdoc/>
-    public virtual Task AddAsync(TEntity entity) => _commandRepository.AddAsync(entity);
+    public virtual Task AddAsync(TEntity entity, CancellationToken cancellationToken = default) => _commandRepository.AddAsync(entity, cancellationToken);
     /// <inheritdoc/>
-    public Task AddRangeAsync(IEnumerable<TEntity> entities) => _commandRepository.AddRangeAsync(entities);
+    public virtual Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default) => _commandRepository.AddRangeAsync(entities, cancellationToken);
 
     /// <inheritdoc/>
     public virtual Task DeleteAsync(Guid key) => _commandRepository.DeleteAsync(key);
@@ -63,9 +63,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     public virtual Task UpdateRangeAsync(IEnumerable<TEntity> entities) => _commandRepository.UpdateRangeAsync(entities);
 
     /// <inheritdoc/>
-    public virtual Task SaveChangesAsync() => _commandRepository.SaveChangesAsync();
-    /// <inheritdoc/>
-    public virtual Task SaveChangesAsync(bool acceptAllChangesOnSuccess) => _commandRepository.SaveChangesAsync(acceptAllChangesOnSuccess);
+    public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => _commandRepository.SaveChangesAsync(cancellationToken);
 
     #endregion
     #region Query Implementations

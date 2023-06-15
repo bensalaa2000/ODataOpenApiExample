@@ -4,9 +4,9 @@ using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 
 namespace ODataMappingApi.Repositories.Orders;
 
-public class OrderReadRepository : QueryRepository<Order>, IOrderReadRepository
+public class OrderQueryRepository : QueryRepository<Order>, IOrderQueryRepository
 {
     /// <inheritdoc/>
-    public OrderReadRepository(ApplicationDbContext dbContext) : base(dbContext) { }
+    public OrderQueryRepository(ApplicationDbContext dbContext) : base(dbContext) { }
 
 }

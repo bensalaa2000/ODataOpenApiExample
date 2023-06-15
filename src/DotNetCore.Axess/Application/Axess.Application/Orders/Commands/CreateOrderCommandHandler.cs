@@ -1,31 +1,28 @@
 ﻿//using AutoMapper;
+using Axess.Dto;
 using DotNetCore.Axess.Entities;
-using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Axess.Dto;
+using ODataMappingApi.Repositories.Orders;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, ApiResult<string>>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly IOrderCommandRepository _orderCommandRepository;
     //private readonly IMapper _mapper;
 
     private readonly ILogger<CreateOrderCommandHandler> _logger;
 
-    public CreateOrderCommandHandler(IApplicationDbContext context/*, IMapper mapper,*/, ILogger<CreateOrderCommandHandler> logger)
+    public CreateOrderCommandHandler(IOrderCommandRepository orderCommandRepository/*, IMapper mapper,*/, ILogger<CreateOrderCommandHandler> logger)
     {
-        _context = context;
+        _orderCommandRepository = orderCommandRepository;
         _logger = logger;
     }
 
     public async Task<ApiResult<string>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        Order newOrder = new Order(Guid.NewGuid())
-        {
-            Customer = request.CustomerId
-        };
+        Order newOrder = new Order(Guid.NewGuid(), request.CustomerId);
 
         List<LineItem> lineItems = request.OrderItemList.Select(item => new LineItem(Guid.NewGuid())
         {
@@ -41,8 +38,8 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Api
             });
         });
 
-        await _context.Orders.AddAsync(newOrder, cancellationToken);
-        await _context.SaveChangesAsync(cancellationToken);
+        await _orderCommandRepository.AddAsync(newOrder, cancellationToken);
+        await _orderCommandRepository.SaveChangesAsync(cancellationToken);
 
         return new ApiResult<string>(true, $"Order with Id: {newOrder.Id} created successfully");
     }

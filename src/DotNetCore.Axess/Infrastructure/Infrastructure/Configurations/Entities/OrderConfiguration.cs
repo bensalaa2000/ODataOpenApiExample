@@ -7,7 +7,7 @@ namespace DotNetCore.Axess.Infrastructure.Persistence.Configurations.Entities;
 /// <summary>
 /// Configuration de l'entité 
 /// </summary>
-public sealed class OrderEntityTypeConfiguration : EntityTypeConfigurationBase<Order>
+public sealed class OrderConfiguration : EntityTypeConfigurationBase<Order>
 {
     /// <inheritdoc/>
     public override void Configure(EntityTypeBuilder<Order> builder)

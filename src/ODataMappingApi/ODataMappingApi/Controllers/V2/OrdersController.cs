@@ -9,10 +9,10 @@ namespace ODataMappingApi.Controllers.V2;
 public class OrdersController : ControllerBase
 {
 
-    private readonly IOrderReadRepository _orderReadRepository;
+    private readonly IOrderQueryRepository _orderReadRepository;
     private readonly IApplicationDbContext _dbContext;
     /// <inheritdoc/>
-    public OrdersController(IApplicationDbContext context, IOrderReadRepository orderReadRepository)
+    public OrdersController(IApplicationDbContext context, IOrderQueryRepository orderReadRepository)
     {
         _orderReadRepository = orderReadRepository;
         _dbContext = context;

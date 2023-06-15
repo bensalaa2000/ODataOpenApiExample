@@ -7,7 +7,7 @@ namespace DotNetCore.Axess.Infrastructure.Persistence.Configurations.Entities;
 /// <summary>
 /// Configuration de l'entité 
 /// </summary>
-public sealed class LineItemEntityTypeConfiguration : EntityTypeConfigurationBase<LineItem>
+public sealed class LineItemConfiguration : EntityTypeConfigurationBase<LineItem>
 {
     /// <inheritdoc/>
     public override void Configure(EntityTypeBuilder<LineItem> builder)

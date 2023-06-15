@@ -13,16 +13,13 @@ public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEnt
     private DbSet<TEntity> Set => _context.Set<TEntity>();
     #region Add
     /// <inheritdoc/>
-    public Task AddAsync(TEntity entity)
+    public virtual async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        if (entity is null)
-            throw new ArgumentNullException(nameof(entity));
-        Set.Add(entity);
-        return Task.CompletedTask;
+        await Set.AddAsync(entity, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task AddRangeAsync(IEnumerable<TEntity> entities) => Set.AddRangeAsync(entities);
+    public virtual async Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default) => await Set.AddRangeAsync(entities, cancellationToken);
     #endregion
     #region Delete
     /// <inheritdoc/>
@@ -65,9 +62,9 @@ public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEnt
     #endregion
     #region UnitOfWork
     /// <inheritdoc/>
-    public Task SaveChangesAsync() => _context.SaveChangesAsync(new CancellationToken());
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => _context.SaveChangesAsync(cancellationToken);
+
     /// <inheritdoc/>
-    public Task SaveChangesAsync(bool acceptAllChangesOnSuccess) => _context.SaveChangesAsync(acceptAllChangesOnSuccess, new CancellationToken());
     #endregion
     public void Delete(Guid key)
     {

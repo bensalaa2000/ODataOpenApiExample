@@ -13,15 +13,11 @@ public class ApplicationDbContextInitialiser
 {
     private readonly ILogger<ApplicationDbContextInitialiser> _logger;
     private readonly ApplicationDbContext _context;
-    // private readonly UserManager<ApplicationUser> _userManager;
-    // private readonly RoleManager<IdentityRole> _roleManager;
 
     public ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitialiser> logger, ApplicationDbContext context) //, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _logger = logger;
         _context = context;
-        // _userManager = userManager;
-        // _roleManager = roleManager;
     }
 
     public void MigrateDatabaseAndSeed()
@@ -95,9 +91,8 @@ public class ApplicationDbContextInitialiser
                     Faker faker = new();
                     Bogus.Person person = faker.Person;
 
-                    Order order = new(Guid.NewGuid())
+                    Order order = new(Guid.NewGuid(), $"{person.FullName}")
                     {
-                        Customer = $"{person.FullName}",
                         EffectiveDate = DateTime.UtcNow.AddDays(faker.Random.Double(0, 15)),
                     };
 

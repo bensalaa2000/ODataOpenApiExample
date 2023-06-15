@@ -31,8 +31,6 @@ public interface IApplicationDbContext
     DbSet<Supplier> Suppliers { get; }
 
     #region
-    Task SaveChangesAsync(CancellationToken cancellationToken = default);
-
-    Task SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     #endregion
 }

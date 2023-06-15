@@ -16,13 +16,13 @@ public sealed class ODataOptionsOrderIEnumerableQueryHandler : IRequestHandler<O
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
-    private readonly IOrderReadRepository _orderReadRepository;
+    private readonly IOrderQueryRepository _orderReadRepository;
 
     private readonly IApplicationDbContext _dbContext;
 
     private readonly IMapper _mapper;
     /// <inheritdoc/>
-    public ODataOptionsOrderIEnumerableQueryHandler(IApplicationDbContext context, IMapper mapper, IOrderReadRepository orderReadRepository)
+    public ODataOptionsOrderIEnumerableQueryHandler(IApplicationDbContext context, IMapper mapper, IOrderQueryRepository orderReadRepository)
     {
         _orderReadRepository = orderReadRepository;
         _dbContext = context;
