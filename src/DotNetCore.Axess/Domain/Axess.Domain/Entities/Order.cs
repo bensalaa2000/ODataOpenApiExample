@@ -1,6 +1,4 @@
-﻿using Axess.Domain;
-
-namespace Axess.Domain.Entities;
+﻿namespace Axess.Domain.Entities;
 
 /// <summary>
 /// Represents an order.
@@ -41,7 +39,6 @@ public class Order : Entity
     private readonly List<LineItem> _lineItems = new();
     public virtual ICollection<LineItem> LineItems => _lineItems.AsReadOnly();
     public void AddLineItem(LineItem entry) => _lineItems.Add(entry);
-    public void AddRange(IEnumerable<LineItem> entries) => _lineItems.AddRange(entries);
-
+    public void AddLineItemRange(IEnumerable<LineItem> entries) => _lineItems.AddRange(entries);
 
 }

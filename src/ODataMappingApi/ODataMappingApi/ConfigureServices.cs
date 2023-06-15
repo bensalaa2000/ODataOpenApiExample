@@ -1,4 +1,5 @@
-﻿using Axess.Application.Extensions;
+﻿using Axess.Application.Configuration;
+using Axess.Application.Extensions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
@@ -18,7 +19,7 @@ public static class ConfigureServices
             defaultBatchHandler.MessageQuotas.MaxReceivedMessageSize = 100;
 
             options.EnableQueryFeatures(50000);//.Select().Filter().OrderBy().SetMaxTop(5000).Count().Expand()
-            options.AddRouteComponents("odata", ODataExtensions.GetEdmModel(), defaultBatchHandler);
+            options.AddRouteComponents("odata", ODataConfiguration.GetEdmModel(), defaultBatchHandler);
             options.TimeZone = TimeZoneInfo.Utc;
 
             options.RouteOptions.EnableKeyInParenthesis = false;

@@ -1,6 +1,4 @@
-﻿using Axess.Domain;
-
-namespace Axess.Domain.Entities;
+﻿namespace Axess.Domain.Entities;
 
 /// <summary>
 /// Represents a supplier.
@@ -18,5 +16,12 @@ public class Supplier : Entity
     /// Gets or sets products associated with the supplier.
     /// </summary>
     /// <value>The collection of associated products.</value>
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    //public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+
+
+    private readonly List<Product> _products = new();
+    public virtual ICollection<Product> Products => _products.AsReadOnly();
+    public void AddProduct(Product entry) => _products.Add(entry);
+    public void AddProductRange(IEnumerable<Product> entries) => _products.AddRange(entries);
+
 }

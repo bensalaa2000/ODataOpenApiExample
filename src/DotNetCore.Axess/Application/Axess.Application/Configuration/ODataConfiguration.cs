@@ -1,4 +1,4 @@
-﻿namespace Axess.Application.Extensions;
+﻿namespace Axess.Application.Configuration;
 
 using Axess.Application.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,7 @@ using System.Reflection;
 using Entities = Domain.Entities;
 using Models = Models;
 
-public static class ODataExtensions
+public static class ODataConfiguration
 {
 
     public static IEdmModel GetEdmModel()
@@ -62,7 +62,7 @@ public static class ODataExtensions
     {
         // REF: https://github.com/OData/AspNetCoreOData/blob/main/src/Microsoft.AspNetCore.OData/Routing/Parser/DefaultODataPathParser.cs
         Microsoft.AspNetCore.OData.Abstracts.IODataFeature feature = controller.HttpContext.ODataFeature();
-        Microsoft.OData.Edm.IEdmModel model = feature.Model;
+        IEdmModel model = feature.Model;
         Uri serviceRoot = new Uri(new Uri(feature.BaseAddress), feature.RoutePrefix);
         IServiceProvider requestProvider = feature.Services;
         ODataUriParser parser = new ODataUriParser(model, serviceRoot, uri, requestProvider);
@@ -71,7 +71,7 @@ public static class ODataExtensions
         parser.UrlKeyDelimiter = ODataUrlKeyDelimiter.Slash;
 
         ODataPath path = parser.ParsePath();
-        KeySegment segment = (KeySegment)path.OfType<KeySegment>().FirstOrDefault();
+        KeySegment segment = path.OfType<KeySegment>().FirstOrDefault();
 
         if (segment is null)
         {

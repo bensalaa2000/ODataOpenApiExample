@@ -45,36 +45,13 @@ public static class MappingExtensions
         //Map and return the data
         return mapper.Map<IEnumerable<TData>, IEnumerable<TModel>>(result).ToList();
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TDestination"></typeparam>
-    /// <param name="queryable"></param>
-    /// <param name="count"></param>
-    /// <param name="pageNumber"></param>
-    /// <param name="pageSize"></param>
-    /// <returns></returns>
+
     public static Task<PaginatedList<TDestination>> PaginatedListAsync<TDestination>(this IQueryable<TDestination> queryable, int count, int pageNumber, int pageSize) where TDestination : class
         => PaginatedList<TDestination>.CreateAsync(queryable.AsNoTracking(), count, pageNumber, pageSize);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TDestination"></typeparam>
-    /// <param name="queryable"></param>
-    /// <param name="pageNumber"></param>
-    /// <param name="pageSize"></param>
-    /// <returns></returns>
     public static Task<PaginatedList<TDestination>> PaginatedListAsync<TDestination>(this IQueryable<TDestination> queryable, int pageNumber, int pageSize) where TDestination : class
         => PaginatedList<TDestination>.CreateAsync(queryable.AsNoTracking(), pageNumber, pageSize);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TDestination"></typeparam>
-    /// <param name="queryable"></param>
-    /// <param name="configuration"></param>
-    /// <returns></returns>
     public static Task<List<TDestination>> ProjectToListAsync<TDestination>(this IQueryable queryable, IConfigurationProvider configuration) where TDestination : class
         => queryable.ProjectTo<TDestination>(configuration).AsNoTracking().ToListAsync();
 }

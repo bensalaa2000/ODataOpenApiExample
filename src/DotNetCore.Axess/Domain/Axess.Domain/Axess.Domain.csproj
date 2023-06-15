@@ -14,5 +14,8 @@
     <Folder Include="Enums\" />
     <Folder Include="ValueObjects\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Axess.Common.Domain\Axess.Common.Domain.csproj" />
+  </ItemGroup>
 
 </Project>

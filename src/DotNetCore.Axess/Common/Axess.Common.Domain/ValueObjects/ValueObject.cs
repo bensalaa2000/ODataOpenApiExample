@@ -1,4 +1,6 @@
-namespace Axess.Domain;
+using Axess.Common.Domain.Entities;
+
+namespace Axess.Common.Domain.ValueObjects;
 
 public abstract class ValueObject : Base<ValueObject> { }
 
