@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Common.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Common.Domain", "src\DotNetCore.Axess\Common\Axess.Common.Domain\Axess.Common.Domain.csproj", "{7152AFA8-C118-4186-9E22-C6834E970F91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Common.Infrastructure", "src\DotNetCore.Axess\Common\Axess.Common.Infrastructure\Axess.Common.Infrastructure.csproj", "{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{7152AFA8-C118-4186-9E22-C6834E970F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7152AFA8-C118-4186-9E22-C6834E970F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7152AFA8-C118-4186-9E22-C6834E970F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{5B49949F-4002-4C8D-8BD7-5871D45C157F} = {BE79B91A-6E17-4A68-A733-372019441229}
 		{8B00C7D8-57B7-4D51-B038-396A6F3C86D5} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
 		{7152AFA8-C118-4186-9E22-C6834E970F91} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
+		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D17C3DC-3280-4DB6-9286-6CB3443F51C3}

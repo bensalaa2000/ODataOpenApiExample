@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.OData.Query;
 
-namespace Axess.Application.Extensions;
+namespace Axess.Common.Application.Extensions;
 /// <summary>
 /// 
 /// </summary>

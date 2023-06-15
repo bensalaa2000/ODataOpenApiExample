@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Axess.Common.Infrastructure\Axess.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Domain\Axess.Domain\Axess.Domain.csproj" />
   </ItemGroup>
 

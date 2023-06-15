@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 using IConfigurationProvider = AutoMapper.IConfigurationProvider;
 
-namespace Axess.Application.Extensions;
+namespace Axess.Common.Application.Extensions;
 /// <summary>
 /// 
 /// </summary>

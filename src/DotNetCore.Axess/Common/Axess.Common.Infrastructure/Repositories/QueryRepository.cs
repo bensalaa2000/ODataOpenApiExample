@@ -1,9 +1,9 @@
-﻿using Axess.Domain;
-using Axess.Domain.Repositories.Interfaces;
+﻿using Axess.Common.Domain.Repositories.Interfaces;
+using Axess.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Axess.Infrastructure.Repositories;
+namespace Axess.Common.Infrastructure.Repositories;
 public class QueryRepository<TEntity> : IQueryRepository<TEntity> where TEntity : Entity
 {
     private readonly DbContext _context;

@@ -1,6 +1,6 @@
 ﻿namespace Axess.Application.Configuration;
 
-using Axess.Application.Extensions;
+using Axess.Common.Application.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.OData;

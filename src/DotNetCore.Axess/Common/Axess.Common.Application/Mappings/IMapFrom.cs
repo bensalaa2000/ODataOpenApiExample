@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Axess.Application.Mappings;
+namespace Axess.Common.Application.Mappings;
 /// <summary>
 /// 
 /// </summary>

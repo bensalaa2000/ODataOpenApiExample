@@ -1,6 +1,6 @@
 ﻿using Axess.Domain;
 
-namespace Axess.Domain.Repositories.Interfaces;
+namespace Axess.Common.Domain.Repositories.Interfaces;
 
 /// <summary>
 /// Représente l'ensemble des méthodes pour gérer une entité.

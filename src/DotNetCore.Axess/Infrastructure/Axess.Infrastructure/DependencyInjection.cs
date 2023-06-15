@@ -1,7 +1,7 @@
-﻿using Axess.Domain.Repositories.Interfaces;
+﻿using Axess.Common.Domain.Repositories.Interfaces;
+using Axess.Common.Infrastructure.Repositories;
 using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.Infrastructure.Contexts;
-using Axess.Infrastructure.Repositories;
 using Axess.Infrastructure.Repositories.Orders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
