@@ -11,8 +11,4 @@
     <ProjectReference Include="..\..\Infrastructure\Axess.Infrastructure\Axess.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validations\Orders\" />
-  </ItemGroup>
-
 </Project>

@@ -14,7 +14,16 @@ public class OrderModelConfiguration : IModelConfiguration
     public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
 
-        EntityTypeConfiguration<OrderDto> order = builder.EntitySet<OrderDto>("Orders").EntityType.HasKey(o => o.Code);
+        builder.EntitySet<OrderDto>("Orders");
+        EntityTypeConfiguration<OrderDto> order = builder.EntityType<OrderDto>();
+        order.HasKey(o => o.Code);
+        order.HasMany(x => x.LineItems);
+
+        /* builder.EntitySet<LineItemDto>("LineItems");
+         EntityTypeConfiguration<LineItemDto> lineItem = builder.EntityType<LineItemDto>();
+         lineItem.HasKey(li => li.Code);*/
+
+        /*EntityTypeConfiguration<OrderDto> order = builder.EntitySet<OrderDto>("Orders").EntityType.HasKey(o => o.Code);*/
         EntityTypeConfiguration<LineItemDto> lineItem = builder.EntityType<LineItemDto>().HasKey(li => li.Code);
 
         if (apiVersion < ApiVersions.V2)

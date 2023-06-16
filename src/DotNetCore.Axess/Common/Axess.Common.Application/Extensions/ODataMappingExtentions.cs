@@ -50,6 +50,7 @@ public static class ODataMappingExtentions
         ODataQueryOptions<T> queryOptions,
         ODataQuerySettings querySettings = null)
     {
+        //IQueryable<T> dtos = _mapper.ProjectTo<T>(entities);
         IQueryable<T> result = entities.ProjectTo<T>(_mapper.ConfigurationProvider);
         return (querySettings != null ? queryOptions.ApplyTo(result, querySettings) : queryOptions.ApplyTo(result)) as IEnumerable<T>;
     }

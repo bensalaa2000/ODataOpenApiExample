@@ -1,4 +1,4 @@
-﻿namespace Axess.MediatR.Order.Commands;
+﻿namespace Axess.Application.MediatR.Orders.Commands;
 using global::MediatR;
 
 public class DeleteOrderCommand : IRequest

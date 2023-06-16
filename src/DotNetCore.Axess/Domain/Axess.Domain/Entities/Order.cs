@@ -30,36 +30,9 @@ public class Order : Entity
     /// <value>The description of the order.</value>
     public string Description { get; set; } = string.Empty;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    private readonly List<LineItem> _lineItems = new();
-    /// <summary>
-    /// 
-    /// </summary>
-    public virtual ICollection<LineItem> LineItems => _lineItems.AsReadOnly();
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="entry"></param>
-    public void AddLineItem(LineItem entry)
-    {
-        _lineItems.Add(entry);
-        // Events.Add(new EntryAddedEvent(this.Id, entry));
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="entries"></param>
-    public void AddRange(IEnumerable<LineItem> entries)
-    {
-        _lineItems.AddRange(entries);
-        // Events.Add(new EntryAddedEvent(this.Id, entry));
-    }
-
-    /// <summary>
-    /// Gets a list of line items in the order.
-    /// </summary>
-    /// <value>The <see cref="IList{T}">list</see> of order <see cref="LineItem">line items</see>.</value>
+    private readonly List<LineItem> _LineItems = new();
+    public virtual ICollection<LineItem> LineItems => _LineItems.AsReadOnly();
+    public void AddLineItem(LineItem lineItem) => _LineItems.Add(lineItem);
+    public void AddLineItemRange(IEnumerable<LineItem> lineItems) => _LineItems.AddRange(lineItems);
     //public virtual ICollection<LineItem> LineItems { get; set; } = new List<LineItem>();
 }

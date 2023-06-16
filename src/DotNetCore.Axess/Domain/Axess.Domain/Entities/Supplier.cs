@@ -12,9 +12,9 @@ public class Supplier : Entity
     /// <value>The supplier's name.</value>
     public string Name { get; set; }
 
-    /// <summary>
-    /// Gets or sets products associated with the supplier.
-    /// </summary>
-    /// <value>The collection of associated products.</value>
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    private readonly List<Product> _products = new();
+    public virtual ICollection<Product> LineItems => _products.AsReadOnly();
+    public void AddProduct(Product product) => _products.Add(product);
+    public void AddProductRange(IEnumerable<Product> products) => _products.AddRange(products);
+    //public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

@@ -13,8 +13,16 @@ public class OrderConfiguration : IModelConfiguration
     /// <inheritdoc />
     public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
+        builder.EntitySet<Order>("EntityOrders");
+        EntityTypeConfiguration<Order> orderEntity = builder.EntityType<Order>();
+        orderEntity.HasKey(o => o.Id);
+        orderEntity.HasMany(x => x.LineItems);
 
-        EntityTypeConfiguration<Order> order = builder.EntitySet<Order>("EntityOrders").EntityType.HasKey(o => o.Id);
-        EntityTypeConfiguration<LineItem> lineItem = builder.EntityType<LineItem>().HasKey(li => li.Id);
+        builder.EntitySet<LineItem>("LineItems");
+        EntityTypeConfiguration<LineItem> lineItemEntity = builder.EntityType<LineItem>();
+        lineItemEntity.HasKey(li => li.Id);
+
+
+        //EntityTypeConfiguration<LineItem> lineItem = builder.EntityType<LineItem>().HasKey(li => li.Id);
     }
 }

@@ -35,4 +35,6 @@ public class LineItemDto
     /// <value>True if the line item is fulfilled; otherwise, false.</value>
     public bool Fulfilled { get; set; }
 
+    public virtual OrderDto Order { get; set; }
+
 }

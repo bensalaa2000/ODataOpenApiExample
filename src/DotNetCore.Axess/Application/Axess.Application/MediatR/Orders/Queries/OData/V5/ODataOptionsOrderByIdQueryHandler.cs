@@ -1,10 +1,10 @@
-﻿using Axess.Infrastructure.Contexts;
+﻿using Axess.Domain.Entities;
+using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.MediatR.OData.Queries;
 using MediatR;
 using Microsoft.AspNetCore.OData.Results;
 
-namespace Axess.MediatR.Order.Queries.OData.V5;
-using Order = Domain.Entities.Order;
+namespace Axess.Application.MediatR.Orders.Queries.OData.V5;
 /// <summary>
 /// 
 /// </summary>
@@ -12,16 +12,16 @@ public sealed class ODataOptionsOrderByIdQueryHandler : IRequestHandler<ODataOpt
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
-    private readonly IApplicationDbContext _dbContext;
+    private readonly IOrderReadRepository orderReadRepository;
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="context"></param>
     /// <param name="mapper"></param>
-    public ODataOptionsOrderByIdQueryHandler(IApplicationDbContext context)
+    public ODataOptionsOrderByIdQueryHandler(IOrderReadRepository orderReadRepository)
     {
-        _dbContext = context;
+        this.orderReadRepository = orderReadRepository;
     }
 
     /// <summary>
@@ -32,8 +32,8 @@ public sealed class ODataOptionsOrderByIdQueryHandler : IRequestHandler<ODataOpt
     /// <returns></returns>
     public async Task<SingleResult<Order>> Handle(ODataOptionsByIdQuery<Order> request, CancellationToken cancellationToken)
     {
-        IQueryable<Order> result = _dbContext.Orders.Where(o => o.Id == request.Key);
-        IQueryable<Order> orders = request.Options.ApplyTo(_dbContext.Orders) as IQueryable<Order>;
+        IQueryable<Order> result = orderReadRepository.Queryable.Where(o => o.Id == request.Key);
+        IQueryable<Order> orders = request.Options.ApplyTo(orderReadRepository.Queryable) as IQueryable<Order>;
         SingleResult<Order> singleResult = SingleResult.Create(orders);
         SingleResult<Order> resultat = await Task.FromResult(singleResult);
         return resultat;

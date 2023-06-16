@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Axess.Application.Models;
-using Axess.Infrastructure.Contexts;
+using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.MediatR.OData.Queries;
 using MediatR;
 using System.Collections;
 
-namespace Axess.MediatR.Order.Queries.OData.V4;
+namespace Axess.Application.MediatR.Orders.Queries.OData.V4;
 using OrderDto = OrderDto;
 /// <summary>
 /// 
@@ -14,19 +14,19 @@ public sealed class ODataOptionsOrderIEnumerableQueryHandler : IRequestHandler<O
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
-    private readonly IApplicationDbContext _dbContext;
+    private readonly IOrderReadRepository orderReadRepository;
 
     private readonly IMapper _mapper;
     /// <inheritdoc/>
-    public ODataOptionsOrderIEnumerableQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public ODataOptionsOrderIEnumerableQueryHandler(IOrderReadRepository orderReadRepository, IMapper mapper)
     {
-        _dbContext = context;
+        this.orderReadRepository = orderReadRepository;
         _mapper = mapper;
     }
 
     /// <inheritdoc/>
     public async Task<IEnumerable> Handle(ODataOptionsIEnumerableQuery<OrderDto> request, CancellationToken cancellationToken)
     {
-        return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<OrderDto>(_dbContext.Orders)) as IEnumerable<OrderDto>);
+        return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<OrderDto>(orderReadRepository.Queryable)) as IEnumerable<OrderDto>);
     }
 }

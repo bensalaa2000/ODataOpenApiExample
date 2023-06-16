@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using MediatR;
-using Microsoft.AspNetCore.OData.Results;
+using Axess.Application.Models;
+using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.Extensions;
 using Axess.MediatR.OData.Queries;
-using Axess.Infrastructure.Contexts;
-using Axess.Application.Models;
+using MediatR;
+using Microsoft.AspNetCore.OData.Results;
 
-namespace Axess.MediatR.Order.Queries.OData.V4;
+namespace Axess.Application.MediatR.Orders.Queries.OData.V4;
 using OrderDto = OrderDto;
 /// <summary>
 /// 
@@ -15,7 +15,7 @@ public sealed class ODataOptionsOrderByIdQueryHandler : IRequestHandler<ODataOpt
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
-    private readonly IApplicationDbContext _dbContext;
+    private readonly IOrderReadRepository orderReadRepository;
 
     private readonly IMapper _mapper;
     /// <summary>
@@ -23,9 +23,9 @@ public sealed class ODataOptionsOrderByIdQueryHandler : IRequestHandler<ODataOpt
     /// </summary>
     /// <param name="context"></param>
     /// <param name="mapper"></param>
-    public ODataOptionsOrderByIdQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public ODataOptionsOrderByIdQueryHandler(IOrderReadRepository orderReadRepository, IMapper mapper)
     {
-        _dbContext = context;
+        this.orderReadRepository = orderReadRepository;
         _mapper = mapper;
     }
 
@@ -37,7 +37,7 @@ public sealed class ODataOptionsOrderByIdQueryHandler : IRequestHandler<ODataOpt
     /// <returns></returns>
     public async Task<SingleResult<OrderDto>> Handle(ODataOptionsByIdQuery<OrderDto> request, CancellationToken cancellationToken)
     {
-        IQueryable<Domain.Entities.Order> result = _dbContext.Orders.Where(o => o.Id == request.Key);
+        IQueryable<Domain.Entities.Order> result = orderReadRepository.Queryable.Where(o => o.Id == request.Key);
         IQueryable<OrderDto> orders = result.ProjectAndApplyToIQueryable(_mapper, request.Options);
         SingleResult<OrderDto> singleResult = SingleResult.Create(orders);
         SingleResult<OrderDto> resultat = await Task.FromResult(singleResult);

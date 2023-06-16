@@ -1,4 +1,4 @@
-﻿namespace Axess.MediatR.Order.Commands;
+﻿namespace Axess.Application.MediatR.Orders.Commands;
 
 using AutoMapper;
 using Axess.Application.Models;

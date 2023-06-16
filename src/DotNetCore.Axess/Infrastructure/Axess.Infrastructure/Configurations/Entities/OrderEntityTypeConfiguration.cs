@@ -26,6 +26,8 @@ public sealed class OrderEntityTypeConfiguration : EntityTypeConfigurationBase<O
             .WithOne(p => p.Order)
             .HasForeignKey(p => p.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
+        //builder.Metadata.FindNavigation("_LineItems")?.SetPropertyAccessMode(PropertyAccessMode.Field);
+
     }
 }
 

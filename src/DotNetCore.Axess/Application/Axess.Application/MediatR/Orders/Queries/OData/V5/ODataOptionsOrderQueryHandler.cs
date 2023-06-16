@@ -1,32 +1,32 @@
 ﻿using AutoMapper;
+using Axess.Domain.Entities;
+using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.Extensions;
-using Axess.Infrastructure.Contexts;
 using Axess.MediatR.OData.Queries;
 using Axess.Shared;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 //using Models = ApiVersioning.Examples.Models;
-namespace Axess.MediatR.Order.Queries.OData.V5;
+namespace Axess.Application.MediatR.Orders.Queries.OData.V5;
 
 /// <inheritdoc/>
-public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<Domain.Entities.Order>, PaginatedList<Domain.Entities.Order>>
+public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<Order>, PaginatedList<Order>>
 {
     //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
-    private readonly IApplicationDbContext _dbContext;
+    private readonly IOrderReadRepository orderReadRepository;
     //private readonly HttpContext _context;
     private readonly IMapper _mapper;
 
     /// <inheritdoc/>
-    public ODataOptionsOrderQueryHandler(IApplicationDbContext dbContext, /*HttpContext context,*/ IMapper mapper)
+    public ODataOptionsOrderQueryHandler(IOrderReadRepository orderReadRepository, IMapper mapper)
     {
+        this.orderReadRepository = orderReadRepository;
         _mapper = mapper;
-        _dbContext = dbContext;
-        //_context = context;
     }
 
     /// <inheritdoc/>
-    public async Task<PaginatedList<Domain.Entities.Order>> Handle(ODataOptionsQuery<Domain.Entities.Order> request, CancellationToken cancellationToken)
+    public async Task<PaginatedList<Order>> Handle(ODataOptionsQuery<Order> request, CancellationToken cancellationToken)
     {
         /*Automapper.ExpressionMappin sample*/
         /*
@@ -36,7 +36,7 @@ public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptions
         */
         /*Automapper.ExpressionMappin sample*/
 
-        ODataQueryOptions<Domain.Entities.Order> options = request.Options;
+        ODataQueryOptions<Order> options = request.Options;
         /*Init PaginatedList header */
         int skip = options.Skip?.Value ?? 0;
         int pageSize = options.Top?.Value ?? request.PageSize;/* Taille pa defaut si n'est pas indiqué */
@@ -44,17 +44,17 @@ public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptions
 
         /* Nombre total d'elements avec Filter , sans 'Skip' ni 'Top' :  sans pagination */
         //int count = _dbContext.Orders.ApplyFilterCount(_mapper, options);
-        int count = _dbContext.Orders.ApplyFilterCount(options);
+        int count = orderReadRepository.Queryable.ApplyFilterCount(options);
         /* Resultat avec pagination */
         ODataQuerySettings querySettings = new()
         {
             PageSize = pageSize,
             EnsureStableOrdering = true,
         };
-        IQueryable<Domain.Entities.Order> items = request.Options.ApplyTo(_dbContext.Orders, querySettings) as IQueryable<Domain.Entities.Order>;
+        IQueryable<Order> items = request.Options.ApplyTo(orderReadRepository.Queryable, querySettings) as IQueryable<Order>;
         //IEnumerable<Models.Order> items = _dbContext.Orders.ProjectAndApplyTo<Models.Order>(_mapper, options, querySettings);
 
-        PaginatedList<Domain.Entities.Order> paginatedList = new(items, count, pageNumber, pageSize);
+        PaginatedList<Order> paginatedList = new(items, count, pageNumber, pageSize);
         return await Task.FromResult(paginatedList);
     }
 }

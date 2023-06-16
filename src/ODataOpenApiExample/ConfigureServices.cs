@@ -3,10 +3,12 @@ using ApiVersioning.Examples;
 using Asp.Versioning;
 using Asp.Versioning.Conventions;
 using Axess.Filters;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text.Json.Serialization;
 using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
@@ -20,6 +22,7 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddWebUIServices(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
         // IMvcBuilder
         services.AddControllers()
             .AddJsonOptions(options =>
@@ -90,6 +93,13 @@ public static class ConfigureServices
                                                         .AllowOrderBy("firstName", "lastName");
                             });
 
+        services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+        // Customise default API behaviour
+        services.Configure<ApiBehaviorOptions>(options =>
+            options.SuppressModelStateInvalidFilter = true);
+
+        services.AddEndpointsApiExplorer();
+
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
         services.AddSwaggerGen(
@@ -98,12 +108,25 @@ public static class ConfigureServices
                 // add a custom operation filter which sets default values
                 options.OperationFilter<SwaggerDefaultValues>();
 
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement { { new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } }, Array.Empty<string>() } });
+
+
+
                 string fileName = typeof(Program).Assembly.GetName().Name + ".xml";
                 string filePath = Path.Combine(AppContext.BaseDirectory, fileName);
-
                 // integrate xml comments
                 options.IncludeXmlComments(filePath);
             });
+
 
         return services;
     }

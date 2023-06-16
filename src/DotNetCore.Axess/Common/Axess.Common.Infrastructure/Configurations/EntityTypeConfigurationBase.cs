@@ -11,6 +11,6 @@ public abstract class EntityTypeConfigurationBase<TEntity> : IEntityTypeConfigur
     public virtual void Configure(EntityTypeBuilder<TEntity> builder)
     {
         builder.HasKey(v => v.Id);
-        builder.Property(p => p.Id).IsRequired();
+        builder.Property(p => p.Id).IsRequired()/*.ValueGeneratedOnAdd()*/;
     }
 }

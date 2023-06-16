@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Axess.Application.Models;
+using Axess.Application.Orders.Commands.CreateOrder;
 using Axess.Common.Application.Mappings;
 using Axess.Domain.Entities;
 using System.Reflection;
@@ -17,13 +18,24 @@ public class MappingProfile : Profile
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
 
+        CreateMap<CreateOrderCommand, Order>()
+           .ForMember(src => src.Customer, o => o.MapFrom(dest => dest.CustomerId))
+           .ConstructUsing(v => new Order(Guid.NewGuid()))
+           .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
+
+        CreateMap<OrderItemDto, LineItem>()
+            .ForMember(src => src.UnitPrice, o => o.MapFrom(dest => dest.Price))
+            .ForMember(src => src.Quantity, o => o.MapFrom(dest => dest.Count));
+
         CreateProjection<Address, AddressDto>()
-             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+
         CreateProjection<LineItem, LineItemDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
         CreateProjection<Order, OrderDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
-            .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
+            /*.ForMember(a => a.LineItems, o => o.ExplicitExpansion())*/;
+
         CreateProjection<Person, PersonDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
         CreateProjection<Product, ProductDto>()
@@ -33,8 +45,9 @@ public class MappingProfile : Profile
 
         CreateMap<Order, OrderDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
-             .ForMember(a => a.LineItems, o => o.ExplicitExpansion())
+             /*.ForMember(a => a.LineItems, o => o.ExplicitExpansion())*/
              .ReverseMap();
+
         CreateMap<LineItem, LineItemDto>()
             .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
             .ReverseMap();

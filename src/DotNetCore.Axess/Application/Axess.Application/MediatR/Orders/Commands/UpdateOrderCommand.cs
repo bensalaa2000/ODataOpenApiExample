@@ -1,4 +1,4 @@
-﻿namespace Axess.MediatR.Order.Commands;
+﻿namespace Axess.Application.MediatR.Orders.Commands;
 
 using Axess.Application.Models;
 using global::MediatR;
