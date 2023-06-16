@@ -1,4 +1,4 @@
-﻿namespace Axess.Extensions;
+﻿namespace Axess.Common.Application.Extensions;
 using System;
 using System.Collections;
 
@@ -39,7 +39,7 @@ public static class EnumerableExtensions
     /// </summary>
     /// <param name="enumerable">The <see cref="IEnumerable">sequence</see> to take an element from.</param>
     /// <returns>The single element in the sequence or <c>null</c>.</returns>
-    public static object SingleOrDefault(this IEnumerable enumerable)
+    /*public static object SingleOrDefault(this IEnumerable enumerable)
     {
         IEnumerator iterator = enumerable.GetEnumerator();
         object result = default;
@@ -65,5 +65,5 @@ public static class EnumerableExtensions
         }
 
         return result;
-    }
+    }*/
 }

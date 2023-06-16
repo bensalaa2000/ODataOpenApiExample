@@ -1,4 +1,4 @@
-﻿namespace Axess.Configuration.V5;
+﻿namespace Axess.Application.Configuration.V5;
 
 using Asp.Versioning;
 using Asp.Versioning.OData;

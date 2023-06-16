@@ -2,12 +2,12 @@
 
 using ApiVersioning.Examples.Models;
 using Asp.Versioning;
-using Axess.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Net.Mime;
 using System.Threading;
 using static Microsoft.AspNetCore.Http.StatusCodes;
