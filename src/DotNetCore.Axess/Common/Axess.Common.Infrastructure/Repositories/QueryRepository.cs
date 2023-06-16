@@ -1,5 +1,5 @@
-﻿using Axess.Domain;
-using DotNetCore.Axess.Repositories.Interfaces;
+﻿using Axess.Common.Domain.Repositories.Interfaces;
+using Axess.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

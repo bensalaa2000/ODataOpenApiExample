@@ -1,4 +1,5 @@
-﻿using Axess.Domain;
+﻿using Axess.Common.Domain.Repositories.Interfaces;
+using Axess.Domain;
 
 namespace DotNetCore.Axess.Repositories.Interfaces;
 

@@ -1,4 +1,5 @@
-﻿using Axess.Domain;
+﻿using Axess.Common.Domain.Repositories.Interfaces;
+using Axess.Domain;
 using DotNetCore.Axess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

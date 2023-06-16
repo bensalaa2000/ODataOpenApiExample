@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Axess.Extensions;
 using Axess.MediatR.OData.Queries;
-using Axess.Dto;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 using Entities = DotNetCore.Axess.Entities;
 using Axess.Infrastructure.Contexts;
+using Axess.Shared;
 //using Models = ApiVersioning.Examples.Models;
 namespace Axess.MediatR.Order.Queries.OData.V5;
 

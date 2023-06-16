@@ -3,6 +3,7 @@
 using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using Axess.Application.Models;
 using Microsoft.OData.ModelBuilder;
 using System;
 

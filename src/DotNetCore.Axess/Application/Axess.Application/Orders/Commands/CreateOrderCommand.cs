@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Axess.Dto;
+using Axess.Shared;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 

@@ -1,4 +1,4 @@
-﻿namespace ApiVersioning.Examples.Models;
+﻿namespace Axess.Application.Models;
 
 using System.Runtime.Serialization;
 

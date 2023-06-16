@@ -1,4 +1,4 @@
-namespace Axess.Domain;
+namespace Axess.Common.Domain.Entities;
 
 public abstract class Base<T> : IEquatable<Base<T>>
 {

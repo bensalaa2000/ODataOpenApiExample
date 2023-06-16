@@ -5,6 +5,7 @@ using Asp.Versioning;
 using Asp.Versioning.OData;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Axess.Application.Models;
 using Axess.Infrastructure.Contexts;
 //using global::MediatR;
 using Microsoft.AspNetCore.Mvc;

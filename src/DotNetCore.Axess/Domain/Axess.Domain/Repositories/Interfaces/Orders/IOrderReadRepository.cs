@@ -1,5 +1,5 @@
 ﻿
-using DotNetCore.Axess.Repositories.Interfaces;
+using Axess.Common.Domain.Repositories.Interfaces;
 using Entities = DotNetCore.Axess.Entities;
 namespace ODataMappingApi.Repositories.Orders;
 

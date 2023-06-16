@@ -1,6 +1,7 @@
 ﻿namespace Axess.MediatR.Order.Commands;
 
 using ApiVersioning.Examples.Models;
+using Axess.Application.Models;
 using global::MediatR;
 using System.Collections.Generic;
 

@@ -1,4 +1,5 @@
-﻿using DotNetCore.Axess.Entities;
+﻿using Axess.Common.Infrastructure.Configurations;
+using DotNetCore.Axess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

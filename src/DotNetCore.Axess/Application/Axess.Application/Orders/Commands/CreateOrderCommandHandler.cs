@@ -2,8 +2,8 @@
 using DotNetCore.Axess.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Axess.Dto;
 using Axess.Infrastructure.Contexts;
+using Axess.Shared;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 

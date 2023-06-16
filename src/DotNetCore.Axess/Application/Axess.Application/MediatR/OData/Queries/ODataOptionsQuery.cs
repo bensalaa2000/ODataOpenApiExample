@@ -2,7 +2,7 @@
 
 using global::MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using Axess.Dto;
+using Axess.Shared;
 
 /// <summary>
 ///  Used on V4 and V5 controllers
