@@ -1,7 +1,12 @@
-﻿using Axess.Application.Configuration;
+﻿using Axess.Api.Configuration;
+using Axess.Application.Configuration;
+using FluentValidation.AspNetCore;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ODataMappingApi;
 
@@ -18,7 +23,9 @@ public static class ConfigureServices
             defaultBatchHandler.MessageQuotas.MaxReceivedMessageSize = 100;
 
             options.EnableQueryFeatures(50000);//.Select().Filter().OrderBy().SetMaxTop(5000).Count().Expand()
-            options.AddRouteComponents("odata", ODataConfiguration.GetEdmModel(), defaultBatchHandler);
+            options.AddRouteComponents("odata", EdmModelBuilder.GetEdmModel(), defaultBatchHandler
+                /*services => services.AddSingleton<ODataBatchHandler, DefaultODataBatchHandler>()*/)
+                    .Conventions.Add(new AxessODataConvention());
             options.TimeZone = TimeZoneInfo.Utc;
 
             options.RouteOptions.EnableKeyInParenthesis = false;
@@ -27,7 +34,7 @@ public static class ConfigureServices
             options.RouteOptions.EnableQualifiedOperationCall = false;
             options.RouteOptions.EnableUnqualifiedOperationCall = true;
         })
-                    /*.AddJsonOptions(options =>
+                    .AddJsonOptions(options =>
                     {
                         ////options.JsonSerializerOptions.PropertyNamingPolicy = null;
                         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -39,16 +46,13 @@ public static class ConfigureServices
                         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 
                         options.JsonSerializerOptions.WriteIndented = true;
-                    })*/;
+                    });
 
         // Add FluentValidation to Asp.net
         /*builder.Services.AddFluentValidationAutoValidation(config =>
         {
             ////config.DisableDataAnnotationsValidation = true;
         }).AddFluentValidationClientsideAdapters();*/
-
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        services.AddEndpointsApiExplorer();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
@@ -79,6 +83,12 @@ public static class ConfigureServices
                 return first;
             });
         });
+
+        // Add FV
+        services.AddFluentValidationAutoValidation();
+        services.AddFluentValidationClientsideAdapters();
+        // Add FV Rules to swagger
+        services.AddFluentValidationRulesToSwagger();
         return services;
     }
 

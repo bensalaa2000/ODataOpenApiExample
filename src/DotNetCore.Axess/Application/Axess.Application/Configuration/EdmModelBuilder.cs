@@ -12,9 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Entities = Domain.Entities;
-using Models = Models;
 
-public static class ODataConfiguration
+public static class EdmModelBuilder
 {
 
     public static IEdmModel GetEdmModel()
@@ -30,13 +29,13 @@ public static class ODataConfiguration
         edmBuilder.EntitySet<Entities.LineItem>("LineItems");
         edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
 
-        edmBuilder.EntitySet<Models.OrderDto>("ModelsOrders");
-        EntityTypeConfiguration<Models.OrderDto> order = edmBuilder.EntityType<Models.OrderDto>();
-        order.HasKey(o => o.Code);
+        edmBuilder.EntitySet<Entities.Order>("ModelsOrders");
+        EntityTypeConfiguration<Entities.Order> order = edmBuilder.EntityType<Entities.Order>();
+        order.HasKey(o => o.Id);
         order.HasMany(x => x.LineItems);
 
-        edmBuilder.EntitySet<Models.LineItemDto>("ModelsLineItems");
-        edmBuilder.EntityType<Models.LineItemDto>().HasKey(li => li.Code);
+        edmBuilder.EntitySet<Entities.LineItem>("ModelsLineItems");
+        edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
 
         IEdmModel model = edmBuilder.GetEdmModel();
 

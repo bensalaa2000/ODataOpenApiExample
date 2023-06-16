@@ -13,5 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Axess.Shared\Axess.Shared.csproj" />
+    <ProjectReference Include="..\Axess.Common.Domain\Axess.Common.Domain.csproj" />
   </ItemGroup>
 </Project>

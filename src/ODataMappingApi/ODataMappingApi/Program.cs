@@ -1,8 +1,9 @@
+using Axess.Api.OpenApi;
 using Axess.Application;
 using Axess.Infrastructure;
+using Axess.Infrastructure.Contexts;
 using Microsoft.AspNetCore.OData;
 using ODataMappingApi;
-using Axess.Infrastructure.Contexts;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +24,25 @@ if (app.Environment.IsDevelopment())
     }
     // navigate to ~/$odata to determine whether any endpoints did not match an odata route template
     app.UseODataRouteDebug();
+
+    // If you want to use /$openapi, enable the middleware.
+    app.UseODataOpenApi();
+
+    // Add OData /$query middleware
+    app.UseODataQueryRequest();
+
+    // Add the OData Batch middleware to support OData $Batch
+    app.UseODataBatching();
+
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "OData 8.x OpenAPI");
+        c.SwaggerEndpoint("/$openapi", "OData raw OpenAPI");
+    });
 }
-app.UseODataQueryRequest();/*TODO : A explorer*/
-app.UseODataBatching();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
