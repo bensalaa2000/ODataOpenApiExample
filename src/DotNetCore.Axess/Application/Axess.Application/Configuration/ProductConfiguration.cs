@@ -1,4 +1,4 @@
-﻿namespace ApiVersioning.Examples.Configuration;
+﻿namespace Axess.Application.Configuration;
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
@@ -11,13 +11,13 @@ using Microsoft.OData.ModelBuilder;
 public class ProductConfiguration : IModelConfiguration
 {
     /// <inheritdoc />
-    public void Apply( ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix )
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
-        if ( apiVersion < ApiVersions.V3 )
+        if (apiVersion < ApiVersions.V3)
         {
             return;
         }
 
-        var product = builder.EntitySet<ProductDto>( "Products" ).EntityType.HasKey( p => p.Code );
+        EntityTypeConfiguration<ProductDto> product = builder.EntitySet<ProductDto>("Products").EntityType.HasKey(p => p.Code);
     }
 }

@@ -1,4 +1,4 @@
-﻿using DotNetCore.Axess.Entities;
+﻿using Axess.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Axess.Infrastructure.Contexts;

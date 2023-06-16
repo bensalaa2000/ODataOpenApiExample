@@ -1,6 +1,5 @@
-﻿namespace ApiVersioning.Examples.Configuration;
+﻿namespace Axess.Application.Configuration;
 
-using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Axess.Application.Models;

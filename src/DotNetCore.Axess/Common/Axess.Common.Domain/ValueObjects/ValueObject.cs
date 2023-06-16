@@ -1,6 +1,6 @@
 using Axess.Common.Domain.Entities;
 
-namespace Axess.Domain;
+namespace Axess.Common.Domain.ValueObjects;
 
 public abstract class ValueObject : Base<ValueObject> { }
 

@@ -3,7 +3,7 @@ using Axess.MediatR.OData.Queries;
 using MediatR;
 
 namespace Axess.MediatR.Order.Queries.OData.V5;
-using Order = DotNetCore.Axess.Entities.Order;
+using Order = Domain.Entities.Order;
 /// <summary>
 /// 
 /// </summary>

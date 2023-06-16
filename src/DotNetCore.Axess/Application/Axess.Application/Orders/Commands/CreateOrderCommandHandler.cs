@@ -1,9 +1,9 @@
 ﻿//using AutoMapper;
-using DotNetCore.Axess.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Axess.Infrastructure.Contexts;
 using Axess.Shared;
+using Axess.Domain.Entities;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 

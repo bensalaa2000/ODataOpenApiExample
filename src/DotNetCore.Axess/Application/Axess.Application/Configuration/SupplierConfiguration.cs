@@ -1,8 +1,8 @@
-﻿namespace ApiVersioning.Examples.Configuration;
+﻿namespace Axess.Application.Configuration;
 
-using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using Axess.Application.Models;
 using Microsoft.OData.ModelBuilder;
 
 /// <summary>
@@ -11,14 +11,14 @@ using Microsoft.OData.ModelBuilder;
 public class SupplierConfiguration : IModelConfiguration
 {
     /// <inheritdoc />
-    public void Apply( ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix )
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
     {
-        if ( apiVersion < ApiVersions.V3 )
+        if (apiVersion < ApiVersions.V3)
         {
             return;
         }
 
-        builder.EntitySet<SupplierDto>( "Suppliers" ).EntityType.HasKey( p => p.Code );
-        builder.Singleton<SupplierDto>( "Acme" );
+        builder.EntitySet<SupplierDto>("Suppliers").EntityType.HasKey(p => p.Code);
+        builder.Singleton<SupplierDto>("Acme");
     }
 }

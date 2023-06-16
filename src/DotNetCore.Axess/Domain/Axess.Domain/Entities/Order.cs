@@ -1,6 +1,4 @@
-﻿using Axess.Domain;
-
-namespace DotNetCore.Axess.Entities;
+﻿namespace Axess.Domain.Entities;
 
 /// <summary>
 /// Represents an order.

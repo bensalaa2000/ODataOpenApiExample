@@ -4,9 +4,10 @@ using Microsoft.AspNetCore.OData.Results;
 using Axess.Extensions;
 using Axess.MediatR.OData.Queries;
 using Axess.Infrastructure.Contexts;
+using Axess.Application.Models;
 
 namespace Axess.MediatR.Order.Queries.OData.V4;
-using OrderDto = ApiVersioning.Examples.Models.OrderDto;
+using OrderDto = OrderDto;
 /// <summary>
 /// 
 /// </summary>
@@ -27,7 +28,7 @@ public sealed class ODataOptionsOrdeSingleResultQueryHandler : IRequestHandler<O
     /// <inheritdoc/>
     public async Task<SingleResult<OrderDto>> Handle(ODataOptionsSingleResultQuery<OrderDto> request, CancellationToken cancellationToken)
     {
-        IQueryable<DotNetCore.Axess.Entities.Order> entities = _dbContext.Orders;
+        IQueryable<Domain.Entities.Order> entities = _dbContext.Orders;
         IQueryable<OrderDto> orders = entities.ProjectAndApplyToIQueryable(_mapper, request.options);
         SingleResult<OrderDto> singleResult = SingleResult.Create(orders);
         return await Task.FromResult(singleResult);

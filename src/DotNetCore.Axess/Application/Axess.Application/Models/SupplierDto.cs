@@ -1,6 +1,4 @@
-﻿using Axess.Application.Models;
-
-namespace ApiVersioning.Examples.Models;
+﻿namespace Axess.Application.Models;
 
 /// <summary>
 /// Represents a supplier.

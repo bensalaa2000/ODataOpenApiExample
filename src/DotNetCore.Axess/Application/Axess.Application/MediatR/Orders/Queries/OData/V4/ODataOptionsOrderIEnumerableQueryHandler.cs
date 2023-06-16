@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using Axess.Application.Models;
 using Axess.Infrastructure.Contexts;
 using Axess.MediatR.OData.Queries;
 using MediatR;
 using System.Collections;
 
 namespace Axess.MediatR.Order.Queries.OData.V4;
-using OrderDto = ApiVersioning.Examples.Models.OrderDto;
+using OrderDto = OrderDto;
 /// <summary>
 /// 
 /// </summary>

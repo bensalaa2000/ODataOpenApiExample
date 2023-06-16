@@ -3,9 +3,10 @@ using MediatR;
 using Axess.Extensions;
 using Axess.MediatR.OData.Queries;
 using Axess.Infrastructure.Contexts;
+using Axess.Application.Models;
 
 namespace Axess.MediatR.Order.Queries.OData.V4;
-using OrderDto = ApiVersioning.Examples.Models.OrderDto;
+using OrderDto = OrderDto;
 /// <summary>
 /// 
 /// </summary>
@@ -35,7 +36,7 @@ public sealed class ODataOptionsOrderByIdIQueryableQueryHandler : IRequestHandle
     /// <returns></returns>
     public async Task<IQueryable<OrderDto>> Handle(ODataOptionsByIdIQueryableQuery<OrderDto> request, CancellationToken cancellationToken)
     {
-        IQueryable<DotNetCore.Axess.Entities.Order> result = _dbContext.Orders.Where(o => o.Id == request.Key);
+        IQueryable<Domain.Entities.Order> result = _dbContext.Orders.Where(o => o.Id == request.Key);
         IQueryable<OrderDto> orders = result.ProjectAndApplyToIQueryable(_mapper, request.Options);
         return await Task.FromResult(orders);
     }

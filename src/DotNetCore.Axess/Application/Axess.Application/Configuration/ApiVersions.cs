@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 
-namespace ApiVersioning.Examples.Configuration;
+namespace Axess.Application.Configuration;
 
 
 

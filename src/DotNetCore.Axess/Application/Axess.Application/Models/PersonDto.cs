@@ -1,6 +1,5 @@
-﻿namespace ApiVersioning.Examples.Models;
+﻿namespace Axess.Application.Models;
 
-using Axess.Application.Models;
 using System.ComponentModel.DataAnnotations;
 
 /// <summary>

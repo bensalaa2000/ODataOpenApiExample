@@ -5,9 +5,10 @@ using Axess.Extensions;
 using Axess.MediatR.OData.Queries;
 using Axess.Infrastructure.Contexts;
 using Axess.Shared;
+using Axess.Application.Models;
 
 namespace Axess.MediatR.Order.Queries.OData.V4;
-using OrderDto = ApiVersioning.Examples.Models.OrderDto;
+using OrderDto = OrderDto;
 /// <inheritdoc/>
 public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<OrderDto>, PaginatedList<OrderDto>>
 {

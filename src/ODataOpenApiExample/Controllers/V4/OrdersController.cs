@@ -1,6 +1,5 @@
 ﻿namespace Axess.Controllers.V4;
 
-using ApiVersioning.Examples.Models;
 using Asp.Versioning;
 using Asp.Versioning.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +7,8 @@ using Microsoft.AspNetCore.OData.Query;
 using Axess.MediatR.OData.Queries;
 using System.Net.Mime;
 using static Microsoft.AspNetCore.Http.StatusCodes;
+using Axess.Application.Models;
+
 /// <summary>
 /// Represents a RESTful service of orders.
 /// </summary>

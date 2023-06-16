@@ -1,6 +1,5 @@
 ﻿
-using Axess.Common.Domain.Repositories.Interfaces;
-using Entities = DotNetCore.Axess.Entities;
-namespace ODataMappingApi.Repositories.Orders;
+using Axess.Common.Domain.Repositories;
+namespace Axess.Domain.Repositories.Interfaces.Orders;
 
 public interface IOrderReadRepository : IQueryRepository<Entities.Order> { }
