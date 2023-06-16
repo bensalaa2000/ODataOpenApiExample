@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+  
+   <ItemGroup>
+     <PackageReference Include="AutoMapper.AspNetCore.OData.EFCore" Version="4.0.0" />
+     <PackageReference Include="Bogus" Version="34.0.2" />
+     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.7" />
+     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
+     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.7" />
+     <!--<PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.2" />-->
+     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+     <PackageReference Include="Polly" Version="7.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Axess.Common.Infrastructure\Axess.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Domain\Axess.Domain\Axess.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

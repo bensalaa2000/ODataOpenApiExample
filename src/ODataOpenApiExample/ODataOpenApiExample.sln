@@ -11,19 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNetCore.Axess", "DotNetC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ODataMappingApi", "ODataMappingApi\ODataMappingApi\ODataMappingApi.csproj", "{B221431E-D01D-4A9E-BFED-D7881E6CC6C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Domain", "DotNetCore.Axess\Domain\DotNetCore.Axess.Domain\Axess.Domain.csproj", "{D7A069D4-2550-4419-936E-78ACCAECE9D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Domain", "DotNetCore.Axess\Domain\Axess.Domain\Axess.Domain.csproj", "{D7A069D4-2550-4419-936E-78ACCAECE9D2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Entities", "DotNetCore.Axess\Entities\DotNetCore.Axess.Entities\Axess.Entities.csproj", "{E57B4FB7-3551-4E14-BBD7-7737205E8325}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Models", "DotNetCore.Axess\Models\DotNetCore.Axess.Domain\Axess.Models.csproj", "{044A5FB8-BA9C-42DE-8EB7-B8B871AEE714}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Models", "DotNetCore.Axess\Models\Axess.Domain\Axess.Models.csproj", "{044A5FB8-BA9C-42DE-8EB7-B8B871AEE714}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Results", "DotNetCore.Axess\Results\Axess.Results\Axess.Results.csproj", "{BDB079DF-DCD8-4EBF-A241-1FB29EF1F54A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Shared", "DotNetCore.Axess\Shared\Axess.Shared\Axess.Shared.csproj", "{BDB079DF-DCD8-4EBF-A241-1FB29EF1F54A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Validators", "DotNetCore.Axess\Validators\Axess.Validators\Axess.Validators.csproj", "{F306729B-949F-4EE9-853F-FCD5189049D2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Mapping", "DotNetCore.Axess\Mapping\Axess.Mapping\Axess.Mapping.csproj", "{61F74713-8CF2-4A69-9568-75B5531F671B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Infrastructure", "DotNetCore.Axess\Infrastructure\Infrastructure\Axess.Infrastructure.csproj", "{DED6B31A-71E9-4894-A745-46DDE2CBC46D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Infrastructure", "DotNetCore.Axess\Infrastructure\Axess.Infrastructure\Axess.Infrastructure.csproj", "{DED6B31A-71E9-4894-A745-46DDE2CBC46D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
