@@ -5,14 +5,14 @@ using Asp.Versioning.OData;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Axess.Application.Models;
+using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.Infrastructure.Contexts;
-//using global::MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
@@ -22,17 +22,20 @@ using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
 /// Represents a RESTful service of orders.
 /// </summary>
 [ApiVersion(3.0)]
-public class OrdersController : ODataController
+public class OrdersController : ApiODataControllerBase
 {
 
 
-    private readonly IApplicationDbContext _dbContext;
+    private readonly IOrderReadRepository orderReadRepository;
+
+    private readonly IApplicationDbContext applicationDbContext;
 
     private readonly IMapper _mapper;
 
-    public OrdersController(IApplicationDbContext context, IMapper mapper)
+    public OrdersController(IOrderReadRepository orderReadRepository, IApplicationDbContext applicationDbContext, IMapper mapper)
     {
-        this._dbContext = context;
+        this.orderReadRepository = orderReadRepository;
+        this.applicationDbContext = applicationDbContext;
         this._mapper = mapper;
 
     }
@@ -46,10 +49,10 @@ public class OrdersController : ODataController
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
-    [EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Top | Skip | Count)]
+    [EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Top | Skip | Count | Filter)]
     public IQueryable<OrderDto> Get()
     {
-        return _dbContext.Orders/*.Where(o => o.Id == 1)*/.ProjectTo<OrderDto>(_mapper.ConfigurationProvider)/*.ToList()*/;
+        return orderReadRepository.Queryable/*.Where(o => o.Id == 1)*/.ProjectTo<OrderDto>(_mapper.ConfigurationProvider)/*.ToList()*/;
         /*Console.WriteLine(entityOrders.Count);
         Order[] orders = new Order[]
         {
@@ -191,15 +194,8 @@ public class OrdersController : ODataController
     [ProducesResponseType(typeof(ODataValue<IEnumerable<LineItemDto>>), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select | Count)]
-    public IActionResult GetLineItems(Guid key)
+    public async Task<IActionResult> GetLineItems(Guid key)
     {
-        LineItemDto[] lineItems = new LineItemDto[]
-        {
-            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 2m, Description = "Dry erase wipes" },
-            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 3.5m, Description = "Dry erase eraser" },
-            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 5m, Description = "Dry erase markers" },
-        };
-
-        return Ok(lineItems);
+        return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
     }
 }

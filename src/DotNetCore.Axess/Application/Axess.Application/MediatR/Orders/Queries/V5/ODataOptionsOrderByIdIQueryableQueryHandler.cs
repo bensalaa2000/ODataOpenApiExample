@@ -2,7 +2,7 @@
 using Axess.MediatR.OData.Queries;
 using MediatR;
 
-namespace Axess.Application.MediatR.Orders.Queries.OData.V5;
+namespace Axess.Application.MediatR.Orders.Queries.V5;
 using Order = Domain.Entities.Order;
 /// <summary>
 /// 

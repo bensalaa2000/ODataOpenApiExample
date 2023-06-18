@@ -5,7 +5,7 @@ using Axess.Extensions;
 using Axess.MediatR.OData.Queries;
 using MediatR;
 
-namespace Axess.Application.MediatR.Orders.Queries.OData.V4;
+namespace Axess.Application.MediatR.Orders.Queries.V4;
 using OrderDto = OrderDto;
 /// <summary>
 /// 

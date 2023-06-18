@@ -2,11 +2,15 @@
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Axess.Application.Models;
+using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Infrastructure.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
@@ -18,10 +22,22 @@ using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
 /// </summary>
 [ApiVersion(1.0)]
 [ApiVersion(0.9, Deprecated = true)]
-public class OrdersController : ODataController
+public class OrdersController : ApiODataControllerBase
 {
 
+    private readonly IOrderReadRepository orderReadRepository;
 
+    private readonly IApplicationDbContext applicationDbContext;
+
+    private readonly IMapper _mapper;
+
+    public OrdersController(IOrderReadRepository orderReadRepository, IApplicationDbContext applicationDbContext, IMapper mapper)
+    {
+        this.orderReadRepository = orderReadRepository;
+        this.applicationDbContext = applicationDbContext;
+        this._mapper = mapper;
+
+    }
     /// <summary>
     /// Gets a single order.
     /// </summary>
@@ -74,7 +90,7 @@ public class OrdersController : ODataController
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
     public SingleResult<OrderDto> MostExpensive() =>
-        SingleResult.Create(new[] { new OrderDto() { Code = Guid.NewGuid(), Customer = "Bill Mei" } }.AsQueryable());
+        SingleResult.Create(orderReadRepository.Queryable.ProjectTo<OrderDto>(_mapper.ConfigurationProvider));
 
     /// <summary>
     /// Gets the most expensive order.
@@ -90,7 +106,7 @@ public class OrdersController : ODataController
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select)]
     public SingleResult<OrderDto> MostExpensive(Guid key) =>
-        SingleResult.Create(new[] { new OrderDto() { Code = key, Customer = "Bill Mei" } }.AsQueryable());
+        SingleResult.Create(orderReadRepository.Queryable.Where(x => x.Id == key).ProjectTo<OrderDto>(_mapper.ConfigurationProvider));
 
     /// <summary>
     /// Gets the line items for the specified order.
@@ -104,15 +120,8 @@ public class OrdersController : ODataController
     [ProducesResponseType(typeof(ODataValue<IEnumerable<LineItemDto>>), Status200OK)]
     [ProducesResponseType(Status404NotFound)]
     [EnableQuery(AllowedQueryOptions = Select | Count)]
-    public IActionResult GetLineItems(Guid key)
+    public async Task<IActionResult> GetLineItems(Guid key)
     {
-        LineItemDto[] lineItems = new LineItemDto[]
-        {
-            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 2m, Description = "Dry erase wipes" },
-            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 3.5m, Description = "Dry erase eraser" },
-            new() { Code = Guid.NewGuid(), Quantity = 1, UnitPrice = 5m, Description = "Dry erase markers" },
-        };
-
-        return Ok(lineItems);
+        return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
     }
 }

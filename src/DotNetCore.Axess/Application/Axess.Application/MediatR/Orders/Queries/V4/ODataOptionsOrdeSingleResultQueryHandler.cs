@@ -6,7 +6,7 @@ using Axess.MediatR.OData.Queries;
 using MediatR;
 using Microsoft.AspNetCore.OData.Results;
 
-namespace Axess.Application.MediatR.Orders.Queries.OData.V4;
+namespace Axess.Application.MediatR.Orders.Queries.V4;
 using OrderDto = OrderDto;
 /// <summary>
 /// 

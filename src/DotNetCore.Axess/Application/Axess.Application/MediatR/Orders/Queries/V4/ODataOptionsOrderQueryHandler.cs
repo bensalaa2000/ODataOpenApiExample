@@ -7,7 +7,7 @@ using Axess.Shared;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
 
-namespace Axess.Application.MediatR.Orders.Queries.OData.V4;
+namespace Axess.Application.MediatR.Orders.Queries.V4;
 using OrderDto = OrderDto;
 /// <inheritdoc/>
 public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptionsQuery<OrderDto>, PaginatedList<OrderDto>>

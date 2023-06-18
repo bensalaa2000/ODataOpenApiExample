@@ -4,7 +4,7 @@ using Axess.MediatR.OData.Queries;
 using MediatR;
 using Microsoft.AspNetCore.OData.Results;
 
-namespace Axess.Application.MediatR.Orders.Queries.OData.V5;
+namespace Axess.Application.MediatR.Orders.Queries.V5;
 /// <summary>
 /// 
 /// </summary>
