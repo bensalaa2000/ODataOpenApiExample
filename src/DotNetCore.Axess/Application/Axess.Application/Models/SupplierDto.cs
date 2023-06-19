@@ -15,11 +15,11 @@ public class SupplierDto
 	/// Gets or sets the supplier name.
 	/// </summary>
 	/// <value>The supplier's name.</value>
-	public string Name { get; set; } = string.Empty;
+	public string Name { get; set; }
 
 	/// <summary>
 	/// Gets or sets products associated with the supplier.
 	/// </summary>
 	/// <value>The collection of associated products.</value>
-	public ICollection<ProductDto>? Products { get; set; }
+	public ICollection<ProductDto> Products { get; set; }
 }

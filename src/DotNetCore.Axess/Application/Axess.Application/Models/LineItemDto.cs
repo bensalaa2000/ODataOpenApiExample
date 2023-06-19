@@ -15,7 +15,7 @@ public class LineItemDto
 	/// Gets or sets the line item description.
 	/// </summary>
 	/// <value>The line item description.</value>
-	public string Description { get; set; }
+	public string Description { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the line item quantity.
@@ -35,6 +35,6 @@ public class LineItemDto
 	/// <value>True if the line item is fulfilled; otherwise, false.</value>
 	public bool Fulfilled { get; set; }
 
-	public virtual OrderDto? Order { get; set; }
+	public virtual OrderDto Order { get; set; }
 
 }

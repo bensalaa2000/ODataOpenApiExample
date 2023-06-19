@@ -33,13 +33,13 @@ public class OrderDto
 	/// </summary>
 	/// <value>The name of the customer that placed the order.</value>
 	//[Required]
-	public string Customer { get; set; }
+	public string Customer { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets a description for the order.
 	/// </summary>
 	/// <value>The description of the order.</value>
-	public string Description { get; set; }
+	public string Description { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets a list of line items in the order.

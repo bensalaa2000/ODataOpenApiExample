@@ -3,7 +3,6 @@
 using AutoMapper;
 using Axess.Application.Models;
 using Axess.Domain.Entities;
-using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.Infrastructure.Contexts;
 using global::MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +12,6 @@ public class OrderCommandsHandler
 	, IRequestHandler<DeleteOrderCommand>
 {
 	private readonly IApplicationDbContext _dbContext;
-	private readonly IOrderCommandRepository _orderCommandRepository;
 
 	private readonly IMapper _mapper;
 	/// <summary>
@@ -21,11 +19,10 @@ public class OrderCommandsHandler
 	/// </summary>
 	/// <param name="context"></param>
 	/// <param name="mapper"></param>
-	public OrderCommandsHandler(IApplicationDbContext context, IMapper mapper, IOrderCommandRepository orderCommandRepository)
+	public OrderCommandsHandler(IApplicationDbContext context, IMapper mapper)
 	{
 		_dbContext = context;
 		_mapper = mapper;
-		_orderCommandRepository = orderCommandRepository;
 	}
 
 
@@ -36,22 +33,22 @@ public class OrderCommandsHandler
 			/*Age = request.Age,
             FirstName = request.FirstName*/
 		};
-		await _orderCommandRepository.AddAsync(_mapper.Map<Order>(order));
-		await _orderCommandRepository.SaveChangesAsync(cancellationToken);
-		/*_dbContext.Orders.Add(_mapper.Map<Order>(order));
-		await _dbContext.SaveChangesAsync();*/
+
+		_dbContext.Orders.Add(_mapper.Map<Order>(order));
+		await _dbContext.SaveChangesAsync();
 		return order;
 	}
 
 	public async Task<OrderDto> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
 	{
 		var order = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
-		if (order == null)
+		if (order is null)
 		{
 			// instead of throwing an exception here, we ideally indicate to the
 			// client that he is sending a bad request. I will tackle this in an
 			// upcoming post
-			throw new Exception("Record does not exist");
+			var exception = new Exception("Record does not exist");
+			throw exception;
 		}
 		/*person.Age = request.Age;
         person.FirstName = request.FirstName;*/
@@ -63,9 +60,10 @@ public class OrderCommandsHandler
 	public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
 	{
 		var person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
-		if (person == null)
+		if (person is null)
 		{
-			throw new Exception("Record does not exist");
+			var exception = new Exception("Record does not exist");
+			throw exception;
 		}
 		_dbContext.Orders.Remove(person);
 		await _dbContext.SaveChangesAsync();

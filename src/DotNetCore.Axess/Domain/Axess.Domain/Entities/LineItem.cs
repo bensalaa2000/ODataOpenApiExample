@@ -12,7 +12,7 @@ public class LineItem : Entity
 	/// Gets or sets the line item description.
 	/// </summary>
 	/// <value>The line item description.</value>
-	public string Description { get; set; }
+	public string Description { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the line item quantity.
@@ -34,6 +34,6 @@ public class LineItem : Entity
 
 	public Guid OrderId { get; set; }
 
-	public virtual Order? Order { get; set; } //= Order.Create(1);
+	public virtual Order Order { get; set; } //= Order.Create(1);
 
 }

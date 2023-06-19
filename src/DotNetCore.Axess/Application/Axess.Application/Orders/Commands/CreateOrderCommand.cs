@@ -10,8 +10,8 @@ public class CreateOrderCommand : IRequest<ApiResult<string>>
 		OrderItemList = new List<OrderItemDto>();
 	}
 	public string CustomerId { get; set; } = string.Empty;
-	public string PaymentAccountId { get; set; } = string.Empty;
-	public List<OrderItemDto>? OrderItemList { get; set; }
+	public string PaymentAccountId { get; set; }
+	public List<OrderItemDto> OrderItemList { get; set; }
 }
 
 public class OrderItemDto

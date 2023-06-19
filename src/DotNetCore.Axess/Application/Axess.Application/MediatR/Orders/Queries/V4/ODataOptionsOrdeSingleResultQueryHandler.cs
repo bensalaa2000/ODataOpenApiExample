@@ -29,7 +29,7 @@ public sealed class ODataOptionsOrdeSingleResultQueryHandler : IRequestHandler<O
 	public async Task<SingleResult<OrderDto>> Handle(ODataOptionsSingleResultQuery<OrderDto> request, CancellationToken cancellationToken)
 	{
 		var entities = orderReadRepository.Queryable;
-		var orders = entities.ProjectAndApplyToIQueryable(_mapper, request.options, null);
+		var orders = entities.ProjectAndApplyToIQueryable(_mapper, request.options);
 		var singleResult = SingleResult.Create(orders);
 		return await Task.FromResult(singleResult);
 

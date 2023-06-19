@@ -22,7 +22,7 @@ public class Order : Entity
 	/// Gets or sets the name of the ordering customer.
 	/// </summary>
 	/// <value>The name of the customer that placed the order.</value>
-	public string Customer { get; set; }
+	public string Customer { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets a description for the order.

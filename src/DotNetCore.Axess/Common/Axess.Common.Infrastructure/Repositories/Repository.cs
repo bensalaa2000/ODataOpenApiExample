@@ -63,8 +63,9 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 	public virtual Task UpdateRangeAsync(IEnumerable<TEntity> entities) => _commandRepository.UpdateRangeAsync(entities);
 
 	/// <inheritdoc/>
-	public virtual Task SaveChangesAsync(CancellationToken cancellationToken = default) => _commandRepository.SaveChangesAsync(cancellationToken);
+	public virtual Task SaveChangesAsync() => _commandRepository.SaveChangesAsync();
 	/// <inheritdoc/>
+	public virtual Task SaveChangesAsync(bool acceptAllChangesOnSuccess) => _commandRepository.SaveChangesAsync(acceptAllChangesOnSuccess);
 
 	#endregion
 	#region Query Implementations

@@ -25,6 +25,8 @@ public interface ICommandRepository<TEntity> where TEntity : Entity
 
 	Task UpdateRangeAsync(IEnumerable<TEntity> entities);
 
-	Task SaveChangesAsync(CancellationToken cancellationToken = default);
+	Task SaveChangesAsync();
+
+	Task SaveChangesAsync(bool acceptAllChangesOnSuccess);
 
 }
