@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Query.Validator;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.OData;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
 /// Represents a RESTful people service.
 /// </summary>
 [ApiVersion(3.0)]
-public class PeopleController : ApiODataControllerBase
+public class PeopleController : ODataController
 {
 	/// <summary>
 	/// Gets all people.

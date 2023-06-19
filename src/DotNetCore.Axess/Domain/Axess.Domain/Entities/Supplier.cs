@@ -10,7 +10,7 @@ public class Supplier : Entity
 	/// Gets or sets the supplier name.
 	/// </summary>
 	/// <value>The supplier's name.</value>
-	public string Name { get; set; } = string.Empty;
+	public string Name { get; set; }
 
 	private readonly List<Product> _products = new();
 	public virtual ICollection<Product> LineItems => _products.AsReadOnly();

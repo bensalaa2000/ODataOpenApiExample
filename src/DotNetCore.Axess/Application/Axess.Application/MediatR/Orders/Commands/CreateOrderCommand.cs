@@ -20,11 +20,11 @@ public class CreateOrderCommand : IRequest<OrderDto>
 	/// <summary>
 	/// 
 	/// </summary>
-	public string Customer { get; set; } = string.Empty;
+	public string Customer { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public string Description { get; set; } = string.Empty;
+	public string Description { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>

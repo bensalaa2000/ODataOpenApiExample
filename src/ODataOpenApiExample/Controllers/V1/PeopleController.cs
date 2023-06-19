@@ -5,6 +5,7 @@ using Axess.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Net.Mime;
@@ -17,7 +18,7 @@ using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
 /// </summary>
 [ApiVersion(1.0)]
 [ApiVersion(0.9, Deprecated = true)]
-public class PeopleController : ApiODataControllerBase
+public class PeopleController : ODataController
 {
 	/// <summary>
 	/// Gets a single person.

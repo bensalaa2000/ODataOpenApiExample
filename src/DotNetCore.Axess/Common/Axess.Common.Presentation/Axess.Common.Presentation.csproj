@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Axess.Common.Application\Axess.Common.Application.csproj" />
-    <ProjectReference Include="..\Axess.Common.Infrastructure\Axess.Common.Infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>

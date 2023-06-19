@@ -14,7 +14,7 @@ public class Product : Entity
 	/// Gets or sets the product name.
 	/// </summary>
 	/// <value>The product's name.</value>
-	public string Name { get; set; } = string.Empty;
+	public string Name { get; set; }
 
 	/// <summary>
 	/// Gets or sets the product price.
@@ -26,7 +26,7 @@ public class Product : Entity
 	/// Gets or sets the product category.
 	/// </summary>
 	/// <value>The category's name.</value>
-	public string Category { get; set; } = string.Empty;
+	public string Category { get; set; }
 
 	/// <summary>
 	/// Gets or sets the associated supplier identifier.

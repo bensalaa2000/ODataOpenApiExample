@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 /// Represents a RESTful service of suppliers.
 /// </summary>
 [ApiVersion(3.0)]
-public class SuppliersController : ApiODataControllerBase
+public class SuppliersController : ODataController
 {
 	private readonly IQueryable<SupplierDto> suppliers = new[]
 	{
