@@ -65,9 +65,8 @@ public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEnt
 	#endregion
 	#region UnitOfWork
 	/// <inheritdoc/>
-	public Task SaveChangesAsync() => _context.SaveChangesAsync(new CancellationToken());
+	public Task SaveChangesAsync(CancellationToken cancellationToken = default) => _context.SaveChangesAsync(cancellationToken);
 	/// <inheritdoc/>
-	public Task SaveChangesAsync(bool acceptAllChangesOnSuccess) => _context.SaveChangesAsync(acceptAllChangesOnSuccess, new CancellationToken());
 	#endregion
 	public void Delete(Guid key)
 	{

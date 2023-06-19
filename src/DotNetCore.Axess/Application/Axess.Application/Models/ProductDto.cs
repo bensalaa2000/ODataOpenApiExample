@@ -42,5 +42,5 @@ public class ProductDto
 	/// Gets or sets the associated supplier.
 	/// </summary>
 	/// <value>The associated supplier.</value>
-	public virtual SupplierDto Supplier { get; set; }
+	public virtual SupplierDto? Supplier { get; set; }
 }

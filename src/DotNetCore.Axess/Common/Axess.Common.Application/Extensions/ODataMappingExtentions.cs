@@ -48,7 +48,7 @@ public static class ODataMappingExtentions
 	public static IEnumerable<T> ProjectAndApplyTo<T>(this IQueryable entities,
 		IMapper _mapper,
 		ODataQueryOptions<T> queryOptions,
-		ODataQuerySettings querySettings = null)
+		ODataQuerySettings? querySettings = null)
 	{
 		///IQueryable<T> dtos = _mapper.ProjectTo<T>(entities);
 		var result = entities.ProjectTo<T>(_mapper.ConfigurationProvider);
@@ -67,7 +67,7 @@ public static class ODataMappingExtentions
 	public static IEnumerable<T> ProjectAndApplyTo<T>(this IMapper _mapper,
 		IQueryable entities,
 		ODataQueryOptions<T> queryOptions,
-		ODataQuerySettings querySettings = null)
+		ODataQuerySettings querySettings)
 	{
 		var result = entities.ProjectTo<T>(_mapper.ConfigurationProvider);
 		return (querySettings != null ? queryOptions.ApplyTo(result, querySettings) : queryOptions.ApplyTo(result)) as IEnumerable<T>;
@@ -85,7 +85,7 @@ public static class ODataMappingExtentions
 	public static IQueryable<T> ProjectAndApplyToIQueryable<T>(this IQueryable entities,
 		IMapper _mapper,
 		ODataQueryOptions<T> queryOptions,
-		ODataQuerySettings querySettings = null) =>
+		ODataQuerySettings? querySettings = null) =>
 			entities.ProjectAndApplyTo<T>(_mapper, queryOptions, querySettings).AsQueryable<T>();
 
 	/// <summary>
@@ -100,6 +100,6 @@ public static class ODataMappingExtentions
 	public static IQueryable<T> ProjectAndApplyToIQueryable<T>(this IMapper _mapper,
 		IQueryable entities,
 		ODataQueryOptions<T> queryOptions,
-		ODataQuerySettings querySettings = null) =>
+		ODataQuerySettings querySettings) =>
 			_mapper.ProjectAndApplyTo<T>(entities, queryOptions, querySettings).AsQueryable<T>();
 }

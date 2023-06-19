@@ -27,6 +27,8 @@ public sealed class ODataOptionsOrderIEnumerableQueryHandler : IRequestHandler<O
 	/// <inheritdoc/>
 	public async Task<IEnumerable> Handle(ODataOptionsIEnumerableQuery<OrderDto> request, CancellationToken cancellationToken)
 	{
-		return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<OrderDto>(orderReadRepository.Queryable)) as IEnumerable<OrderDto>);
+		var resultMapper = _mapper.ProjectTo<OrderDto>(orderReadRepository.Queryable);
+		var result = (IEnumerable<OrderDto>)request.Options.ApplyTo(resultMapper)!;
+		return await Task.FromResult(result);
 	}
 }

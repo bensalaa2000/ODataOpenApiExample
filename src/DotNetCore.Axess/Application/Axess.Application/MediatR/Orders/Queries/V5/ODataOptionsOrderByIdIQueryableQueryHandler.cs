@@ -33,6 +33,7 @@ public sealed class ODataOptionsOrderByIdIQueryableQueryHandler : IRequestHandle
 	/// <returns></returns>
 	public async Task<IQueryable<Order>> Handle(ODataOptionsByIdIQueryableQuery<Order> request, CancellationToken cancellationToken)
 	{
-		return await Task.FromResult(request.Options.ApplyTo(orderReadRepository.Queryable) as IQueryable<Order>);
+		var result = (IQueryable<Order>)request.Options.ApplyTo(orderReadRepository.Queryable);
+		return await Task.FromResult(result);
 	}
 }

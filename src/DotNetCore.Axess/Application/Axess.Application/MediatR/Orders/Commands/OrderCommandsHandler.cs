@@ -3,6 +3,7 @@
 using AutoMapper;
 using Axess.Application.Models;
 using Axess.Domain.Entities;
+using Axess.Domain.Repositories.Interfaces.Orders;
 using Axess.Infrastructure.Contexts;
 using global::MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ public class OrderCommandsHandler
 	, IRequestHandler<DeleteOrderCommand>
 {
 	private readonly IApplicationDbContext _dbContext;
+	private readonly IOrderCommandRepository _orderCommandRepository;
 
 	private readonly IMapper _mapper;
 	/// <summary>
@@ -19,10 +21,11 @@ public class OrderCommandsHandler
 	/// </summary>
 	/// <param name="context"></param>
 	/// <param name="mapper"></param>
-	public OrderCommandsHandler(IApplicationDbContext context, IMapper mapper)
+	public OrderCommandsHandler(IApplicationDbContext context, IMapper mapper, IOrderCommandRepository orderCommandRepository)
 	{
 		_dbContext = context;
 		_mapper = mapper;
+		_orderCommandRepository = orderCommandRepository;
 	}
 
 
@@ -33,9 +36,10 @@ public class OrderCommandsHandler
 			/*Age = request.Age,
             FirstName = request.FirstName*/
 		};
-
-		_dbContext.Orders.Add(_mapper.Map<Order>(order));
-		await _dbContext.SaveChangesAsync();
+		await _orderCommandRepository.AddAsync(_mapper.Map<Order>(order));
+		await _orderCommandRepository.SaveChangesAsync(cancellationToken);
+		/*_dbContext.Orders.Add(_mapper.Map<Order>(order));
+		await _dbContext.SaveChangesAsync();*/
 		return order;
 	}
 

@@ -10,23 +10,23 @@ public sealed class Address : Entity
 	/// Gets or sets the street address.
 	/// </summary>
 	/// <value>The street address.</value>
-	public string Street { get; set; }
+	public string Street { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the address city.
 	/// </summary>
 	/// <value>The address city.</value>
-	public string City { get; set; }
+	public string City { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the address state.
 	/// </summary>
 	/// <value>The address state.</value>
-	public string State { get; set; }
+	public string State { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the address zip code.
 	/// </summary>
 	/// <value>The address zip code.</value>
-	public string ZipCode { get; set; }
+	public string ZipCode { get; set; } = string.Empty;
 }

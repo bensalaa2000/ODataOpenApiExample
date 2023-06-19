@@ -38,5 +38,5 @@ public class Product : Entity
 	/// Gets or sets the associated supplier.
 	/// </summary>
 	/// <value>The associated supplier.</value>
-	public virtual Supplier Supplier { get; set; }
+	public virtual Supplier? Supplier { get; set; }
 }

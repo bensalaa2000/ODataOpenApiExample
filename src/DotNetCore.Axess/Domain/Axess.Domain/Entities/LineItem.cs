@@ -34,6 +34,6 @@ public class LineItem : Entity
 
 	public Guid OrderId { get; set; }
 
-	public virtual Order Order { get; set; } //= Order.Create(1);
+	public virtual Order? Order { get; set; } //= Order.Create(1);
 
 }

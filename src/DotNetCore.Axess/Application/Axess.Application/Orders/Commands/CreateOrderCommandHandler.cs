@@ -26,7 +26,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Api
 			Customer = request.CustomerId
 		};
 
-		var lineItems = request.OrderItemList.Select(item => new LineItem(Guid.NewGuid())
+		var lineItems = request.OrderItemList!.Select(item => new LineItem(Guid.NewGuid())
 		{
 			UnitPrice = item.Price,
 			Quantity = item.Count,

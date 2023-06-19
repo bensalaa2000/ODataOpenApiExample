@@ -11,7 +11,7 @@ using Microsoft.OData.ModelBuilder;
 public class OrderModelConfiguration : IModelConfiguration
 {
 	/// <inheritdoc />
-	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
+	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string? routePrefix)
 	{
 
 		builder.EntitySet<OrderDto>("Orders");

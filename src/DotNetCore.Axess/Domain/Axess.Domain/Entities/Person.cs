@@ -38,7 +38,7 @@ public class Person : Entity
 	/// Gets or sets the person's home address.
 	/// </summary>
 	/// <value>The person's home address.</value>
-	public virtual Address HomeAddress { get; set; }
+	public virtual Address? HomeAddress { get; set; }
 
 	/// <summary>
 	/// 
@@ -49,5 +49,5 @@ public class Person : Entity
 	/// Gets or sets the person's work address.
 	/// </summary>
 	/// <value>The person's work address.</value>
-	public virtual Address WorkAddress { get; set; }
+	public virtual Address? WorkAddress { get; set; }
 }
