@@ -10,14 +10,15 @@ using Microsoft.OData.ModelBuilder;
 /// </summary>
 public class ProductConfiguration : IModelConfiguration
 {
-    /// <inheritdoc />
-    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
-    {
-        if (apiVersion < ApiVersions.V3)
-        {
-            return;
-        }
+	/// <inheritdoc />
+	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string? routePrefix)
+	{
+		if (apiVersion < ApiVersions.V3)
+		{
+			return;
+		}
 
-        EntityTypeConfiguration<ProductDto> product = builder.EntitySet<ProductDto>("Products").EntityType.HasKey(p => p.Code);
-    }
+		/***EntityTypeConfiguration<ProductDto> product = */
+		builder.EntitySet<ProductDto>("Products").EntityType.HasKey(p => p.Code);
+	}
 }

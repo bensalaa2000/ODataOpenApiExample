@@ -3,5 +3,5 @@ using global::MediatR;
 
 public class DeleteOrderCommand : IRequest
 {
-    public Guid Id { get; set; }
+	public Guid Id { get; set; }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Axess.MediatR.OData.Queries;
 
+using Axess.Shared;
 using global::MediatR;
 using Microsoft.AspNetCore.OData.Query;
-using Axess.Shared;
 
 /// <summary>
 ///  Used on V4 and V5 controllers

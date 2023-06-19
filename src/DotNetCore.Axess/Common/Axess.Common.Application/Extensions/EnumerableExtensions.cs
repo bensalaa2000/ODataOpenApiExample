@@ -7,39 +7,39 @@ using System.Collections;
 /// </summary>
 public static class EnumerableExtensions
 {
-    /// <summary>
-    /// Returns the first element from the specified sequence.
-    /// </summary>
-    /// <param name="enumerable">The <see cref="IEnumerable">sequence</see> to take an element from.</param>
-    /// <returns>The first element in the sequence or <c>null</c>.</returns>
-    public static object FirstOrDefault(this IEnumerable enumerable)
-    {
-        IEnumerator iterator = enumerable.GetEnumerator();
+	/// <summary>
+	/// Returns the first element from the specified sequence.
+	/// </summary>
+	/// <param name="enumerable">The <see cref="IEnumerable">sequence</see> to take an element from.</param>
+	/// <returns>The first element in the sequence or <c>null</c>.</returns>
+	public static object FirstOrDefault(this IEnumerable enumerable)
+	{
+		var iterator = enumerable.GetEnumerator();
 
-        try
-        {
-            if (iterator.MoveNext())
-            {
-                return iterator.Current;
-            }
-        }
-        finally
-        {
-            if (iterator is IDisposable disposable)
-            {
-                disposable.Dispose();
-            }
-        }
+		try
+		{
+			if (iterator.MoveNext())
+			{
+				return iterator.Current;
+			}
+		}
+		finally
+		{
+			if (iterator is IDisposable disposable)
+			{
+				disposable.Dispose();
+			}
+		}
 
-        return default;
-    }
+		return default;
+	}
 
-    /// <summary>
-    /// Returns a single element from the specified sequence.
-    /// </summary>
-    /// <param name="enumerable">The <see cref="IEnumerable">sequence</see> to take an element from.</param>
-    /// <returns>The single element in the sequence or <c>null</c>.</returns>
-    /*public static object SingleOrDefault(this IEnumerable enumerable)
+	/// <summary>
+	/// Returns a single element from the specified sequence.
+	/// </summary>
+	/// <param name="enumerable">The <see cref="IEnumerable">sequence</see> to take an element from.</param>
+	/// <returns>The single element in the sequence or <c>null</c>.</returns>
+	/***public static object SingleOrDefault(this IEnumerable enumerable)
     {
         IEnumerator iterator = enumerable.GetEnumerator();
         object result = default;

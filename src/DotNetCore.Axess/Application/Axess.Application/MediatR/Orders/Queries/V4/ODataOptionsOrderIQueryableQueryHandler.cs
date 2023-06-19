@@ -11,21 +11,21 @@ using OrderDto = OrderDto;
 /// </summary>
 public sealed class ODataOptionsOrderIQueryableQueryHandler : IRequestHandler<ODataOptionsIQueryableQuery<OrderDto>, IQueryable>
 {
-    //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
+	//https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
-    private readonly IOrderReadRepository orderReadRepository;
+	private readonly IOrderReadRepository orderReadRepository;
 
-    private readonly IMapper _mapper;
-    /// <inheritdoc/>
-    public ODataOptionsOrderIQueryableQueryHandler(IOrderReadRepository orderReadRepository, IMapper mapper)
-    {
-        this.orderReadRepository = orderReadRepository;
-        _mapper = mapper;
-    }
+	private readonly IMapper _mapper;
+	/// <inheritdoc/>
+	public ODataOptionsOrderIQueryableQueryHandler(IOrderReadRepository orderReadRepository, IMapper mapper)
+	{
+		this.orderReadRepository = orderReadRepository;
+		_mapper = mapper;
+	}
 
-    /// <inheritdoc/>
-    public async Task<IQueryable> Handle(ODataOptionsIQueryableQuery<OrderDto> request, CancellationToken cancellationToken)
-    {
-        return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<OrderDto>(orderReadRepository.Queryable)));
-    }
+	/// <inheritdoc/>
+	public async Task<IQueryable> Handle(ODataOptionsIQueryableQuery<OrderDto> request, CancellationToken cancellationToken)
+	{
+		return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<OrderDto>(orderReadRepository.Queryable)));
+	}
 }

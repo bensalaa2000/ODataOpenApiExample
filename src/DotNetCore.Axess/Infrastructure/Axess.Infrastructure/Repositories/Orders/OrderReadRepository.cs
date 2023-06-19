@@ -7,7 +7,7 @@ namespace Axess.Infrastructure.Repositories.Orders;
 
 public class OrderReadRepository : QueryRepository<Order>, IOrderReadRepository
 {
-    /// <inheritdoc/>
-    public OrderReadRepository(ApplicationDbContext dbContext) : base(dbContext) { }
+	/// <inheritdoc/>
+	public OrderReadRepository(ApplicationDbContext dbContext) : base(dbContext) { }
 
 }

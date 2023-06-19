@@ -10,19 +10,19 @@ using Microsoft.OData.ModelBuilder;
 /// </summary>
 public class OrderConfiguration : IModelConfiguration
 {
-    /// <inheritdoc />
-    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
-    {
-        builder.EntitySet<Order>("EntityOrders");
-        EntityTypeConfiguration<Order> orderEntity = builder.EntityType<Order>();
-        orderEntity.HasKey(o => o.Id);
-        orderEntity.HasMany(x => x.LineItems);
+	/// <inheritdoc />
+	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
+	{
+		builder.EntitySet<Order>("EntityOrders");
+		var orderEntity = builder.EntityType<Order>();
+		orderEntity.HasKey(o => o.Id);
+		orderEntity.HasMany(x => x.LineItems);
 
-        builder.EntitySet<LineItem>("LineItems");
-        EntityTypeConfiguration<LineItem> lineItemEntity = builder.EntityType<LineItem>();
-        lineItemEntity.HasKey(li => li.Id);
+		builder.EntitySet<LineItem>("LineItems");
+		var lineItemEntity = builder.EntityType<LineItem>();
+		lineItemEntity.HasKey(li => li.Id);
 
 
-        //EntityTypeConfiguration<LineItem> lineItem = builder.EntityType<LineItem>().HasKey(li => li.Id);
-    }
+		//EntityTypeConfiguration<LineItem> lineItem = builder.EntityType<LineItem>().HasKey(li => li.Id);
+	}
 }

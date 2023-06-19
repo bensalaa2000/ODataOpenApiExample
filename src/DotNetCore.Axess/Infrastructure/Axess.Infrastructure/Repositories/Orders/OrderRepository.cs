@@ -8,7 +8,7 @@ namespace Axess.Infrastructure.Repositories.Orders;
 
 public class OrderRepository : Repository<Order>, IOrderRepository
 {
-    /// <inheritdoc/>
-    public OrderRepository(ApplicationDbContext dbContext, ILogger<Order> logger) : base(dbContext, logger) { }
+	/// <inheritdoc/>
+	public OrderRepository(ApplicationDbContext dbContext, ILogger<Order> logger) : base(dbContext, logger) { }
 
 }

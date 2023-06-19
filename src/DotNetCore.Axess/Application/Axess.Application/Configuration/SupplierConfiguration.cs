@@ -10,15 +10,15 @@ using Microsoft.OData.ModelBuilder;
 /// </summary>
 public class SupplierConfiguration : IModelConfiguration
 {
-    /// <inheritdoc />
-    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
-    {
-        if (apiVersion < ApiVersions.V3)
-        {
-            return;
-        }
+	/// <inheritdoc />
+	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
+	{
+		if (apiVersion < ApiVersions.V3)
+		{
+			return;
+		}
 
-        builder.EntitySet<SupplierDto>("Suppliers").EntityType.HasKey(p => p.Code);
-        builder.Singleton<SupplierDto>("Acme");
-    }
+		builder.EntitySet<SupplierDto>("Suppliers").EntityType.HasKey(p => p.Code);
+		builder.Singleton<SupplierDto>("Acme");
+	}
 }

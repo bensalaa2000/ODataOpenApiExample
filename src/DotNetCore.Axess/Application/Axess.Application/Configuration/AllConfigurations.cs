@@ -9,9 +9,9 @@ using Microsoft.OData.ModelBuilder;
 /// </summary>
 public class AllConfigurations : IModelConfiguration
 {
-    /// <inheritdoc />
-    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
-    {
-        //builder.Function( "GetSalesTaxRate" ).Returns<double>().Parameter( "PostalCode" );
-    }
+	/// <inheritdoc />
+	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
+	{
+		///builder.Function( "GetSalesTaxRate" ).Returns<double>().Parameter( "PostalCode" );
+	}
 }

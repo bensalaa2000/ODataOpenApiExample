@@ -7,7 +7,7 @@ namespace Axess.Infrastructure.Repositories.Orders;
 
 public class OrderCommandRepository : CommandRepository<Order>, IOrderCommandRepository
 {
-    /// <inheritdoc/>
-    public OrderCommandRepository(ApplicationDbContext dbContext) : base(dbContext) { }
+	/// <inheritdoc/>
+	public OrderCommandRepository(ApplicationDbContext dbContext) : base(dbContext) { }
 
 }

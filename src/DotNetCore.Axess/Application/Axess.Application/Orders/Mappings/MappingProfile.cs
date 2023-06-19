@@ -11,84 +11,84 @@ namespace Axess.Mappings.Profiles;
 /// </summary>
 public class MappingProfile : Profile
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public MappingProfile()
-    {
-        ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+	/// <summary>
+	/// 
+	/// </summary>
+	public MappingProfile()
+	{
+		ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
 
-        CreateMap<CreateOrderCommand, Order>()
-           .ForMember(src => src.Customer, o => o.MapFrom(dest => dest.CustomerId))
-           .ConstructUsing(v => new Order(Guid.NewGuid()))
-           .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
+		CreateMap<CreateOrderCommand, Order>()
+		   .ForMember(src => src.Customer, o => o.MapFrom(dest => dest.CustomerId))
+		   .ConstructUsing(v => new Order(Guid.NewGuid()))
+		   .ForMember(a => a.LineItems, o => o.ExplicitExpansion());
 
-        CreateMap<OrderItemDto, LineItem>()
-            .ForMember(src => src.UnitPrice, o => o.MapFrom(dest => dest.Price))
-            .ForMember(src => src.Quantity, o => o.MapFrom(dest => dest.Count));
+		CreateMap<OrderItemDto, LineItem>()
+			.ForMember(src => src.UnitPrice, o => o.MapFrom(dest => dest.Price))
+			.ForMember(src => src.Quantity, o => o.MapFrom(dest => dest.Count));
 
-        CreateProjection<Address, AddressDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+		CreateProjection<Address, AddressDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
 
-        CreateProjection<LineItem, LineItemDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
-        CreateProjection<Order, OrderDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
-            /*.ForMember(a => a.LineItems, o => o.ExplicitExpansion())*/;
+		CreateProjection<LineItem, LineItemDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+		CreateProjection<Order, OrderDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
+			/*.ForMember(a => a.LineItems, o => o.ExplicitExpansion())*/;
 
-        CreateProjection<Person, PersonDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
-        CreateProjection<Product, ProductDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
-        CreateProjection<Supplier, SupplierDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+		CreateProjection<Person, PersonDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+		CreateProjection<Product, ProductDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
+		CreateProjection<Supplier, SupplierDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id));
 
-        CreateMap<Order, OrderDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
-             /*.ForMember(a => a.LineItems, o => o.ExplicitExpansion())*/
-             .ReverseMap();
+		CreateMap<Order, OrderDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
+			 /*.ForMember(a => a.LineItems, o => o.ExplicitExpansion())*/
+			 .ReverseMap();
 
-        CreateMap<LineItem, LineItemDto>()
-            .ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
-            .ReverseMap();
-    }
+		CreateMap<LineItem, LineItemDto>()
+			.ForMember(a => a.Code, o => o.MapFrom(x => x.Id))
+			.ReverseMap();
+	}
 
-    private void ApplyMappingsFromAssembly(Assembly assembly)
-    {
-        Type mapFromType = typeof(IMapFrom<>);
+	private void ApplyMappingsFromAssembly(Assembly assembly)
+	{
+		var mapFromType = typeof(IMapFrom<>);
 
-        string mappingMethodName = nameof(IMapFrom<object>.Mapping);
+		var mappingMethodName = nameof(IMapFrom<object>.Mapping);
 
-        bool HasInterface(Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == mapFromType;
+		bool HasInterface(Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == mapFromType;
 
-        List<Type> types = assembly.GetExportedTypes().Where(t => t.GetInterfaces().Any(HasInterface)).ToList();
+		var types = assembly.GetExportedTypes().Where(t => t.GetInterfaces().ToList().Exists(HasInterface)).ToList();
 
-        Type[] argumentTypes = new Type[] { typeof(Profile) };
+		var argumentTypes = new Type[] { typeof(Profile) };
 
-        foreach (Type type in types)
-        {
-            object instance = Activator.CreateInstance(type);
+		foreach (var type in types)
+		{
+			var instance = Activator.CreateInstance(type);
 
-            MethodInfo methodInfo = type.GetMethod(mappingMethodName);
+			var methodInfo = type.GetMethod(mappingMethodName);
 
-            if (methodInfo != null)
-            {
-                methodInfo.Invoke(instance, new object[] { this });
-            }
-            else
-            {
-                List<Type> interfaces = type.GetInterfaces().Where(HasInterface).ToList();
+			if (methodInfo != null)
+			{
+				methodInfo.Invoke(instance, new object[] { this });
+			}
+			else
+			{
+				var interfaces = type.GetInterfaces().Where(HasInterface).ToList();
 
-                if (interfaces.Count > 0)
-                {
-                    foreach (Type @interface in interfaces)
-                    {
-                        MethodInfo interfaceMethodInfo = @interface.GetMethod(mappingMethodName, argumentTypes);
+				if (interfaces.Count > 0)
+				{
+					foreach (var @interface in interfaces)
+					{
+						var interfaceMethodInfo = @interface.GetMethod(mappingMethodName, argumentTypes);
 
-                        interfaceMethodInfo?.Invoke(instance, new object[] { this });
-                    }
-                }
-            }
-        }
-    }
+						interfaceMethodInfo?.Invoke(instance, new object[] { this });
+					}
+				}
+			}
+		}
+	}
 }

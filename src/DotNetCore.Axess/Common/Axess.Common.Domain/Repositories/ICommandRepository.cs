@@ -9,24 +9,24 @@ namespace Axess.Common.Domain.Repositories;
 public interface ICommandRepository<TEntity> where TEntity : Entity
 {
 
-    Task AddAsync(TEntity entity);
+	Task AddAsync(TEntity entity);
 
-    Task AddRangeAsync(IEnumerable<TEntity> entities);
+	Task AddRangeAsync(IEnumerable<TEntity> entities);
 
-    Task DeleteAsync(Guid key);
+	Task DeleteAsync(Guid key);
 
-    Task DeleteAsync(Expression<Func<TEntity, bool>> where);
+	Task DeleteAsync(Expression<Func<TEntity, bool>> where);
 
-    Task DeleteAsync(TEntity entity);
+	Task DeleteAsync(TEntity entity);
 
-    Task UpdateAsync(TEntity entity);
+	Task UpdateAsync(TEntity entity);
 
-    Task UpdatePartialAsync(TEntity entity, object id);
+	Task UpdatePartialAsync(TEntity entity, object id);
 
-    Task UpdateRangeAsync(IEnumerable<TEntity> entities);
+	Task UpdateRangeAsync(IEnumerable<TEntity> entities);
 
-    Task SaveChangesAsync();
+	Task SaveChangesAsync();
 
-    Task SaveChangesAsync(bool acceptAllChangesOnSuccess);
+	Task SaveChangesAsync(bool acceptAllChangesOnSuccess);
 
 }

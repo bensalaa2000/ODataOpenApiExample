@@ -13,25 +13,25 @@ using OrderDto = OrderDto;
 /// </summary>
 public sealed class ODataOptionsOrdeSingleResultQueryHandler : IRequestHandler<ODataOptionsSingleResultQuery<OrderDto>, SingleResult<OrderDto>>
 {
-    //https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
+	//https://csharp.hotexamples.com/examples/-/ODataQueryOptions/ApplyTo/php-odataqueryoptions-applyto-method-examples.html
 
-    private readonly IOrderReadRepository orderReadRepository;
+	private readonly IOrderReadRepository orderReadRepository;
 
-    private readonly IMapper _mapper;
-    /// <inheritdoc/>
-    public ODataOptionsOrdeSingleResultQueryHandler(IOrderReadRepository orderReadRepository, IMapper mapper)
-    {
-        this.orderReadRepository = orderReadRepository;
-        _mapper = mapper;
-    }
+	private readonly IMapper _mapper;
+	/// <inheritdoc/>
+	public ODataOptionsOrdeSingleResultQueryHandler(IOrderReadRepository orderReadRepository, IMapper mapper)
+	{
+		this.orderReadRepository = orderReadRepository;
+		_mapper = mapper;
+	}
 
-    /// <inheritdoc/>
-    public async Task<SingleResult<OrderDto>> Handle(ODataOptionsSingleResultQuery<OrderDto> request, CancellationToken cancellationToken)
-    {
-        IQueryable<Domain.Entities.Order> entities = orderReadRepository.Queryable;
-        IQueryable<OrderDto> orders = entities.ProjectAndApplyToIQueryable(_mapper, request.options);
-        SingleResult<OrderDto> singleResult = SingleResult.Create(orders);
-        return await Task.FromResult(singleResult);
+	/// <inheritdoc/>
+	public async Task<SingleResult<OrderDto>> Handle(ODataOptionsSingleResultQuery<OrderDto> request, CancellationToken cancellationToken)
+	{
+		var entities = orderReadRepository.Queryable;
+		var orders = entities.ProjectAndApplyToIQueryable(_mapper, request.options);
+		var singleResult = SingleResult.Create(orders);
+		return await Task.FromResult(singleResult);
 
-    }
+	}
 }
