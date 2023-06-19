@@ -105,6 +105,7 @@ public static class ConfigureServices
 		services.AddSwaggerGen(
 			options =>
 			{
+				options.CustomSchemaIds(type => type.ToString());
 				// add a custom operation filter which sets default values
 				options.OperationFilter<SwaggerDefaultValues>();
 

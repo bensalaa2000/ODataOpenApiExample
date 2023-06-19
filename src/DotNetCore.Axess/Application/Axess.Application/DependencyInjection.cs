@@ -15,7 +15,7 @@ public static class DependencyInjection
 		{
 			cfg.AddExpressionMapping();
 		}, Assembly.GetExecutingAssembly());
-		services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+		services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly(), includeInternalTypes: true);
 		services.AddMediatR(Assembly.GetExecutingAssembly());
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));// --> Axess.Common.Application.Behaviours
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));// --> Axess.Common.Application.Behaviours

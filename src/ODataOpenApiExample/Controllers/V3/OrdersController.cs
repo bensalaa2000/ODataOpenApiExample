@@ -25,7 +25,6 @@ using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
 public class OrdersController : ApiODataControllerBase
 {
 
-
 	private readonly IOrderReadRepository orderReadRepository;
 
 	private readonly IApplicationDbContext applicationDbContext;
@@ -37,7 +36,6 @@ public class OrdersController : ApiODataControllerBase
 		this.orderReadRepository = orderReadRepository;
 		this.applicationDbContext = applicationDbContext;
 		this._mapper = mapper;
-
 	}
 
 	/// <summary>
@@ -52,16 +50,7 @@ public class OrdersController : ApiODataControllerBase
 	[EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Top | Skip | Count | Filter)]
 	public IQueryable<OrderDto> Get()
 	{
-		return orderReadRepository.Queryable/*.Where(o => o.Id == 1)*/.ProjectTo<OrderDto>(_mapper.ConfigurationProvider)/*.ToList()*/;
-		/*Console.WriteLine(entityOrders.Count);
-        Order[] orders = new Order[]
-        {
-            new(){ Id = 1, Customer = "John Doe" },
-            new(){ Id = 2, Customer = "John Doe" },
-            new(){ Id = 3, Customer = "Jane Doe", EffectiveDate = DateTime.UtcNow.AddDays( 7d ) },
-        };
-
-        return orders.AsQueryable();*/
+		return orderReadRepository.Queryable.ProjectTo<OrderDto>(_mapper.ConfigurationProvider);
 	}
 
 

@@ -4,6 +4,7 @@ using Asp.Versioning;
 using Asp.Versioning.OData;
 using Axess.Application.Models;
 using Axess.MediatR.OData.Queries;
+using Axess.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using System.Net.Mime;
@@ -21,11 +22,11 @@ public class OrdersController : ApiODataControllerBase
 	/// <returns>All available orders.</returns>
 	/// <response code="200">Orders successfully retrieved.</response>
 	/// <response code="400">The order is invalid.</response>
-	[HttpGet]
+	[HttpGet("GetPaginatedList")]
 	[Produces(MediaTypeNames.Application.Json)]
-	[ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
+	[ProducesResponseType(typeof(ODataValue<PaginatedList<OrderDto>>), Status200OK)]
 	//[ProducesResponseType(typeof(PageResult<Order>), Status200OK)]
-	public IActionResult Get(ODataQueryOptions<OrderDto> options) =>
+	public IActionResult GetPaginatedList(ODataQueryOptions<OrderDto> options) =>
 		Ok(Mediator.Send(new ODataOptionsQuery<OrderDto>(options)));
 
 
