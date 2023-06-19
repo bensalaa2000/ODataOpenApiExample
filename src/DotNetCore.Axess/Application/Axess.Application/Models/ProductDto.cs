@@ -17,7 +17,7 @@ public class ProductDto
 	/// Gets or sets the product name.
 	/// </summary>
 	/// <value>The product's name.</value>
-	public string Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the product price.
@@ -29,7 +29,7 @@ public class ProductDto
 	/// Gets or sets the product category.
 	/// </summary>
 	/// <value>The category's name.</value>
-	public string Category { get; set; }
+	public string Category { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the associated supplier identifier.

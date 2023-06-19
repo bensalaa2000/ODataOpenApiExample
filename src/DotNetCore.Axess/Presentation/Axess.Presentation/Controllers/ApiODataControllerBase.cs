@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Axess.Controllers;
 /// <summary>

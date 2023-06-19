@@ -42,12 +42,13 @@ public class OrderCommandsHandler
 	public async Task<OrderDto> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
 	{
 		var order = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
-		if (order == null)
+		if (order is null)
 		{
 			// instead of throwing an exception here, we ideally indicate to the
 			// client that he is sending a bad request. I will tackle this in an
 			// upcoming post
-			throw new Exception("Record does not exist");
+			var exception = new Exception("Record does not exist");
+			throw exception;
 		}
 		/*person.Age = request.Age;
         person.FirstName = request.FirstName;*/
@@ -59,9 +60,10 @@ public class OrderCommandsHandler
 	public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
 	{
 		var person = await _dbContext.Orders.SingleOrDefaultAsync(v => v.Id == request.Id);
-		if (person == null)
+		if (person is null)
 		{
-			throw new Exception("Record does not exist");
+			var exception = new Exception("Record does not exist");
+			throw exception;
 		}
 		_dbContext.Orders.Remove(person);
 		await _dbContext.SaveChangesAsync();

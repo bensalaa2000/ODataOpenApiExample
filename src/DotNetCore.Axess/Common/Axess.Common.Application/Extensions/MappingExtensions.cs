@@ -25,9 +25,9 @@ public static class MappingExtensions
 	}
 
 	internal static async Task<ICollection<TModel>> GetItemsAsync<TModel, TData>(this IQueryable<TData> query, IMapper mapper,
-		Expression<Func<TModel, bool>> filter = null,
-		Expression<Func<IQueryable<TModel>, IQueryable<TModel>>> queryFunc = null,
-		ICollection<Expression<Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>>>> includeProperties = null)
+		Expression<Func<TModel, bool>> filter,
+		Expression<Func<IQueryable<TModel>, IQueryable<TModel>>> queryFunc,
+		ICollection<Expression<Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>>>> includeProperties)
 	{
 		//Map the expressions
 		var f = mapper.MapExpression<Expression<Func<TData, bool>>>(filter);

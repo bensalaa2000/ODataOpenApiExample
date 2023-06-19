@@ -5,7 +5,6 @@ using Asp.Versioning.OData;
 using Axess.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 /// Represents a RESTful service for the ACME supplier.
 /// </summary>
 [ApiVersion(3.0)]
-public class AcmeController : ODataController
+public class AcmeController : ApiODataControllerBase
 {
 	/// <summary>
 	/// Retrieves the ACME supplier.

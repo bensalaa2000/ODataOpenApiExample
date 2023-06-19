@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.OData.UriParser;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 /// Represents a RESTful service of products.
 /// </summary>
 [ApiVersion(3.0)]
-public class ProductsController : ODataController
+public class ProductsController : ApiODataControllerBase
 {
 	private readonly IQueryable<ProductDto> products = new[]
 	{

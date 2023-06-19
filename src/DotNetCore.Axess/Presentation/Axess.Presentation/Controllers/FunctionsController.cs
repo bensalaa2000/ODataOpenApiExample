@@ -2,14 +2,13 @@
 
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 /// <summary>
 /// Provides unbound, utility functions.
 /// </summary>
 [ApiVersionNeutral]
-public class FunctionsController : ODataController
+public class FunctionsController : ApiODataControllerBase
 {
 	/// <summary>
 	/// Gets the sales tax for a postal code.

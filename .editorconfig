@@ -261,3 +261,4 @@ dotnet_style_predefined_type_for_member_access = true:silent
 dotnet_diagnostic.S4457.severity = suggestion # Séparer une méthode en deux
 dotnet_diagnostic.S1135.severity = suggestion # TODO tasks
 dotnet_diagnostic.CS1591.severity = none # Commentaire XML manquant
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
