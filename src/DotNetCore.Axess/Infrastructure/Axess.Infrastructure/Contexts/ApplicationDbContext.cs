@@ -1,4 +1,4 @@
-﻿using Axess.Application.Common.Interfaces;
+﻿using Axess.Application.Contexts;
 using Axess.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

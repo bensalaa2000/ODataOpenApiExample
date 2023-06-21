@@ -4,7 +4,6 @@ using Asp.Versioning;
 using Asp.Versioning.OData;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Axess.Application.Common.Interfaces;
 using Axess.Application.Models;
 using Axess.Domain.Repositories.Orders;
 using Microsoft.AspNetCore.Mvc;
@@ -28,14 +27,11 @@ public class OrdersController : ApiODataControllerBase
 {
 	private readonly IOrderReadRepository orderReadRepository;
 
-	private readonly IApplicationDbContext applicationDbContext;
-
 	private readonly IMapper _mapper;
 
-	public OrdersController(IOrderReadRepository orderReadRepository, IApplicationDbContext applicationDbContext, IMapper mapper)
+	public OrdersController(IOrderReadRepository orderReadRepository, IMapper mapper)
 	{
 		this.orderReadRepository = orderReadRepository;
-		this.applicationDbContext = applicationDbContext;
 		this._mapper = mapper;
 
 	}
@@ -172,6 +168,11 @@ public class OrdersController : ApiODataControllerBase
 	[EnableQuery(AllowedQueryOptions = Select | Count)]
 	public async Task<IActionResult> GetLineItems(Guid key)
 	{
-		return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
+		return Ok(await orderReadRepository.Queryable
+			.Where(x => x.Id == key)
+			.SelectMany(x => x.LineItems)
+			.ProjectTo<LineItemDto>(_mapper.ConfigurationProvider)
+			.ToListAsync());
+		//return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
 	}
 }
