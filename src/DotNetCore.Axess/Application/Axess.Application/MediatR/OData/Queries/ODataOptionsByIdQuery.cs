@@ -1,7 +1,8 @@
 ﻿namespace Axess.Application.MediatR.OData.Queries;
 
-
+using global::MediatR;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Results;
 
 /// <summary>
 /// 
@@ -9,4 +10,4 @@ using Microsoft.AspNetCore.OData.Query;
 /// <typeparam name="T"></typeparam>
 /// <param name="Options"></param>
 /// <param name="Key"></param>
-public sealed record ODataOptionsByIdQuery<T>(ODataQueryOptions<T> Options, Guid Key); //: IRequest<SingleResult<T>>;
+public sealed record ODataOptionsByIdQuery<T>(ODataQueryOptions<T> Options, Guid Key) : IRequest<SingleResult<T>>;
