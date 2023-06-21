@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using Axess.Application.MediatR.OData.Queries;
 using Axess.Application.Models;
-using Axess.Domain.Repositories.Interfaces.Orders;
-using Axess.MediatR.OData.Queries;
+using Axess.Domain.Repositories.Orders;
 using MediatR;
 
 namespace Axess.Application.MediatR.Orders.Queries.V4;

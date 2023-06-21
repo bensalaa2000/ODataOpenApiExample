@@ -28,5 +28,5 @@ public class CreateOrderCommand : IRequest<OrderDto>
 	/// <summary>
 	/// 
 	/// </summary>
-	public virtual IList<LineItemDto> LineItems { get; } = new List<LineItemDto>();
+	public virtual IList<LineItemDto> LineItems { get; set; } = new List<LineItemDto>();
 }

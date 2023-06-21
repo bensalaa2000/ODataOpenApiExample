@@ -1,4 +1,4 @@
-﻿namespace Axess.MediatR.OData.Queries;
+﻿namespace Axess.Application.MediatR.OData.Queries;
 
 using Axess.Shared;
 using global::MediatR;

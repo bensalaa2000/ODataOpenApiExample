@@ -1,12 +1,12 @@
-﻿using Axess.Domain.Entities;
-using Axess.Infrastructure.Contexts;
+﻿using Axess.Application.Common.Interfaces;
+using Axess.Domain.Entities;
 using Axess.Shared;
 ///using AutoMapper;
 using MediatR;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 
-public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, ApiResult<string>>
+public sealed class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, ApiResult<string>>
 {
 	private readonly IApplicationDbContext _context;
 	///private readonly IMapper _mapper;

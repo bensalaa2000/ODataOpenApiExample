@@ -1,7 +1,8 @@
-﻿using Axess.Domain.Entities;
-using Axess.Domain.Repositories.Interfaces.Orders;
+﻿using Axess.Application.MediatR.OData.Queries;
+using Axess.Common.Application.Exceptions;
+using Axess.Domain.Entities;
+using Axess.Domain.Repositories.Orders;
 using Axess.Extensions;
-using Axess.MediatR.OData.Queries;
 using Axess.Shared;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;
@@ -50,11 +51,12 @@ public sealed class ODataOptionsOrderQueryHandler : IRequestHandler<ODataOptions
 			PageSize = pageSize,
 			EnsureStableOrdering = true,
 		};
-		var items = request.Options.ApplyTo(orderReadRepository.Queryable, querySettings) as IQueryable<Order>;
+
+		var items = (IQueryable<Order>)request.Options.ApplyTo(orderReadRepository.Queryable, querySettings);
 		///IEnumerable<Models.Order> items = _dbContext.Orders.ProjectAndApplyTo<Models.Order>(_mapper, options, querySettings);
-		if (items == null)
+		if (items is null)
 		{
-			throw new ArgumentException("");
+			throw new NotFoundException("Aucun resultat trouvé");
 		}
 		PaginatedList<Order> paginatedList = new(items, count, pageNumber, pageSize);
 		return await Task.FromResult(paginatedList);

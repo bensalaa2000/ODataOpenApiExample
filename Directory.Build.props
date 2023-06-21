@@ -21,8 +21,8 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
 -->
-  <ItemGroup Label="Analysers">
-    <!--<PackageReference
+ <!-- <ItemGroup Label="Analysers">
+    <PackageReference
         Include="SonarAnalyzer.CSharp"
         Version="9.3.0.71466"
         PrivateAssets="all"
@@ -39,6 +39,6 @@
 			Version="2.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>-->
-  </ItemGroup>
+        </PackageReference>
+  </ItemGroup>-->
 </Project>

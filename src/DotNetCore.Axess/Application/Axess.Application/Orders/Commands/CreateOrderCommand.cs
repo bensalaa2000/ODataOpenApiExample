@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 
-public class CreateOrderCommand : IRequest<ApiResult<string>>
+public sealed class CreateOrderCommand : IRequest<ApiResult<string>>
 {
 	public CreateOrderCommand()
 	{

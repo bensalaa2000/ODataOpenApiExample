@@ -5,7 +5,7 @@ using Asp.Versioning.OData;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Axess.Application.Models;
-using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Domain.Repositories.Orders;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;

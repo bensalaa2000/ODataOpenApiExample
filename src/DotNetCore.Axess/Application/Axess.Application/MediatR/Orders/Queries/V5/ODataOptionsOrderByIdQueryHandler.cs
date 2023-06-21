@@ -1,6 +1,6 @@
-﻿using Axess.Domain.Entities;
-using Axess.Domain.Repositories.Interfaces.Orders;
-using Axess.MediatR.OData.Queries;
+﻿using Axess.Application.MediatR.OData.Queries;
+using Axess.Domain.Entities;
+using Axess.Domain.Repositories.Orders;
 using MediatR;
 using Microsoft.AspNetCore.OData.Results;
 

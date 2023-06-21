@@ -2,8 +2,8 @@
 
 using Asp.Versioning;
 using Asp.Versioning.OData;
+using Axess.Application.MediatR.OData.Queries;
 using Axess.Domain.Entities;
-using Axess.MediatR.OData.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using System.Net.Mime;

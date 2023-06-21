@@ -28,6 +28,11 @@ public sealed class OrderEntityTypeConfiguration : EntityTypeConfigurationBase<O
 			.OnDelete(DeleteBehavior.Cascade);
 		//builder.Metadata.FindNavigation("_LineItems")?.SetPropertyAccessMode(PropertyAccessMode.Field);
 
+		var navigation = builder.Metadata.FindNavigation(nameof(Order.LineItems));
+
+		//EF access the LineItem collection property through its backing field
+		navigation!.SetPropertyAccessMode(PropertyAccessMode.Field);
+
 	}
 }
 

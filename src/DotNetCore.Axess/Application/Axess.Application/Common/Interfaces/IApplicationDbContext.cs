@@ -1,7 +1,7 @@
 ﻿using Axess.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Axess.Infrastructure.Contexts;
+namespace Axess.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {

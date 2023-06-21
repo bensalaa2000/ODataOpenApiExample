@@ -1,12 +1,12 @@
 ﻿namespace Axess.Application.MediatR.Orders.Commands;
 
 using AutoMapper;
+using Axess.Application.Common.Interfaces;
 using Axess.Application.Models;
 using Axess.Domain.Entities;
-using Axess.Infrastructure.Contexts;
 using global::MediatR;
 using Microsoft.EntityFrameworkCore;
-public class OrderCommandsHandler
+public sealed class OrderCommandsHandler
 	: IRequestHandler<CreateOrderCommand, OrderDto>
 	, IRequestHandler<UpdateOrderCommand, OrderDto>
 	, IRequestHandler<DeleteOrderCommand>

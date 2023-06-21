@@ -20,8 +20,15 @@ namespace Axess;
 
 public static class ConfigureServices
 {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="services"></param>
+	/// <returns></returns>
 	public static IServiceCollection AddWebUIServices(this IServiceCollection services)
 	{
+		/// services.AddPresentationServices();
+
 		services.AddHttpContextAccessor();
 		// IMvcBuilder
 		services.AddControllers()
@@ -32,16 +39,16 @@ public static class ConfigureServices
 				// ignore omitted parameters on models to enable optional params (e.g. User update)
 				options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 
-				//options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+				///options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
 			})
 			.AddOData(
 				options =>
 				{
 					options.EnableQueryFeatures(50000);
-					//options.Count().Select().OrderBy();
+					///options.Count().Select().OrderBy();
 					options.RouteOptions.EnableKeyInParenthesis = true;
 					options.RouteOptions.EnableNonParenthesisForEmptyParameterFunction = true;
-					//options.RouteOptions.EnablePropertyNameCaseInsensitive = true;
+					///options.RouteOptions.EnablePropertyNameCaseInsensitive = true;
 					options.RouteOptions.EnableQualifiedOperationCall = true;
 					options.RouteOptions.EnableUnqualifiedOperationCall = true;
 				})/*.AddFluentValidation(x => x.AutomaticValidationEnabled = false)*/;

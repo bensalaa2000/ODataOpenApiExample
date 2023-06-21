@@ -6,7 +6,6 @@ using Axess.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Query.Validator;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.OData;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
 /// Represents a RESTful people service.
 /// </summary>
 [ApiVersion(2.0)]
-public class PeopleController : ODataController
+public class PeopleController : ApiODataControllerBase
 {
 	/// <summary>
 	/// Gets all people.

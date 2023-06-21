@@ -146,7 +146,6 @@ public class ArchitectureAxessTests
 			.HaveDependencyOnAll(otherProjects).GetResult();
 		// Assert 
 		testResult.IsSuccessful.Should().BeTrue();
-
 	}
 
 	[Fact]

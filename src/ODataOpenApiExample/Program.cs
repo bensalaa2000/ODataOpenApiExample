@@ -12,7 +12,7 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 
 var app = builder.Build();
-
+/// app.Configure();
 // Configure the HTTP request pipeline.
 
 (typeof(ODataUriResolver)
