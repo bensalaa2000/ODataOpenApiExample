@@ -1,6 +1,5 @@
 ﻿using Axess.Common.Application.Exceptions;
 using Axess.Shared;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Net.Mime;
@@ -62,13 +61,5 @@ public class ExceptionMiddleware
 		var result = JsonSerializer.Serialize(new ApiResult<string>(false, message));
 
 		await httpContext.Response.WriteAsync(result);
-	}
-}
-
-public static class ExceptionMiddlewareExtensions
-{
-	public static void UseExceptionMiddleware(this IApplicationBuilder app)
-	{
-		app.UseMiddleware<ExceptionMiddleware>();
 	}
 }

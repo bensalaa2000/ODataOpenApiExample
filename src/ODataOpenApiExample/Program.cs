@@ -1,7 +1,7 @@
 ﻿using Axess.Api;
 using Axess.Application;
 using Axess.Infrastructure;
-using Axess.Presentation.Middlewares;
+using Axess.Presentation.Extensions;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.UriParser;
