@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Architecture.Tests;
 
-public class ArchitectureTests
+public class ArchitectureCommonTests
 {
 	private const string DomainNamespace = "Axess.Common.Domain";
 	private const string ApplicationNamespace = "Axess.Common.Application";
@@ -75,6 +75,26 @@ public class ArchitectureTests
 			.InAssembly(assembly)
 			.ShouldNot()
 			.HaveDependencyOnAll(otherProjects).GetResult();
+		// Assert 
+		testResult.IsSuccessful.Should().BeTrue();
+
+	}
+
+	[Fact]
+	public void Controllers_Should_Have_DependencyOnMediatR()
+	{
+		// Arrange
+		///var assembly = typeof(Axess.Common.Domain.ValueObjects.ValueObject).Assembly;
+		var assembly = Assembly.Load(PresentationNamespace);
+
+		// Act
+		var testResult = Types
+		.InAssembly(assembly)
+			.That()
+			.HaveNameEndingWith("ControllerBase")
+			.Should()
+			.HaveDependencyOn("MediatR")
+			.GetResult();
 		// Assert 
 		testResult.IsSuccessful.Should().BeTrue();
 

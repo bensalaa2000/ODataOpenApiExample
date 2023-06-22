@@ -1,7 +1,6 @@
-﻿
-using ApiVersioning.Examples;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using Asp.Versioning.Conventions;
+using Axess.Api.Options;
 using Axess.Presentation.Filters;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +11,11 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text.Json.Serialization;
 using static Microsoft.AspNetCore.OData.Query.AllowedQueryOptions;
-using PeopleControllerV2 = Axess.Controllers.V2.PeopleController;
-using PeopleControllerV3 = Axess.Controllers.V3.PeopleController;
+using PeopleControllerV2 = Axess.Api.Controllers.V2.PeopleController;
+using PeopleControllerV3 = Axess.Api.Controllers.V3.PeopleController;
 
 
-namespace Axess;
+namespace Axess.Api;
 
 public static class ConfigureServices
 {

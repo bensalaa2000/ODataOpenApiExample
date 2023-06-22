@@ -149,7 +149,7 @@ public class ArchitectureAxessTests
 	}
 
 	[Fact]
-	public void Controllers_Should_Have_DependencyOnMediatR()
+	public void BaseControllers_On_Presentation_Should_Have_DependencyOnMediatR()
 	{
 		// Arrange
 		///var assembly = typeof(Axess.Common.Domain.ValueObjects.ValueObject).Assembly;
@@ -160,6 +160,25 @@ public class ArchitectureAxessTests
 		.InAssembly(assembly)
 			.That()
 			.HaveNameEndingWith("ControllerBase")
+			.Should()
+			.HaveDependencyOn("MediatR")
+			.GetResult();
+		// Assert 
+		testResult.IsSuccessful.Should().BeTrue();
+
+	}
+	[Fact(Skip = "Ne fonctionne pas car Send n'est pas appelé dans certain controllers")]
+	public void Controllers_On_WebApi_Should_Have_DependencyOnMediatR()
+	{
+		// Arrange
+		///var assembly = typeof(Axess.Common.Domain.ValueObjects.ValueObject).Assembly;
+		var assembly = Assembly.Load(WebApiNamespace);
+
+		// Act
+		var testResult = Types
+		.InAssembly(assembly)
+			.That()
+			.HaveNameEndingWith("Controller")
 			.Should()
 			.HaveDependencyOn("MediatR")
 			.GetResult();

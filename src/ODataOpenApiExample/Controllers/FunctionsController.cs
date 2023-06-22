@@ -1,4 +1,4 @@
-﻿namespace Axess.Controllers;
+﻿namespace Axess.Api.Controllers;
 
 using Asp.Versioning;
 using Axess.Presentation.Controllers;

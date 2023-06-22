@@ -1,4 +1,4 @@
-﻿namespace Axess.Helpers;
+﻿namespace Axess.Api.Helpers;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;

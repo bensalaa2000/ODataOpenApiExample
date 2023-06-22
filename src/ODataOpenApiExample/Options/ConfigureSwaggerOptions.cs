@@ -1,4 +1,4 @@
-﻿namespace ApiVersioning.Examples;
+﻿namespace Axess.Api.Options;
 
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
