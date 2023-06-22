@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Axess.Controllers;
+namespace Axess.Presentation.Controllers;
 /// <summary>
 /// 
 /// </summary>

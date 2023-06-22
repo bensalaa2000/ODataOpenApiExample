@@ -2,7 +2,7 @@
 using ApiVersioning.Examples;
 using Asp.Versioning;
 using Asp.Versioning.Conventions;
-using Axess.Filters;
+using Axess.Presentation.Filters;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;

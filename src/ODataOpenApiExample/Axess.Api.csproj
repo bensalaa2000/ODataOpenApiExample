@@ -7,12 +7,6 @@
    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
  </PropertyGroup>
-
- <ItemGroup>
-  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-
- </ItemGroup>
-
  <ItemGroup>
    <ProjectReference Include="..\DotNetCore.Axess\Presentation\Axess.Presentation\Axess.Presentation.csproj" />
  </ItemGroup>

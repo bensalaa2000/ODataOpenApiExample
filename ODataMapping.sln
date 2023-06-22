@@ -39,19 +39,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		Directory.Build.props = Directory.Build.props
+		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Common.Presentation", "src\DotNetCore.Axess\Common\Axess.Common.Presentation\Axess.Common.Presentation.csproj", "{7A3BFF74-09F7-47AA-9374-A2F5087A192F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Common.Presentation", "src\DotNetCore.Axess\Common\Axess.Common.Presentation\Axess.Common.Presentation.csproj", "{7A3BFF74-09F7-47AA-9374-A2F5087A192F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Presentation", "src\DotNetCore.Axess\Presentation\Axess.Presentation\Axess.Presentation.csproj", "{A34B8616-B42A-43D0-80BF-484C7CBE96B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Presentation", "src\DotNetCore.Axess\Presentation\Axess.Presentation\Axess.Presentation.csproj", "{A34B8616-B42A-43D0-80BF-484C7CBE96B3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C1B9887F-D904-4B3B-8836-FFA144552CAC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C1B9887F-D904-4B3B-8836-FFA144552CAC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{CAA3187F-FABE-4086-8AF2-B3062157E5FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Common.Tests", "tests\Architecture\Architecture.Common.Tests\Architecture.Common.Tests.csproj", "{5C12AD3A-F46F-423B-93C1-1B2E9EF4A455}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.Common.Tests", "tests\Architecture\Architecture.Common.Tests\Architecture.Common.Tests.csproj", "{5C12AD3A-F46F-423B-93C1-1B2E9EF4A455}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Axess.Tests", "tests\Architecture\Architecture.Axess.Tests\Architecture.Axess.Tests.csproj", "{CB4C5D3B-EB65-4944-A3B5-316B6BE4870D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.Axess.Tests", "tests\Architecture\Architecture.Axess.Tests\Architecture.Axess.Tests.csproj", "{CB4C5D3B-EB65-4944-A3B5-316B6BE4870D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

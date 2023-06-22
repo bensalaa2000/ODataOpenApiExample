@@ -10,7 +10,7 @@ using Microsoft.OData.ModelBuilder;
 public class AllConfigurations : IModelConfiguration
 {
 	/// <inheritdoc />
-	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string routePrefix)
+	public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string? routePrefix)
 	{
 		///builder.Function( "GetSalesTaxRate" ).Returns<double>().Parameter( "PostalCode" );
 	}

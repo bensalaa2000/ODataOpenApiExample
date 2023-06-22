@@ -1,6 +1,7 @@
 ﻿using Axess;
 using Axess.Application;
 using Axess.Infrastructure;
+using Axess.Presentation.Middlewares;
 using DotNetCore.Axess.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.UriParser;
@@ -51,6 +52,8 @@ app.UseSwaggerUI(
 
 app.UseODataQueryRequest();
 app.UseODataBatching();
+
+app.UseExceptionMiddleware();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
