@@ -151,7 +151,7 @@ public class OrdersController : ApiODataControllerBase
 			return BadRequest(ModelState);
 		}
 
-		var rating = (int)parameters["rating"];
+		////var rating = (int)parameters["rating"];
 		return NoContent();
 	}
 
@@ -174,6 +174,6 @@ public class OrdersController : ApiODataControllerBase
 			.SelectMany(x => x.LineItems)
 			.ProjectTo<LineItemDto>(_mapper.ConfigurationProvider)
 			.ToListAsync());
-		//return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
+		////return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
 	}
 }

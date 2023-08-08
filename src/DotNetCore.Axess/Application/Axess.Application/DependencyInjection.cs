@@ -1,7 +1,6 @@
 ﻿using AutoMapper.Extensions.ExpressionMapping;
 using Axess.Common.Application.Behaviours;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -19,10 +18,10 @@ public static class DependencyInjection
 
 		services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly(), includeInternalTypes: true);
 		//AddValidatorsFromAssemblyContaining
-		services.AddFluentValidationAutoValidation(config =>
+		/**services.AddFluentValidationAutoValidation(config =>
 		{
 
-		}).AddFluentValidationClientsideAdapters();
+		}).AddFluentValidationClientsideAdapters();*/
 		/** DEPRECATED services.AddFluentValidation(config => {
 			// Add all validators in the current assembly
 			config.RegisterValidatorsFromAssemblyContaining<OrderValidator>();

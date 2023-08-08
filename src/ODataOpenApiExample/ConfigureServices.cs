@@ -2,7 +2,7 @@
 using Asp.Versioning.Conventions;
 using Axess.Api.Options;
 using Axess.Presentation.Filters;
-using FluentValidation.AspNetCore;
+//// using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
@@ -26,7 +26,7 @@ public static class ConfigureServices
 	/// <returns></returns>
 	public static IServiceCollection AddWebUIServices(this IServiceCollection services)
 	{
-		/// services.AddPresentationServices();
+		//// services.AddPresentationServices();
 
 		services.AddHttpContextAccessor();
 		// IMvcBuilder
@@ -38,16 +38,16 @@ public static class ConfigureServices
 				// ignore omitted parameters on models to enable optional params (e.g. User update)
 				options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 
-				///options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+				////options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
 			})
 			.AddOData(
 				options =>
 				{
 					options.EnableQueryFeatures(50000);
-					///options.Count().Select().OrderBy();
+					////options.Count().Select().OrderBy();
 					options.RouteOptions.EnableKeyInParenthesis = true;
 					options.RouteOptions.EnableNonParenthesisForEmptyParameterFunction = true;
-					///options.RouteOptions.EnablePropertyNameCaseInsensitive = true;
+					////options.RouteOptions.EnablePropertyNameCaseInsensitive = true;
 					options.RouteOptions.EnableQualifiedOperationCall = true;
 					options.RouteOptions.EnableUnqualifiedOperationCall = true;
 				})/*.AddFluentValidation(x => x.AutomaticValidationEnabled = false)*/;
@@ -99,7 +99,7 @@ public static class ConfigureServices
 														.AllowOrderBy("firstName", "lastName");
 							});
 
-		services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+		//// services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 		// Customise default API behaviour
 		services.Configure<ApiBehaviorOptions>(options =>
 			options.SuppressModelStateInvalidFilter = true);

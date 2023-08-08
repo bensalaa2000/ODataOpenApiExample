@@ -4,7 +4,7 @@ using Asp.Versioning;
 using Asp.Versioning.OData;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-//using Axess.Application.Contexts;
+////using Axess.Application.Contexts;
 using Axess.Application.Models;
 using Axess.Domain.Repositories.Orders;
 using Axess.Presentation.Controllers;
@@ -28,14 +28,14 @@ public class OrdersController : ApiODataControllerBase
 
 	private readonly IOrderReadRepository orderReadRepository;
 
-	//private readonly IApplicationDbContext applicationDbContext;
+	///private readonly IApplicationDbContext applicationDbContext;
 
 	private readonly IMapper _mapper;
 
 	public OrdersController(IOrderReadRepository orderReadRepository/*, IApplicationDbContext applicationDbContext*/, IMapper mapper)
 	{
 		this.orderReadRepository = orderReadRepository;
-		//this.applicationDbContext = applicationDbContext;
+		////this.applicationDbContext = applicationDbContext;
 		this._mapper = mapper;
 	}
 
@@ -48,10 +48,12 @@ public class OrdersController : ApiODataControllerBase
 	[HttpGet]
 	[Produces(MediaTypeNames.Application.Json)]
 	[ProducesResponseType(typeof(ODataValue<IEnumerable<OrderDto>>), Status200OK)]
-	[EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Top | Skip | Count | Filter)]
+	[EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Top | Skip | Count | Filter | Expand)]
 	public IQueryable<OrderDto> Get()
 	{
-		return orderReadRepository.Queryable.ProjectTo<OrderDto>(_mapper.ConfigurationProvider);
+		return orderReadRepository.Queryable.ProjectTo<OrderDto>(_mapper.ConfigurationProvider
+			//, new List<Expression<Func<IQueryable<LineItemDto>, IIncludableQueryable<LineItemDto, object>>>>() { item => item.Include(s => s.Order) }
+			);
 	}
 
 
@@ -168,7 +170,7 @@ public class OrdersController : ApiODataControllerBase
 			return BadRequest(ModelState);
 		}
 
-		var rating = (int)parameters["rating"];
+		////var rating = (int)parameters["rating"];
 		return NoContent();
 	}
 
@@ -191,6 +193,6 @@ public class OrdersController : ApiODataControllerBase
 			.SelectMany(x => x.LineItems)
 			.ProjectTo<LineItemDto>(_mapper.ConfigurationProvider)
 			.ToListAsync());
-		//return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
+		////return Ok(await applicationDbContext.LineItems.Where(x => x.Order.Id == key).ProjectTo<LineItemDto>(_mapper.ConfigurationProvider).ToListAsync());
 	}
 }

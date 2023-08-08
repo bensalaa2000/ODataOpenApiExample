@@ -9,6 +9,6 @@ public static class ExceptionMiddlewareExtensions
 	{
 		// TODO : En double , faire un choix
 		app.UseMiddleware<ExceptionMiddleware>();
-		app.UseMiddleware<ErrorHandlerMiddleware>();
+		///app.UseMiddleware<ErrorHandlerMiddleware>();
 	}
 }
