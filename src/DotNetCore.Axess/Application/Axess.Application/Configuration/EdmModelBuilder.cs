@@ -1,6 +1,8 @@
 ﻿namespace Axess.Application.Configuration;
 
+using Axess.Application.Models;
 using Axess.Common.Application.Extensions;
+using Axess.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.OData;
@@ -11,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Entities = Domain.Entities;
 
 public static class EdmModelBuilder
 {
@@ -21,31 +22,45 @@ public static class EdmModelBuilder
         ODataConventionModelBuilder edmBuilder = new();
         edmBuilder.EnableLowerCamelCase();
 
-        edmBuilder.EntitySet<Entities.Order>("Orders");
-        EntityTypeConfiguration<Entities.Order> orderEntity = edmBuilder.EntityType<Entities.Order>();
-        orderEntity.HasKey(o => o.Id);
-        orderEntity.HasMany(x => x.LineItems);
+        edmBuilder.EntitySet<OrderDto>("OrderOData");
 
-        edmBuilder.EntitySet<Entities.LineItem>("LineItems");
-        edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
+        /*Configuration Order Dto*/
+        EntityTypeConfiguration<OrderDto> orderDto = edmBuilder.EntityType<OrderDto>();
+        orderDto.HasKey(o => o.Code);
+        orderDto.HasMany(x => x.LineItems);
+        //orderDto.Select("code", "customer", "description", "lineItems");
 
-        edmBuilder.EntitySet<Entities.Order>("ModelsOrders");
-        EntityTypeConfiguration<Entities.Order> order = edmBuilder.EntityType<Entities.Order>();
+        /*Configuration Order Entity*/
+        EntityTypeConfiguration<Order> order = edmBuilder.EntityType<Order>();
         order.HasKey(o => o.Id);
-        order.HasMany(x => x.LineItems);
 
-        edmBuilder.EntitySet<Entities.LineItem>("ModelsLineItems");
-        edmBuilder.EntityType<Entities.LineItem>().HasKey(li => li.Id);
+        order.HasMany(x => x.LineItems).Expand();
+        order.Select(SelectExpandType.Allowed);
+        ////order.Expand();
+
+        ///edmBuilder.EntitySet<LineItemDto>("LineItemsOData");
+        /*Configuration LineItem Dto*/
+        EntityTypeConfiguration<LineItemDto> lineItemDto = edmBuilder.EntityType<LineItemDto>();
+        lineItemDto.HasKey(li => li.Code);
+        lineItemDto.Select(SelectExpandType.Allowed);
+
+        /*Configuration LineItem Entity*/
+        EntityTypeConfiguration<LineItem> lineItem = edmBuilder.EntityType<LineItem>();
+        lineItem.HasKey(li => li.Id);
+        lineItem.Select(SelectExpandType.Allowed);
+        lineItem.Ignore(x => x.OrderId);   // On ignore OrderId dans le resultat retourné
+        ///lineItem.Expand();
 
         IEdmModel model = edmBuilder.GetEdmModel();
 
         // Only Add the ClrPropertyInfoAnnotation for the previous one, not the last one.
         IEdmEntityType orderType = model.SchemaElements.OfType<IEdmEntityType>().FirstOrDefault(e => e.Name == "Order");
         IEdmProperty idProperty = orderType.FindProperty("id");
-
-        PropertyInfo idPropertyInfo = typeof(Entities.Order).GetProperty("Id");
+        PropertyInfo idPropertyInfo = typeof(Order).GetProperty("Id");
         model.SetAnnotationValue(idProperty, new ClrPropertyInfoAnnotation(idPropertyInfo));
 
+        IEdmEntityType lineItemType = model.SchemaElements.OfType<IEdmEntityType>().FirstOrDefault(e => e.Name == "LineItem");
+        model.SetAnnotationValue(lineItemType.FindProperty("id"), new ClrPropertyInfoAnnotation(typeof(LineItem).GetProperty("Id")));
 
         /*   EntitySetConfiguration<Address> entitesWithEnum = edmBuilder.EntitySet<Address>("Address");
            entitesWithEnum.EntityType.HasKey(o => o.Id);*/

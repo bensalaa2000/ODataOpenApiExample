@@ -1,7 +1,7 @@
 ﻿using Axess.Api.Configuration;
 using Axess.Application.Configuration;
 using FluentValidation.AspNetCore;
-using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+//using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
@@ -22,7 +22,7 @@ public static class ConfigureServices
             defaultBatchHandler.MessageQuotas.MaxOperationsPerChangeset = 10;
             defaultBatchHandler.MessageQuotas.MaxReceivedMessageSize = 100;
 
-            options.EnableQueryFeatures(50000);//.Select().Filter().OrderBy().SetMaxTop(5000).Count().Expand()
+            options./*EnableQueryFeatures(50000).*/Select().Expand().Filter().Count().OrderBy().SetMaxTop(5000);
             options.AddRouteComponents("odata", EdmModelBuilder.GetEdmModel(), defaultBatchHandler
                 /*services => services.AddSingleton<ODataBatchHandler, DefaultODataBatchHandler>()*/)
                     .Conventions.Add(new AxessODataConvention());
@@ -88,7 +88,7 @@ public static class ConfigureServices
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
         // Add FV Rules to swagger
-        services.AddFluentValidationRulesToSwagger();
+        //services.AddFluentValidationRulesToSwagger();
         return services;
     }
 
