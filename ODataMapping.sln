@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Infrastructure", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Shared", "src\DotNetCore.Axess\Shared\Axess.Shared\Axess.Shared.csproj", "{43B0051C-9B04-4808-84A4-3C987433671B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Api", "src\ODataMappingApi\ODataMappingApi\Axess.Api.csproj", "{E4363F7E-93D3-4DFC-9D3F-1C3D9FC9503E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Api", "src\DotNetCore.Axess\Presentation\Axess.Presentation\Axess.Api.csproj", "{E4363F7E-93D3-4DFC-9D3F-1C3D9FC9503E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Application", "src\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj", "{7F2B3234-FB9E-43FD-B797-38070810F3BF}"
 EndProject
@@ -21,11 +21,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B61A16
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{5B49949F-4002-4C8D-8BD7-5871D45C157F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Common.Application", "src\DotNetCore.Axess\Common\Axess.Common.Application\Axess.Common.Application.csproj", "{8B00C7D8-57B7-4D51-B038-396A6F3C86D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Common.Application", "src\DotNetCore.Axess\Common\Axess.Common.Application\Axess.Common.Application.csproj", "{8B00C7D8-57B7-4D51-B038-396A6F3C86D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Common.Domain", "src\DotNetCore.Axess\Common\Axess.Common.Domain\Axess.Common.Domain.csproj", "{7152AFA8-C118-4186-9E22-C6834E970F91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Common.Domain", "src\DotNetCore.Axess\Common\Axess.Common.Domain\Axess.Common.Domain.csproj", "{7152AFA8-C118-4186-9E22-C6834E970F91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Common.Infrastructure", "src\DotNetCore.Axess\Common\Axess.Common.Infrastructure\Axess.Common.Infrastructure.csproj", "{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axess.Common.Infrastructure", "src\DotNetCore.Axess\Common\Axess.Common.Infrastructure\Axess.Common.Infrastructure.csproj", "{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{56FE03CA-B953-4B21-B6A0-3D1A9C97B832}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Migrations", "src\DotNetCore.Axess\Migrations\Axess.Migrations\Axess.Migrations.csproj", "{6AA14EB3-A916-4269-898C-3669F4CCA134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +75,10 @@ Global
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +95,7 @@ Global
 		{8B00C7D8-57B7-4D51-B038-396A6F3C86D5} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
 		{7152AFA8-C118-4186-9E22-C6834E970F91} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
+		{6AA14EB3-A916-4269-898C-3669F4CCA134} = {8118A572-76F4-47EA-ADF2-5878E03655F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D17C3DC-3280-4DB6-9286-6CB3443F51C3}

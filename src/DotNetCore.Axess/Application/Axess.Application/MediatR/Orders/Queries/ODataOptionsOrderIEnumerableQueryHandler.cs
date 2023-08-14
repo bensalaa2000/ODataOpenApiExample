@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.AspNet.OData;
 using Axess.Application.MediatR.Queries;
-using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Domain.Repositories.Orders;
 using Axess.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.OData.Query;

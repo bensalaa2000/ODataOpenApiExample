@@ -1,7 +1,7 @@
 ﻿using Axess.Domain;
 using System.Linq.Expressions;
 
-namespace Axess.Common.Domain.Repositories.Interfaces;
+namespace Axess.Common.Domain.Repositories;
 
 /// <summary>
 /// Représente l'ensemble des méthodes pour requeter une entité.

@@ -4,7 +4,7 @@ using Axess.Shared;
 using Axess.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Domain.Repositories.Orders;
 
 namespace Axess.Application.Orders.Commands.CreateOrder;
 

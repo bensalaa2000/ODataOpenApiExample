@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DotNetCore.Axess\Application\Axess.Application\Axess.Application.csproj" />
+    <ProjectReference Include="..\..\Application\Axess.Application\Axess.Application.csproj" />
+    <ProjectReference Include="..\..\Migrations\Axess.Migrations\Axess.Migrations.csproj" />
   </ItemGroup>
 
 </Project>

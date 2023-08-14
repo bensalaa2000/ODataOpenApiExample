@@ -1,6 +1,6 @@
 ﻿using Axess.Common.Infrastructure.Repositories;
 using Axess.Domain.Entities;
-using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Domain.Repositories.Orders;
 using Axess.Infrastructure.Contexts;
 
 namespace Axess.Infrastructure.Repositories.Orders;

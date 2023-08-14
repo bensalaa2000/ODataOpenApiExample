@@ -5,7 +5,7 @@ namespace Axess.Application.MediatR.Orders.Queries;
 
 using Axess.Application.MediatR.Queries;
 using Axess.Domain.Entities;
-using Axess.Domain.Repositories.Interfaces.Orders;
+using Axess.Domain.Repositories.Orders;
 
 //using Order = ApiVersioning.Examples.Models.Order;
 /// <summary>

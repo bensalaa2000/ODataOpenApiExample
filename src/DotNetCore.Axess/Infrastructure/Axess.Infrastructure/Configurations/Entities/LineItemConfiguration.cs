@@ -20,7 +20,7 @@ public sealed class LineItemConfiguration : EntityTypeConfigurationBase<LineItem
         builder.Property(p => p.Fulfilled).HasDefaultValue(true).IsRequired();
         builder.Property(p => p.Description).HasMaxLength(200).IsRequired();
 
-        builder.HasIndex(u => u.OrderId)/*.IsUnique()*/;
+        builder.HasIndex(u => u.OrderId);
 
         builder.HasOne(p => p.Order).WithMany(p => p.LineItems).HasForeignKey(s => s.OrderId);
     }
