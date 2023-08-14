@@ -26,7 +26,8 @@ public static class DependencyInjection
 		{
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
-					builder => builder.MigrationsAssembly("Axess.Migrations"/*typeof(ApplicationDbContext).Assembly.FullName*/)));
+					builder => builder.MigrationsAssembly(/*"Axess.Migrations"*/typeof(ApplicationDbContext).Assembly.FullName))
+				.UseSnakeCaseNamingConvention());
 		}
 		// Ajoute l'interface du contexte aux services.
 		services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());

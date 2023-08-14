@@ -14,11 +14,15 @@
     <!--<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />-->
     <PackageReference Include="Microsoft.OpenApi.OData" Version="1.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <!-- Permet de lancer les migrations sur projet de démarrage -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Axess.Application\Axess.Application.csproj" />
-    <ProjectReference Include="..\..\Migrations\Axess.Migrations\Axess.Migrations.csproj" />
+    <!--<ProjectReference Include="..\..\Migrations\Axess.Migrations\Axess.Migrations.csproj" />-->
   </ItemGroup>
-
 </Project>

@@ -35,8 +35,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axess.Migrations", "src\DotNetCore.Axess\Migrations\Axess.Migrations\Axess.Migrations.csproj", "{6AA14EB3-A916-4269-898C-3669F4CCA134}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,10 +73,6 @@ Global
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AA14EB3-A916-4269-898C-3669F4CCA134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,7 +89,6 @@ Global
 		{8B00C7D8-57B7-4D51-B038-396A6F3C86D5} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
 		{7152AFA8-C118-4186-9E22-C6834E970F91} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
 		{EC0B8EDF-CF4A-4879-8FD2-FB6DD65A8BF2} = {5B49949F-4002-4C8D-8BD7-5871D45C157F}
-		{6AA14EB3-A916-4269-898C-3669F4CCA134} = {8118A572-76F4-47EA-ADF2-5878E03655F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D17C3DC-3280-4DB6-9286-6CB3443F51C3}
