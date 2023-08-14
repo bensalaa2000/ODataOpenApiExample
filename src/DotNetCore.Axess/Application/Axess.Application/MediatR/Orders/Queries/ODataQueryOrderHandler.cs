@@ -30,10 +30,10 @@ public sealed class ODataQueryOrderHandler : IRequestHandler<ODataQueryOrder, IQ
     public async Task<IQueryable<Order>> Handle(ODataQueryOrder request, CancellationToken cancellationToken)
     {
         IQueryable<Order> orders = _orderReadRepository.Queryable;
-        //Microsoft.EntityFrameworkCore.DbSet<Axess.Entities.Order> orders = _dbContext.Orders;
-        //int count = orders.Count();
-        int count = _orderReadRepository.Queryable.Count();
+        ///Microsoft.EntityFrameworkCore.DbSet<Axess.Entities.Order> orders = _dbContext.Orders;
+        ///int count = orders.Count();
+        ///int count = _orderReadRepository.Queryable.Count();
         return orders;
-        //return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<Order>(_dbContext.Orders)) as IEnumerable<Order>);
+        ///return await Task.FromResult(request.Options.ApplyTo(_mapper.ProjectTo<Order>(_dbContext.Orders)) as IEnumerable<Order>);
     }
 }

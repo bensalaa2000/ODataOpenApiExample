@@ -1,7 +1,7 @@
 ﻿using Axess.Api.Configuration;
 using Axess.Application.Configuration;
 using FluentValidation.AspNetCore;
-//using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+///using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
@@ -36,11 +36,8 @@ public static class ConfigureServices
         })
                     .AddJsonOptions(options =>
                     {
-                        ////options.JsonSerializerOptions.PropertyNamingPolicy = null;
                         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                         // serialize DateOnly as strings
-                        //options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
-                        //options.JsonSerializerOptions.Converters.Add(new NullableDateOnlyJsonConverter());
 
                         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
@@ -49,37 +46,37 @@ public static class ConfigureServices
                     });
 
         // Add FluentValidation to Asp.net
-        /*builder.Services.AddFluentValidationAutoValidation(config =>
+        /***builder.Services.AddFluentValidationAutoValidation(config =>
         {
             ////config.DisableDataAnnotationsValidation = true;
         }).AddFluentValidationClientsideAdapters();*/
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
-        //builder.Services.AddFluentValidationRulesToSwagger();
+        ///builder.Services.AddFluentValidationRulesToSwagger();
         services.AddSwaggerGen(c =>
         {
             c.ResolveConflictingActions(apiDescriptions =>
             {
                 ApiDescription[] descriptions = apiDescriptions as ApiDescription[] ?? apiDescriptions.ToArray();
-                ApiDescription first = descriptions.First(); // build relative to the 1st method
-                List<ApiParameterDescription> parameters = descriptions.SelectMany(d => d.ParameterDescriptions).ToList();
-
+                ApiDescription first = descriptions[0]; // build relative to the 1st method
                 first.ParameterDescriptions.Clear();
+                List<ApiParameterDescription> parameters = descriptions
+                .SelectMany(d => d.ParameterDescriptions)
+                .Where(y => first.ParameterDescriptions.All(x => x.Name != y.Name)).ToList();
+
                 // add parameters and make them optional
                 foreach (ApiParameterDescription? parameter in parameters)
-                    if (first.ParameterDescriptions.All(x => x.Name != parameter.Name))
+                    first.ParameterDescriptions.Add(new ApiParameterDescription
                     {
-                        first.ParameterDescriptions.Add(new ApiParameterDescription
-                        {
-                            ModelMetadata = parameter.ModelMetadata,
-                            Name = parameter.Name,
-                            ParameterDescriptor = parameter.ParameterDescriptor,
-                            Source = parameter.Source,
-                            IsRequired = false,
-                            DefaultValue = null
-                        });
-                    }
+                        ModelMetadata = parameter.ModelMetadata,
+                        Name = parameter.Name,
+                        ParameterDescriptor = parameter.ParameterDescriptor,
+                        Source = parameter.Source,
+                        IsRequired = false,
+                        DefaultValue = null
+                    });
+
                 return first;
             });
         });
@@ -88,7 +85,7 @@ public static class ConfigureServices
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
         // Add FV Rules to swagger
-        //services.AddFluentValidationRulesToSwagger();
+        ///services.AddFluentValidationRulesToSwagger();
         return services;
     }
 

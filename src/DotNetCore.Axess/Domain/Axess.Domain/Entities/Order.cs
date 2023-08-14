@@ -10,7 +10,15 @@ public class Order : Entity
         Customer = customer;
     }
 
-    public Order(Guid id) : base(id) { }
+    public Order(Guid id) : base(id)
+    {
+        Customer = string.Empty;
+    }
+
+    public Order() : base(Guid.NewGuid())
+    {
+        Customer = string.Empty;
+    }
 
     /// <summary>
     /// Gets or sets the date and time when the order was created.

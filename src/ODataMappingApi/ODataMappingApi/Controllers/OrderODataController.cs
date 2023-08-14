@@ -50,7 +50,7 @@ public class OrderODataController : ControllerBase
     [HttpGet("odata/OrderOData/Automapper/ProjectTo")]
     [EnableQuery]
     //[NonAction]
-    public async Task<IActionResult> GetWithMapping()// Do Not uses because generate an error when expanding. Prefer using 'GetWithAutoMapper' action
+    public IActionResult GetWithMapping()// Do Not uses because generate an error when expanding. Prefer using 'GetWithAutoMapper' action
     {
         IQueryable<Order> orders = _orderReadRepository.Queryable.AsQueryable();
         IQueryable<OrderDto> result = orders.ProjectTo<OrderDto>(_mapper.ConfigurationProvider);
@@ -87,7 +87,7 @@ public class OrderODataController : ControllerBase
     }
 
 
-    /*
+    /**
          [HttpGet("odata/OrderOData/Automapper/mapping")]
         [EnableQuery]
         public async Task<IActionResult<IQueryable<OrderDto>> GetWithMapping()
@@ -126,7 +126,7 @@ public class OrderODataController : ControllerBase
         return _orderReadRepository.Queryable;
     }
 
-    /*[HttpGet("odata/OrderOData/Orders/{id:guid}")]
+    /**[HttpGet("odata/OrderOData/Orders/{id:guid}")]
     [ODataAttributeRouting]
     [EnableQuery]
     public async Task<Order?> GetByIdWithOData(Guid id)

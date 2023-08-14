@@ -1,6 +1,4 @@
-﻿using Axess.Domain;
-
-namespace Axess.Domain.Entities;
+﻿namespace Axess.Domain.Entities;
 
 
 /// <summary>
@@ -8,7 +6,15 @@ namespace Axess.Domain.Entities;
 /// </summary>
 public class LineItem : Entity
 {
-    public LineItem(Guid id) : base(id) { }
+    public LineItem(Guid id) : base(id)
+    {
+        Description = string.Empty;
+    }
+
+    public LineItem() : base(Guid.NewGuid())
+    {
+        Description = string.Empty;
+    }
 
     /// <summary>
     /// Gets or sets the line item description.
