@@ -20,7 +20,7 @@ if (app.Environment.IsDevelopment())
     using (IServiceScope scope = app.Services.CreateScope())
     {
         ApplicationDbContextInitialiser initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
-        initialiser.MigrateDatabaseAndSeed();
+        await initialiser.MigrateDatabaseAndSeedAsync();
     }
     // navigate to ~/$odata to determine whether any endpoints did not match an odata route template
     app.UseODataRouteDebug();
@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "OData 8.x OpenAPI");
-        c.SwaggerEndpoint("/$openapi", "OData raw OpenAPI");
+        ////c.SwaggerEndpoint("/$openapi", "OData raw OpenAPI");
     });
 }
 

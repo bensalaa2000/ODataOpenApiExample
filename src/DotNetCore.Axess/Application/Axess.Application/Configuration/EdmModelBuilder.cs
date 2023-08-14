@@ -70,7 +70,9 @@ public static class EdmModelBuilder
         parser.UrlKeyDelimiter = ODataUrlKeyDelimiter.Slash;
 
         ODataPath path = parser.ParsePath();
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         KeySegment segment = path.OfType<KeySegment>().FirstOrDefault();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
         if (segment is null)
         {

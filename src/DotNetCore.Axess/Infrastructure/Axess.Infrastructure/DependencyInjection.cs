@@ -28,7 +28,6 @@ public static class DependencyInjection
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
-        //services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("TestDB"));
         // Ajoute l'interface du contexte aux services.
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         if (configuration.GetValue<bool>("UseInMemoryDatabase"))
