@@ -14,13 +14,13 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 namespace Axess.Api.Controllers;
 
 [ApiVersion("1.0")]
-public class OrderODataController : ControllerBase
+public class OrdersController : ControllerBase
 {
 	private readonly IMapper _mapper;
 
 	private readonly IOrderQueryRepository _orderReadRepository;
 	#region Constructeurs
-	public OrderODataController(IOrderQueryRepository orderReadRepository, IMapper mapper)
+	public OrdersController(IOrderQueryRepository orderReadRepository, IMapper mapper)
 	{
 		_orderReadRepository = orderReadRepository;
 		_mapper = mapper;
@@ -47,7 +47,7 @@ public class OrderODataController : ControllerBase
 		var finalQuery = queryOptions.ApplyTo(_orderReadRepository.Queryable);
 		return Ok(finalQuery);
 	}
-	[HttpGet("odata/OrderOData/Automapper/ProjectTo")]
+	[HttpGet("odata/Orders/Automapper/ProjectTo")]
 	[EnableQuery]
 	//[NonAction]
 	public IActionResult GetWithMapping()// Do Not uses because generate an error when expanding. Prefer using 'GetWithAutoMapper' action
@@ -56,7 +56,7 @@ public class OrderODataController : ControllerBase
 		var result = orders.ProjectTo<OrderDto>(_mapper.ConfigurationProvider);
 		return Ok(result);
 	}
-	[HttpGet("odata/OrderOData/Automapper")]
+	[HttpGet("odata/Orders/Automapper")]
 	public async Task<IActionResult> GetWithAutoMapper(ODataQueryOptions<OrderDto> options)
 	{
 		try
@@ -71,7 +71,7 @@ public class OrderODataController : ControllerBase
 		return Ok(result);
 	}
 
-	[HttpGet("odata/OrderOData/Automapper/GetQuery")]
+	[HttpGet("odata/Orders/Automapper/GetQuery")]
 	public async Task<IActionResult> GetQueryWithAutoMapper(ODataQueryOptions<OrderDto> options)
 	{
 		try
@@ -88,7 +88,7 @@ public class OrderODataController : ControllerBase
 
 
 	/**
-         [HttpGet("odata/OrderOData/Automapper/mapping")]
+         [HttpGet("odata/Orders/Automapper/mapping")]
         [EnableQuery]
         public async Task<IActionResult<IQueryable<OrderDto>> GetWithMapping()
         {
@@ -97,7 +97,7 @@ public class OrderODataController : ControllerBase
     }
      */
 
-	[HttpGet("odata/OrderOData/Automapper/{id}")]
+	[HttpGet("odata/Orders/Automapper/{id}")]
 	public async Task<IActionResult> Get(Guid id, ODataQueryOptions<OrderDto> options)
 	{
 		try
@@ -119,14 +119,14 @@ public class OrderODataController : ControllerBase
 		return Ok(result);
 	}
 
-	[HttpGet("odata/OrderOData/Orders")]
+	[HttpGet("odata/Orders/Entities")]
 	[EnableQuery]
 	public IQueryable<Order> GetWithOData()
 	{
 		return _orderReadRepository.Queryable;
 	}
 
-	/**[HttpGet("odata/OrderOData/Orders/{id:guid}")]
+	/**[HttpGet("odata/Orders/Entities/{id:guid}")]
     [ODataAttributeRouting]
     [EnableQuery]
     public async Task<Order?> GetByIdWithOData(Guid id)

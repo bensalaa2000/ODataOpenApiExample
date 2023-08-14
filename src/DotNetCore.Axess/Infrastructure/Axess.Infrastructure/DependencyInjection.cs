@@ -31,8 +31,8 @@ public static class DependencyInjection
 		}
 		// Ajoute l'interface du contexte aux services.
 		services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-		if (configuration.GetValue<bool>("UseInMemoryDatabase"))
-			services.AddScoped<ApplicationDbContextInitialiser>();
+		///if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+		services.AddScoped<ApplicationDbContextInitialiser>();
 
 		services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 		// Ajoute les repositories
